@@ -1,0 +1,2 @@
+ Crear diagrama de entidades.
+ Crear nuevo atributo "Tipo" en todos los objetos investigar enum.

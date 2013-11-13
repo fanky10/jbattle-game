@@ -19,6 +19,7 @@ public class App {
 		for (ObjetoAtacable atacable : atacables) {
 			atacable.ataca();
 			atacable.defiende(100);
+			
 		}
 	}
 }

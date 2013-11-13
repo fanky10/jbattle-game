@@ -1,2 +1,12 @@
+ # version 0.1
+ Docs:
  Crear diagrama de entidades.
+ Documento de definiciones utiles
+ 
+ Codigo:
  Crear nuevo atributo "Tipo" en todos los objetos investigar enum.
+ 
+ Requerimiento:
+ Iterar la lista de unidades y mostrar que tipo de unidad puede atacar, el ataque infligido y la defensa
+ 
+ 

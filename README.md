@@ -3,19 +3,19 @@ simple-java-training
 
 Este es un proyecto loco para aprender los conceptos basicos de Java con un juego objetos que se pueden atacar (o no) entre si.
 
-Existen objetos como:
+Existen unidades de ataque / defensa como:
 
-Tierra
+Tierra:
 Tanques
 Tropas
 Antiareos
 Torretas
 
-Aire
+Aire:
 Aviones
 Elicopteros
 
-Mar
+Agua:
 Submarinos
 Barcos
 
@@ -31,4 +31,6 @@ Elicopteros -> aire y tierra
 
 Submarinos -> agua y tierra
 Barcos -> agua, aire y tierra
+
+Dependiendo que objeto se ataque, es el daño infligido puede ser mayor o menor. (configurable)
 

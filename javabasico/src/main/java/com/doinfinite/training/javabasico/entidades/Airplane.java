@@ -1,6 +1,11 @@
 package com.doinfinite.training.javabasico.entidades;
 
-public class Avion implements ObjetoAtacable {
+public class Airplane extends AirUnit {
+
+	public Airplane(Integer health) {
+		super(health);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void defiende(int ataque) {

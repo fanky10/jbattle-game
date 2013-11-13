@@ -6,14 +6,14 @@ import java.util.List;
 
 import com.doinfinite.training.javabasico.entidades.HeavyTank;
 import com.doinfinite.training.javabasico.entidades.LightTank;
-import com.doinfinite.training.javabasico.entidades.ObjetoAtacable;
+import com.doinfinite.training.javabasico.entidades.AttackableUnit;
 import com.doinfinite.training.javabasico.entidades.QuickTank;
 
 public class BattleField {
-	private List<ObjetoAtacable> redTeam;
-	private List<ObjetoAtacable> blueTeam;
+	private List<AttackableUnit> redTeam;
+	private List<AttackableUnit> blueTeam;
 
-	public BattleField(List<ObjetoAtacable> redTeam, List<ObjetoAtacable> blueTeam) {
+	public BattleField(List<AttackableUnit> redTeam, List<AttackableUnit> blueTeam) {
 		super();
 		this.redTeam = redTeam;
 		this.blueTeam = blueTeam;
@@ -46,14 +46,14 @@ public class BattleField {
 		teamAttack(redTeam, blueTeam);
 	}
 
-	private void teamAttack(List<ObjetoAtacable> attackers,
-			List<ObjetoAtacable> defenders) {
+	private void teamAttack(List<AttackableUnit> attackers,
+			List<AttackableUnit> defenders) {
 
 		// red team goes first
-		for (ObjetoAtacable attacker : attackers) {
-			Iterator<ObjetoAtacable> i = defenders.iterator();
+		for (AttackableUnit attacker : attackers) {
+			Iterator<AttackableUnit> i = defenders.iterator();
 			while (i.hasNext()) {
-				ObjetoAtacable defender = i.next();
+				AttackableUnit defender = i.next();
 				int attack = attacker.ataca();
 				defender.defiende(attack);
 				System.out.println("Defender recibe daño y "+defender);
@@ -67,12 +67,12 @@ public class BattleField {
 	}
 	
 	public static void main(String args[]){
-		List<ObjetoAtacable> blueTeam = new ArrayList<ObjetoAtacable>();
+		List<AttackableUnit> blueTeam = new ArrayList<AttackableUnit>();
 		blueTeam.add(new HeavyTank(100));
 		blueTeam.add(new LightTank(100));
 		blueTeam.add(new LightTank(100));
 		
-		List<ObjetoAtacable> redTeam = new ArrayList<ObjetoAtacable>();
+		List<AttackableUnit> redTeam = new ArrayList<AttackableUnit>();
 		redTeam.add(new HeavyTank(100));
 		redTeam.add(new HeavyTank(100));
 		redTeam.add(new QuickTank(100));
@@ -82,19 +82,19 @@ public class BattleField {
 	}
 
 
-	public List<ObjetoAtacable> getRedTeam() {
+	public List<AttackableUnit> getRedTeam() {
 		return redTeam;
 	}
 
-	public void setRedTeam(List<ObjetoAtacable> redTeam) {
+	public void setRedTeam(List<AttackableUnit> redTeam) {
 		this.redTeam = redTeam;
 	}
 
-	public List<ObjetoAtacable> getBlueTeam() {
+	public List<AttackableUnit> getBlueTeam() {
 		return blueTeam;
 	}
 
-	public void setBlueTeam(List<ObjetoAtacable> blueTeam) {
+	public void setBlueTeam(List<AttackableUnit> blueTeam) {
 		this.blueTeam = blueTeam;
 	}
 

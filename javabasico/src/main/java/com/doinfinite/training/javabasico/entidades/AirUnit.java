@@ -1,10 +1,11 @@
 package com.doinfinite.training.javabasico.entidades;
 
-public abstract class Tank extends EarthUnit {
+public abstract class AirUnit extends Unit {
 
-	public Tank(Integer health) {
+	public AirUnit(Integer health) {
 		super(health);
 		// TODO Auto-generated constructor stub
 	}
+
 
 }

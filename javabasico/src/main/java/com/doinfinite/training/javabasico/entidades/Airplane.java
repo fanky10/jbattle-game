@@ -1,8 +1,8 @@
 package com.doinfinite.training.javabasico.entidades;
 
-public class Avion extends AirUnit {
+public class Airplane extends AirUnit {
 
-	public Avion(Integer health) {
+	public Airplane(Integer health) {
 		super(health);
 		// TODO Auto-generated constructor stub
 	}

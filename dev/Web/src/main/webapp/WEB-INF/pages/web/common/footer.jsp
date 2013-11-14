@@ -1,5 +1,5 @@
 <div class="row">
 	<div class="four columns centered">
-		<p>Rosario, Santa Fe, Argentina 2013 </p>
+		<p>Do Infinite all rights reserved</p>
 	</div>
 </div>

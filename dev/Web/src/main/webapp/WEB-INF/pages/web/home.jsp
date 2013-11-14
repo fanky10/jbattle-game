@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/pages/web/common/taglibs.jsp"%>
 
-<content tag="title">SEP-Bas Sistema estadistico de partidos de basquet</content>
+<content tag="title">Un titulo</content>
 <content tag="styles">
 	<%-- some link rel to this page in specific --%>	
 </content>
@@ -15,19 +15,11 @@
 	<div class="row">
 		<div class="twelve columns">
 			<h3>
-				SEP-Bas <small>Sistema estadistico de basquet</small>
+				BattleGame<small>A game to play!</small>
 			</h3>
-			<p>Sistema desarrollado para la catedra proyecto de la carrera de
-				Ing. en Sistemas en la Universidad Tenológica Nacional Facultad
-				Regional Rosario.</p>
-			<p>Profesor a cargo: Rocca.</p>
+			<p>This game is so much fun!</p>
+			
 	
-			<ul class="circle">
-				Integrantes:
-				<li>Fernández, Pablo Nicolás</li>
-				<li>Scoccia, Facundo</li>
-				<li>Genga, Franco</li>
-			</ul>
 		</div>
 	</div>
 </content>

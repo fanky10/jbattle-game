@@ -1,4 +1,9 @@
+# Maven generated folders #
+target
+# Compiled Classes #
 *.class
+
+# IDE specific files and folders #
 *.classpath
 *.project
 *.settings

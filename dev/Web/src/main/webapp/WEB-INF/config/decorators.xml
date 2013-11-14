@@ -1,0 +1,20 @@
+<decorators defaultdir="/decorators">
+    <excludes>
+        <pattern>*/performance/technologies</pattern>
+        <pattern>/all</pattern>
+        <pattern>/*.json*</pattern>
+        <pattern>/*.xml*</pattern>
+        <pattern>/*.css*</pattern>
+        <pattern>/*.js*</pattern>
+		<pattern>*/services*</pattern>
+		
+        <!-- Non-decorated pages -->   
+        <pattern>/service*</pattern>
+    </excludes>
+    <decorator name="WEB" page="web/default.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+    <decorator name="MOBILE" page="mobile/default.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+</decorators>

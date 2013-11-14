@@ -1,4 +1,4 @@
-simple-java-training
+jbattle-game
 ====================
 
 Este es un proyecto loco para aprender los conceptos basicos de Java con un juego objetos que se pueden atacar (o no) entre si.

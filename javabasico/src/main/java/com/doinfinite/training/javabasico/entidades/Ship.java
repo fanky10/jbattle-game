@@ -9,14 +9,14 @@ public class Ship extends WaterUnit {
 
 	@Override
 	public void defiende(int ataque) {
-		// TODO Auto-generated method stub
+		health = health - ataque/3;
 		
 	}
 
 	@Override
 	public int ataca() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 50;
 	}
 
 }

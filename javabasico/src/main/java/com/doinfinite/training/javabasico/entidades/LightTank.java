@@ -8,13 +8,13 @@ public class LightTank extends Tank {
 
 	@Override
 	public void defiende(int ataque) {
-		//TODO: put some code
+		health = health - ataque;
 	}
 
 	@Override
 	public int ataca() {
-		//TODO: put some code
-		return 0;
+
+		return 10;
 	}
 
 }

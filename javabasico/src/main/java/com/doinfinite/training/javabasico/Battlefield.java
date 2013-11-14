@@ -10,6 +10,7 @@ import com.doinfinite.training.javabasico.entidades.HeavyTank;
 import com.doinfinite.training.javabasico.entidades.LightTank;
 import com.doinfinite.training.javabasico.entidades.QuickTank;
 import com.doinfinite.training.javabasico.entidades.Ship;
+import com.doinfinite.training.javabasico.entidades.Turret;
 import com.doinfinite.training.javabasico.entidades.Unit;
 
 public class Battlefield {
@@ -24,21 +25,20 @@ public class Battlefield {
 
 	public void battle() {
 
-		boolean winner = false;
-		while (!winner) {
-			
+		while (!isThereAWinner()) {
 			Unit redUnit = redTeam.get(0);
-			Unit blueUnit = blueTeam.get(0);
-
 			attack(redUnit, blueTeam);
-			attack(blueUnit, redTeam);
+			
+			if (!blueTeam.isEmpty()) {
+				Unit blueUnit = blueTeam.get(0);
+				attack(blueUnit, redTeam);
+			}
+
 			System.out.println("-------------------------");
-			System.out.println("red team:"+redTeam);
-			System.out.println("blue team:"+blueTeam);
-			
+			System.out.println("red team:" + redTeam);
+			System.out.println("blue team:" + blueTeam);
 			System.out.println("=========================");
-			
-			winner = isThereAWinner();
+
 		}
 
 		String winnerMessage = (redTeam.isEmpty() ? "Blue team wins!"
@@ -78,13 +78,14 @@ public class Battlefield {
 	public static void main(String args[]) {
 		List<Unit> blueTeam = new ArrayList<Unit>();
 		blueTeam.add(new Ship(100));
-		blueTeam.add(new HeavyTank(100));
-		blueTeam.add(new LightTank(100));
 
 		List<Unit> redTeam = new ArrayList<Unit>();
+		redTeam.add(new Turret(100));
 		redTeam.add(new Airplane(100));
 		redTeam.add(new Chopper(100));
 		redTeam.add(new QuickTank(100));
+		redTeam.add(new LightTank(100));
+		redTeam.add(new HeavyTank(100));
 
 		new Battlefield(redTeam, blueTeam).battle();
 

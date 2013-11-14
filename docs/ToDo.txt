@@ -1,3 +1,14 @@
+ # World War [C.A.S.T]C(Chopper)A(Aircraft, Airplane)S(ships,submarine)T(troops, tanks, turrets)
+ # Version 0.2
+ Docs:
+ plantilla con debilidades y fortalezas (un excel o algo asi)
+ 
+ Requerimientos:
+ Funcional de usabilidad
+ GUI -> transformar a proyecto web.
+ Funcional de diseño
+ implementar critical + shield + items
+ 
  # version 0.1
  Docs:
  Crear diagrama de entidades.

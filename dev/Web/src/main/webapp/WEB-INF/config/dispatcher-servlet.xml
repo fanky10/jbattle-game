@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
+	<!-- Scans within the base package of the application for @Components to 
+		configure as beans -->
+	<!-- @Controller, @Service, @Configuration, etc. -->
+	<!-- web controllers -->
+	<context:component-scan base-package="com.genfersco.sepbas.web.controller" />
+	<!-- services controllers -->
+	<context:component-scan base-package="com.genfersco.sepbas.services.controller" />
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+	
+	<!-- handling objects in request. It's done implicity, but if more are needed 
+		they should be placed here -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- MANEJO DE VIEWS -->
+	<bean id="urlBasedViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="#{T(org.springframework.core.Ordered).HIGHEST_PRECEDENCE}" />
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- Every placeholder goes through the following resolution process. Once 
+		a value is found it’s set and the next placeholder is resolved: (optional) 
+		Property value specified as a system or environment property; useful for 
+		overriding specific placeholders (e.g. -Djdbc.host=devdb / -Djdbc.username=carbon5) 
+		(optional) Properties file located by the system/environment variable called 
+		“config”; useful for externalizing configuration. All URL types are supported 
+		(e.g. -Dconfig=c://hmc.properties). (optional) Properties file identified 
+		by classpath:local-config.properties; useful for specific developer overrides. 
+		(required) Properties file identified by classpath:configuration.properties, 
+		which contains default settings for our application. the valueSeparator, 
+		value = ? is for default values like ${myBeanValue?DefaultValue} -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+		<property name="valueSeparator" value="?" />
+		<property name="locations">
+			<list>
+				<value>classpath:configuration.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="homeMessage" class="java.lang.String" factory-method="valueOf">
+		<constructor-arg value="${home.message}" />
+	</bean>
+
+</beans>

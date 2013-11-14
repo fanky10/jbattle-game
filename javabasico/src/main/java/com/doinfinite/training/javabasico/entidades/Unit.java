@@ -16,7 +16,7 @@ public abstract class Unit implements AttackableUnit {
 	}
 
 	public String toString() {
-		return this.getClass() + " - health: " + health;
+		return this.getClass().getSimpleName() + "<" + health + ">";
 	}
 
 	public boolean isDead() {
@@ -29,12 +29,12 @@ public abstract class Unit implements AttackableUnit {
 			return defender instanceof EarthUnit
 					|| defender instanceof WaterUnit;
 		}
-		
+
 		// water unit can attack only air and earth units
 		if (this instanceof WaterUnit) {
 			return defender instanceof EarthUnit || defender instanceof AirUnit;
 		}
-		
+
 		// earth can attack any other unit
 		if (this instanceof EarthUnit) {
 			return true;

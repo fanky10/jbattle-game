@@ -7,15 +7,15 @@ public class QuickTank extends Tank {
 
 	@Override
 	public void defiende(int ataque) {
-		health = health - ataque;
+		health = health - ataque * 2;
 	}
 
 	@Override
 	public int ataca() {
 		return 40;
 	}
-	
-	public void avanza(){
-		//TODO: avanzar
+
+	public void avanza() {
+
 	}
 }

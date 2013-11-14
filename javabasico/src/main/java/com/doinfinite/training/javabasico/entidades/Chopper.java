@@ -9,14 +9,14 @@ public class Chopper extends AirUnit {
 
 	@Override
 	public void defiende(int ataque) {
-		// TODO Auto-generated method stub
+		health = health - ataque;
 		
 	}
 
 	@Override
 	public int ataca() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 20;
 	}
 
 }

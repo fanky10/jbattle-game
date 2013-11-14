@@ -9,11 +9,12 @@ public class Airplane extends AirUnit {
 
 	@Override
 	public void defiende(int ataque) {
+		health = health - ataque*3;
 	}
 
 	@Override
 	public int ataca() {
-		return 0;
+		return 90;
 	}
 
 	@Override

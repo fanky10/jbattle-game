@@ -13,7 +13,6 @@ public class LightTank extends Tank {
 
 	@Override
 	public int ataca() {
-
 		return 10;
 	}
 

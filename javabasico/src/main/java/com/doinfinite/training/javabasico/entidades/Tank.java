@@ -7,6 +7,4 @@ public abstract class Tank extends EarthUnit {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-
 }

@@ -7,6 +7,5 @@ package com.doinfinite.training.javabasico;
  */
 public class App {
 	public static void main(String[] args) {
-		
 	}
 }

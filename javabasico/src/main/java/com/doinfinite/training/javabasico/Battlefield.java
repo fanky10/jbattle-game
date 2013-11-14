@@ -9,11 +9,11 @@ import com.doinfinite.training.javabasico.entidades.LightTank;
 import com.doinfinite.training.javabasico.entidades.Unit;
 import com.doinfinite.training.javabasico.entidades.QuickTank;
 
-public class BattleField {
+public class Battlefield {
 	private List<Unit> redTeam;
 	private List<Unit> blueTeam;
 
-	public BattleField(List<Unit> redTeam, List<Unit> blueTeam) {
+	public Battlefield(List<Unit> redTeam, List<Unit> blueTeam) {
 		super();
 		this.redTeam = redTeam;
 		this.blueTeam = blueTeam;
@@ -84,7 +84,7 @@ public class BattleField {
 		redTeam.add(new HeavyTank(100));
 		redTeam.add(new QuickTank(100));
 
-		new BattleField(redTeam, blueTeam).battle();
+		new Battlefield(redTeam, blueTeam).battle();
 
 	}
 

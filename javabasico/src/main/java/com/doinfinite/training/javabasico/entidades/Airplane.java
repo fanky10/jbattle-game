@@ -17,10 +17,4 @@ public class Airplane extends AirUnit {
 		return 90;
 	}
 
-	@Override
-	public boolean isDead() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

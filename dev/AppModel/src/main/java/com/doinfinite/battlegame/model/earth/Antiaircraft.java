@@ -1,8 +1,8 @@
-package com.doinfinite.training.javabasico.entidades;
+package com.doinfinite.battlegame.model.earth;
 
-public class Submarine extends WaterUnit {
+public class Antiaircraft extends EarthUnit {
 
-	public Submarine(Integer health) {
+	public Antiaircraft(Integer health) {
 		super(health);
 		// TODO Auto-generated constructor stub
 	}
@@ -11,13 +11,12 @@ public class Submarine extends WaterUnit {
 	public void defiende(int ataque) {
 		health = health - ataque;
 		
-		
 	}
 
 	@Override
 	public int ataca() {
 		// TODO Auto-generated method stub
-		return 50;
+		return 70;
 	}
 
 }

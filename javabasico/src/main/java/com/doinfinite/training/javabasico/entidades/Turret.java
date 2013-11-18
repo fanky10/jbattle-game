@@ -9,14 +9,14 @@ public class Turret extends EarthUnit {
 
 	@Override
 	public void defiende(int ataque) {
-		health = health - ataque;
+		health = health - ataque/3;
 		
 	}
 
 	@Override
 	public int ataca() {
 		// TODO Auto-generated method stub
-		return 50;
+		return 20;
 	}
 
 }

@@ -16,7 +16,7 @@ public class Antiaircraft extends EarthUnit {
 	@Override
 	public int ataca() {
 		// TODO Auto-generated method stub
-		return 30;
+		return 70;
 	}
 
 }

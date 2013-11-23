@@ -5,6 +5,10 @@ public class QuickTank extends Tank {
 		super(health);
 	}
 
+	public QuickTank() {
+		this(100);
+	}
+
 	@Override
 	public void defiende(int ataque) {
 		health = health - ataque * 2;

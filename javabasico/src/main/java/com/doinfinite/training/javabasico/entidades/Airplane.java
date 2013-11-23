@@ -4,7 +4,10 @@ public class Airplane extends AirUnit {
 
 	public Airplane(Integer health) {
 		super(health);
-		// TODO Auto-generated constructor stub
+	}
+	
+	public Airplane(){
+		this(100);
 	}
 
 	@Override

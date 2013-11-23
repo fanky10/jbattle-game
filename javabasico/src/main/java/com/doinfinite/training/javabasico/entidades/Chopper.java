@@ -4,7 +4,10 @@ public class Chopper extends AirUnit {
 
 	public Chopper(Integer health) {
 		super(health);
-		// TODO Auto-generated constructor stub
+	}
+	
+	public Chopper(){
+		this(100);
 	}
 
 	@Override

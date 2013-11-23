@@ -4,7 +4,6 @@ public class Submarine extends WaterUnit {
 
 	public Submarine(Integer health) {
 		super(health);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

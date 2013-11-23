@@ -4,7 +4,10 @@ public class Ship extends WaterUnit {
 
 	public Ship(Integer health) {
 		super(health);
-		// TODO Auto-generated constructor stub
+	}
+	
+	public Ship(){
+		this(100);
 	}
 
 	@Override

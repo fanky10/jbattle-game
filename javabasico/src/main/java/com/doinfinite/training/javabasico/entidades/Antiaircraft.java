@@ -4,7 +4,10 @@ public class Antiaircraft extends EarthUnit {
 
 	public Antiaircraft(Integer health) {
 		super(health);
-		// TODO Auto-generated constructor stub
+	}
+	
+	public Antiaircraft(){
+		this(100);
 	}
 
 	@Override

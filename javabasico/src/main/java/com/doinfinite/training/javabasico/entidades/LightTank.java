@@ -6,6 +6,10 @@ public class LightTank extends Tank {
 		super(health);
 	}
 
+	public LightTank() {
+		this(100);
+	}
+
 	@Override
 	public void defiende(int ataque) {
 		health = health - ataque;

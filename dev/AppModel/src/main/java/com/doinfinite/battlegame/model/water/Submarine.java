@@ -6,6 +6,10 @@ public class Submarine extends WaterUnit {
 		super(health);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Submarine(){
+		this(100);
+	}
 
 	@Override
 	public void defiende(int ataque) {

@@ -4,7 +4,10 @@ public class Turret extends EarthUnit {
 
 	public Turret(Integer health) {
 		super(health);
-		// TODO Auto-generated constructor stub
+	}
+	
+	public Turret(){
+		this(100);
 	}
 
 	@Override

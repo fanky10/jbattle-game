@@ -6,6 +6,14 @@ public class Troop extends EarthUnit {
 		super(health);
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Troop() {
+		this(100);
+		
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void defiende(int ataque) {

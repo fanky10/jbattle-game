@@ -6,6 +6,13 @@ public class Ship extends WaterUnit {
 		super(health);
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	public Ship() {
+		
+		this(100);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void defiende(int ataque) {

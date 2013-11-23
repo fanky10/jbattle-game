@@ -37,10 +37,10 @@ public class App {
 		String b;
 		int x = 0;
 		int y = 0;
-		int totalHealt = 0;
-		int totalHealt2 = 0;
-		int maxHealt1 = 500;
-		int maxHealt2 = 500;
+		int totalHealth = 0;
+		int totalHealth2 = 0;
+		int maxHealth = 500;
+		
 		System.out.println("Chose 5 units for each team");
 
 		System.out.println("Red Team Units");
@@ -58,7 +58,7 @@ public class App {
 
 		System.out
 				.println("Choose one of the units that are listed to add to your army you can pick a maximum of 5 units, so choose wisely.");
-		while (totalHealt < maxHealt1) {
+		while (totalHealth < maxHealth) {
 
 			
 				BufferedReader read1 = new BufferedReader(
@@ -79,77 +79,77 @@ public class App {
 				switch (x) {
 
 				case 1:
-					redTeam.add(new LightTank(100));
+					redTeam.add(new LightTank());
 					System.out
 							.println("You had added a Light Tank to your team!");
-					totalHealt = (totalHealt + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 2:
-					redTeam.add(new QuickTank(100));
+					redTeam.add(new QuickTank());
 					System.out
 							.println("You had added a Quick Tank to your team!");
-					totalHealt = (totalHealt + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 3:
-					redTeam.add(new HeavyTank(100));
+					redTeam.add(new HeavyTank());
 					System.out
 							.println("You had added a Heavy Tank to your team!");
-					totalHealt = (totalHealt + 100);
+					totalHealth = (totalHealth + 100);
 
 					break;
 
 				case 4:
-					redTeam.add(new Troop(100));
+					redTeam.add(new Troop());
 					System.out.println("You had added a Troop to your team!");
-					totalHealt = (totalHealt + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 5:
-					redTeam.add(new Turret(100));
+					redTeam.add(new Turret());
 					System.out.println("You had added a Turret to your team!");
-					totalHealt = (totalHealt + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 6:
-					redTeam.add(new Antiaircraft(100));
+					redTeam.add(new Antiaircraft());
 					System.out
 							.println("You had added an Antiaircraft to your team!");
-					totalHealt = (totalHealt + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 7:
-					redTeam.add(new Chopper(100));
+					redTeam.add(new Chopper());
 					System.out.println("You had added a Chopper to your team!");
-					totalHealt = (totalHealt + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 8:
-					redTeam.add(new Airplane(100));
+					redTeam.add(new Airplane());
 					System.out
 							.println("You had added an Airplane to your team");
-					totalHealt = (totalHealt + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 9:
-					redTeam.add(new Ship(100));
+					redTeam.add(new Ship());
 					System.out.println("You had added a Ship to your team!");
-					totalHealt = (totalHealt + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 10:
-					redTeam.add(new Submarine(100));
+					redTeam.add(new Submarine());
 					System.out
 							.println("You had added a Submarine to your team!");
-					totalHealt = (totalHealt + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				default:
 					unitString = "Undefined unit";
 				}
 
-				if (totalHealt < maxHealt1) {
+				if (totalHealth < maxHealth) {
 					System.out.println("Pick your next unit!");
 				} else {
 					System.out.println("Red Team selection completed!");
@@ -179,7 +179,7 @@ public class App {
 		System.out
 				.println("Choose one of the units that are listed to add to your army you can pick a maximum of 5 units, so choose wisely.");
 
-		while (totalHealt2 < maxHealt2) {
+		while (totalHealth < maxHealth) {
 			
 				BufferedReader read2 = new BufferedReader(
 						new InputStreamReader(System.in));
@@ -199,76 +199,76 @@ public class App {
 				switch (y) {
 
 				case 1:
-					blueTeam.add(new LightTank(100));
+					blueTeam.add(new LightTank());
 					System.out
 							.println("You had added a Light Tank to your team!");
-					totalHealt2 = (totalHealt2 + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 2:
-					blueTeam.add(new QuickTank(100));
+					blueTeam.add(new QuickTank());
 					System.out
 							.println("You had added a Quick Tank to your team!");
-					totalHealt2 = (totalHealt2 + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 3:
-					blueTeam.add(new HeavyTank(100));
+					blueTeam.add(new HeavyTank());
 					System.out
 							.println("You had added a Heavy Tank to your team!");
-					totalHealt2 = (totalHealt2 + 100);
+					totalHealth = (totalHealth + 100);
 
 					break;
 
 				case 4:
-					blueTeam.add(new Troop(100));
+					blueTeam.add(new Troop());
 					System.out.println("You had added a Troop to your team!");
-					totalHealt2 = (totalHealt2 + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 5:
-					blueTeam.add(new Turret(100));
+					blueTeam.add(new Turret());
 					System.out.println("You had added a Turret to your team!");
-					totalHealt2 = (totalHealt2 + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 6:
-					blueTeam.add(new Antiaircraft(100));
+					blueTeam.add(new Antiaircraft());
 					System.out
 							.println("You had added an Antiaircraft to your team!");
-					totalHealt2 = (totalHealt2 + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 7:
-					blueTeam.add(new Chopper(100));
+					blueTeam.add(new Chopper());
 					System.out.println("You had added a Chopper to your team!");
-					totalHealt2 = (totalHealt2 + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 8:
-					blueTeam.add(new Airplane(100));
+					blueTeam.add(new Airplane());
 					System.out
 							.println("You had added an Airplane to your team");
-					totalHealt2 = (totalHealt2 + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 9:
-					blueTeam.add(new Ship(100));
+					blueTeam.add(new Ship());
 					System.out.println("You had added a Ship to your team!");
-					totalHealt2 = (totalHealt2 + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				case 10:
-					blueTeam.add(new Submarine(100));
+					blueTeam.add(new Submarine());
 					System.out
 							.println("You had added a Submarine to your team!");
-					totalHealt2 = (totalHealt2 + 100);
+					totalHealth = (totalHealth + 100);
 					break;
 
 				default:
 					unitString = "Undefined unit";
 				}
-				if (totalHealt2 < maxHealt2)
+				if (totalHealth < maxHealth)
 					System.out.println("Pick your next unit!");
 				else
 					System.out.println("Blue Team selection completed!");

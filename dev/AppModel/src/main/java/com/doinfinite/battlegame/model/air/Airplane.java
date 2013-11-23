@@ -6,6 +6,14 @@ public class Airplane extends AirUnit {
 		super(health);
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Airplane() {
+		
+		this(100);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void defiende(int ataque) {

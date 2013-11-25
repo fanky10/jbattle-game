@@ -27,4 +27,12 @@ public class Troop extends EarthUnit {
 		return 10;
 	}
 
+
+
+	@Override
+	public void menu() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

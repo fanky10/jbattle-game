@@ -20,4 +20,10 @@ public class LightTank extends Tank {
 		return 10;
 	}
 
+	@Override
+	public void menu() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

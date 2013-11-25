@@ -27,4 +27,12 @@ public class Antiaircraft extends EarthUnit {
 		return 70;
 	}
 
+
+
+	@Override
+	public void menu() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

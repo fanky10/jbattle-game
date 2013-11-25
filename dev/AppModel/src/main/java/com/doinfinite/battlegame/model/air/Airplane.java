@@ -25,4 +25,12 @@ public class Airplane extends AirUnit {
 		return 90;
 	}
 
+
+
+	@Override
+	public void menu() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -26,4 +26,11 @@ public class Ship extends WaterUnit {
 		return 50;
 	}
 
+
+	@Override
+	public void menu() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

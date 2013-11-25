@@ -28,4 +28,13 @@ public class QuickTank extends Tank {
 	public void avanza() {
 
 	}
+
+
+
+
+	@Override
+	public void menu() {
+		// TODO Auto-generated method stub
+		
+	}
 }

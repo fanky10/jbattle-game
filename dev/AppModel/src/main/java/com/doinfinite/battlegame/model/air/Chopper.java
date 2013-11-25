@@ -27,4 +27,12 @@ public class Chopper extends AirUnit {
 		return 20;
 	}
 
+
+
+	@Override
+	public void menu() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

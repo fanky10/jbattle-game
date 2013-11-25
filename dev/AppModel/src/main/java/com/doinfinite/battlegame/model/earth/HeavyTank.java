@@ -24,4 +24,12 @@ public class HeavyTank extends Tank{
 		return 20;
 	}
 
+
+
+	@Override
+	public void menu() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -23,4 +23,10 @@ public class Submarine extends WaterUnit {
 		return 50;
 	}
 
+	@Override
+	public void menu() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

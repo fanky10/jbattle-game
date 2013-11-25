@@ -24,13 +24,4 @@ public class Airplane extends AirUnit {
 	public int ataca() {
 		return 90;
 	}
-
-
-
-	@Override
-	public void menu() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

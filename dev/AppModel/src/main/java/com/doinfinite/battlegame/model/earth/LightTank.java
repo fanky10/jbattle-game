@@ -5,11 +5,11 @@ public class LightTank extends Tank {
 	public LightTank(Integer health) {
 		super(health);
 	}
-	
-	public LightTank(){
+
+	public LightTank() {
 		this(100);
 	}
-	
+
 	@Override
 	public void defiende(int ataque) {
 		health = health - ataque;
@@ -19,11 +19,4 @@ public class LightTank extends Tank {
 	public int ataca() {
 		return 10;
 	}
-
-	@Override
-	public void menu() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

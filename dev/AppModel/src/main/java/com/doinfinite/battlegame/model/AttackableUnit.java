@@ -5,8 +5,6 @@ public interface AttackableUnit {
 
 	public void defiende(int ataque);
 	
-	public void menu ();
-
 	public int ataca();
 
 	public boolean isDead();

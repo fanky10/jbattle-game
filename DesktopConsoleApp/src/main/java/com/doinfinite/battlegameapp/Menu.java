@@ -1,4 +1,4 @@
-package com.doinfinite.battlegame.model;
+package com.doinfinite.battlegameapp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.doinfinite.battlegame.model.Team;
+import com.doinfinite.battlegame.model.Unit;
 import com.doinfinite.battlegame.model.air.Airplane;
 import com.doinfinite.battlegame.model.air.Chopper;
 import com.doinfinite.battlegame.model.earth.Antiaircraft;
@@ -16,21 +18,17 @@ import com.doinfinite.battlegame.model.earth.Troop;
 import com.doinfinite.battlegame.model.earth.Turret;
 import com.doinfinite.battlegame.model.water.Ship;
 import com.doinfinite.battlegame.model.water.Submarine;
-import com.doinfinite.battlegame.model.Unit;
 
 public class Menu {
-	
+
 	public List<Team> TEAM = new ArrayList<Team>();
 	String option;
 	public int x = 0;
-	public int teamSize; 
+	public int teamSize;
 	public int totalHealth1;
 	public int totalHealth2;
 	String unitOp;
 	public int op;
-	
-	
-	
 
 	public int getTeamSize() {
 
@@ -48,14 +46,14 @@ public class Menu {
 
 		} catch (NumberFormatException ex) {
 			System.out.println("Exception object: " + ex);
-			System.out.println("Have you tried with a valid option?");}
+			System.out.println("Have you tried with a valid option?");
+		}
 
-			System.out.println("Choose the sizes of the teams");
+		System.out.println("Choose the sizes of the teams");
 
-			System.out.println("1- 5 vs 5");
-			System.out.println("2- 10 vs 10");
-			System.out.println("3- 20 vs 20");
-		
+		System.out.println("1- 5 vs 5");
+		System.out.println("2- 10 vs 10");
+		System.out.println("3- 20 vs 20");
 
 		switch (x) {
 
@@ -70,64 +68,51 @@ public class Menu {
 		case 3:
 			teamSize = 20;
 
-			break;}
-		
+			break;
+		}
 
-		return teamSize; 
-		
+		return teamSize;
+
 	}
-     
-	public int getteamcolor () {
-		
+
+	public int getteamcolor() {
+
 		int color;
 		int intT = 0;
-	
-	
-	System.out.println("Chose your team");
-	
-	System.out.println("1 - Read Team");
-	System.out.println("2 - Blue Team");
-	
-	
-	
-	
-	BufferedReader Teamcolor = new BufferedReader(new InputStreamReader(
-			System.in));
-	
-	String S = null;
-	try {
-		S = Teamcolor.readLine();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+
+		System.out.println("Chose your team");
+
+		System.out.println("1 - Read Team");
+		System.out.println("2 - Blue Team");
+
+		BufferedReader Teamcolor = new BufferedReader(new InputStreamReader(
+				System.in));
+
+		String chosenColor = null;
+		try {
+			chosenColor = Teamcolor.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			intT = Integer.parseInt(chosenColor);
+
+		} catch (NumberFormatException ex) {
+			System.out.println("Exception object: " + ex);
+			System.out.println("Have you tried with a valid number?");
+		}
+
+		color = intT;
+
+		return color;
 	}
-	try{
-		intT = Integer.parseInt(S);
-		
-	}catch(NumberFormatException ex){
-		System.out.println("Exception object: "+ex);
-		System.out.println("Have you tried with a valid number?");}
 
- 
-color = intT;
+	public ArrayList<Unit> teamaker(int teamSize) {
 
-	
-	return color; }
-	
-	
-	
-	
-
-	
-	
-	
-	public ArrayList<com.doinfinite.battlegame.model.Unit> teamaker (int teamSize) {
-		
-		
-		ArrayList<com.doinfinite.battlegame.model.Unit> team = new ArrayList<Unit>();
+		ArrayList<Unit> team = new ArrayList<Unit>();
 		String a = null;
 		int x = 0;
-		
 
 		System.out.println("Chose" + teamSize + "units for your team");
 
@@ -251,23 +236,11 @@ color = intT;
 				System.out
 						.println("You have choosen an invalid unit number, please select again");
 			}
-			
 
 		}
-		
-		
-	return team;	
+
+		return team;
 
 	}
-	
-	
-	
-	
-	
-			
-		
-			
-			
-		
-			
+
 }

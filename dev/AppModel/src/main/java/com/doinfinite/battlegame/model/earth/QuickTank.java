@@ -4,16 +4,10 @@ public class QuickTank extends Tank {
 	public QuickTank(Integer health) {
 		super(health);
 	}
-	
-	
-	
 
 	public QuickTank() {
-		
 		this(100);
-		// TODO Auto-generated constructor stub
 	}
-
 
 	@Override
 	public void defiende(int ataque) {
@@ -29,12 +23,4 @@ public class QuickTank extends Tank {
 
 	}
 
-
-
-
-	@Override
-	public void menu() {
-		// TODO Auto-generated method stub
-		
-	}
 }

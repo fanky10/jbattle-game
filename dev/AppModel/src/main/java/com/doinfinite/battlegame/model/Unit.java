@@ -10,7 +10,7 @@ public abstract class Unit implements AttackableUnit {
 	public Unit(Integer health) {
 		this.health = health;
 	}
-
+	
 	public Integer getHealth() {
 		return health;
 	}
@@ -18,9 +18,13 @@ public abstract class Unit implements AttackableUnit {
 	public void setHealth(Integer health) {
 		this.health = health;
 	}
+	
+	public String getName(){
+		return this.getClass().getSimpleName();
+	}
 
 	public String toString() {
-		return this.getClass().getSimpleName() + "<" + health + ">";
+		return getName();
 	}
 
 	public boolean isDead() {

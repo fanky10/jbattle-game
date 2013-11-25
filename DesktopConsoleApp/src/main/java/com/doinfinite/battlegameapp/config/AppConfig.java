@@ -9,7 +9,6 @@ public class AppConfig {
 	private static Properties getConfigurationProperties() {
 		if (configurationProperties.isEmpty()) {
 			try {
-				System.err.println(" it was EMPTY!");
 				// load a properties file from class path, inside static method
 				configurationProperties.load(AppConfig.class.getClassLoader()
 						.getResourceAsStream("app-config.properties"));
@@ -22,6 +21,10 @@ public class AppConfig {
 
 	public static String getWelcomeMessage() {
 		return getConfigurationProperties().getProperty("app.welcome");
+	}
+
+	public static int getMaxHealth() {
+		return Integer.parseInt(getConfigurationProperties().getProperty("app.maxHealth"));
 	}
 
 }

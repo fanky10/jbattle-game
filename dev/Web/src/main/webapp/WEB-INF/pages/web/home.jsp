@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="twelve columns">
 			<h3>
-				BattleGame<small>A game to play!</small>
+				BattleGame <small>A game to play!</small>
 			</h3>
 			<p>This game is so much fun!</p>
 			

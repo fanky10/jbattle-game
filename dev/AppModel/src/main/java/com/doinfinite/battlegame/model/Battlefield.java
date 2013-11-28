@@ -76,15 +76,15 @@ public class Battlefield {
 
 	public static void main(String args[]) {
 		List<Unit> blueTeam = new ArrayList<Unit>();
-		blueTeam.add(new Ship(100));
+		blueTeam.add(new Ship(100,50,10));
 
 		List<Unit> redTeam = new ArrayList<Unit>();
-		redTeam.add(new Turret(100));
-		redTeam.add(new Airplane(100));
-		redTeam.add(new Chopper(100));
-		redTeam.add(new QuickTank(100));
-		redTeam.add(new LightTank(100));
-		redTeam.add(new HeavyTank(100));
+		redTeam.add(new Turret(100,50,10));
+		redTeam.add(new Airplane(100,50,10));
+		redTeam.add(new Chopper(100,50,10));
+		redTeam.add(new QuickTank(100,50,10));
+		redTeam.add(new LightTank(100,50,10));
+		redTeam.add(new HeavyTank(100,50,10));
 
 		new Battlefield(redTeam, blueTeam).battle();
 

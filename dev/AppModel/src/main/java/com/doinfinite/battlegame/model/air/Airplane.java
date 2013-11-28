@@ -2,16 +2,22 @@ package com.doinfinite.battlegame.model.air;
 
 public class Airplane extends AirUnit {
 
-	public Airplane(Integer health) {
-		super(health);
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 	
 
+
+
+
+
+	public Airplane(Integer health, Integer speed, Integer accuracy) {
+		super(health, speed, accuracy);
+		// TODO Auto-generated constructor stub
+	}
+
 	public Airplane() {
 		
-		this(100);
+		this(100,50,10);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -2,12 +2,15 @@ package com.doinfinite.battlegame.model.water;
 
 public class Ship extends WaterUnit {
 
-	public Ship(Integer health) {
-		super(health);
+	
+
+	public Ship(Integer health, Integer speed, Integer accuracy) {
+		super(health, speed, accuracy);
+		// TODO Auto-generated constructor stub
 	}
 
 	public Ship() {
-		this(100);
+		this(100,50,10);
 	}
 
 	@Override

@@ -4,8 +4,8 @@ import com.doinfinite.battlegame.model.Unit;
 
 public abstract class EarthUnit extends Unit {
 
-	public EarthUnit(Integer health) {
-		super(health);
+	public EarthUnit(Integer health, Integer speed, Integer accuracy) {
+		super(health,speed,accuracy);
 	}
 
 }

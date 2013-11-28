@@ -2,12 +2,15 @@ package com.doinfinite.battlegame.model.earth;
 
 public class Troop extends EarthUnit {
 
-	public Troop(Integer health) {
-		super(health);
+	
+
+	public Troop(Integer health, Integer speed, Integer accuracy) {
+		super(health, speed, accuracy);
+		// TODO Auto-generated constructor stub
 	}
 
 	public Troop() {
-		this(100);
+		this(100,50,10);
 	}
 
 	@Override

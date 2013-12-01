@@ -15,6 +15,7 @@ import com.doinfinite.battlegame.model.water.Ship;
 public class Battlefield {
 	private List<Unit> redTeam;
 	private List<Unit> blueTeam;
+	private static final boolean DEBUG = false;
 
 	public Battlefield(List<Unit> redTeam, List<Unit> blueTeam) {
 		super();
@@ -22,72 +23,57 @@ public class Battlefield {
 		this.blueTeam = blueTeam;
 	}
 
-	public void battle() {
-
+	public List<BattleEvent> battle() {
+		List<BattleEvent> battleEvents = new ArrayList<BattleEvent>();
 		while (!isThereAWinner()) {
+			
 			Unit redUnit = redTeam.get(0);
-			attack(redUnit, blueTeam);
-
+			String attackMessage = attack(redUnit, blueTeam);
+			battleEvents.add(new BattleEvent(attackMessage));
 			if (!blueTeam.isEmpty()) {
 				Unit blueUnit = blueTeam.get(0);
-				attack(blueUnit, redTeam);
+				attackMessage = attack(blueUnit, redTeam);
+				battleEvents.add(new BattleEvent(attackMessage));
 			}
 
-			System.out.println("-------------------------");
-			System.out.println("red team:" + redTeam);
-			System.out.println("blue team:" + blueTeam);
-			System.out.println("=========================");
+			debug("-------------------------");
+			debug("red team:" + redTeam);
+			debug("blue team:" + blueTeam);
+			debug("=========================");
 
 		}
 
 		String winnerMessage = (redTeam.isEmpty() ? "Blue team wins!"
 				: (blueTeam.isEmpty() ? "Red team wins!"
 						: "There was an issue clearly"));
-		System.out.println("Who has won? " + winnerMessage);
+		debug("Who has won? " + winnerMessage);
+		battleEvents.add(new BattleEvent(winnerMessage));
+		return battleEvents;
 	}
 
 	private boolean isThereAWinner() {
 		return redTeam.isEmpty() || blueTeam.isEmpty();
 	}
 
-	private void attack(Unit attacker, List<Unit> defenders) {
-		System.out.println(attacker.getClass().getSimpleName()
+	private String attack(Unit attacker, List<Unit> defenders) {
+		String message = "";
+		debug(attacker.getClass().getSimpleName()
 				+ " is attacking!!");
 		Iterator<Unit> unit = defenders.iterator();
 		if (unit.hasNext()) {
 			Unit defender = unit.next();
-			if (!attacker.canAttack(defender)) {
-				System.out.println(attacker.getClass().getSimpleName()
-						+ " cannot attack "
-						+ defender.getClass().getSimpleName());
-				return;// cannot attack :(
-			}
 			int attack = attacker.ataca();
 			defender.defiende(attack);
-			System.out.println(defender.getClass().getSimpleName()
-					+ " gets damage and is left with: " + defender.getHealth());
+			message = defender.getClass().getSimpleName()
+					+ " gets damage and is left with: " + defender.getHealth();
+			debug(message);
 			// depending on health remove it
 			if (defender.isDead()) {
-				System.out.println("Unit down!!!");
+				debug("Unit down!!!");
 				unit.remove();
 			}
 		}
-	}
-
-	public static void main(String args[]) {
-		List<Unit> blueTeam = new ArrayList<Unit>();
-		blueTeam.add(new Ship(100,50,10));
-
-		List<Unit> redTeam = new ArrayList<Unit>();
-		redTeam.add(new Turret(100,50,10));
-		redTeam.add(new Airplane(100,50,10));
-		redTeam.add(new Chopper(100,50,10));
-		redTeam.add(new QuickTank(100,50,10));
-		redTeam.add(new LightTank(100,50,10));
-		redTeam.add(new HeavyTank(100,50,10));
-
-		new Battlefield(redTeam, blueTeam).battle();
-
+		return message;
 	}
 
 	public List<Unit> getRedTeam() {
@@ -104,6 +90,12 @@ public class Battlefield {
 
 	public void setBlueTeam(List<Unit> blueTeam) {
 		this.blueTeam = blueTeam;
+	}
+	
+	private static void debug(String message){
+		if(DEBUG){//TODO: add log library
+			System.out.println("DEBUG - "+message);
+		}
 	}
 
 }

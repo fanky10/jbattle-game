@@ -54,24 +54,4 @@ public abstract class Unit implements AttackableUnit {
 	public boolean isDead() {
 		return this.health <= 0;
 	}
-
-	public boolean canAttack(Object defender) {
-		// air units can attack both earth and water types
-		if (this instanceof AirUnit) {
-			return defender instanceof EarthUnit
-					|| defender instanceof WaterUnit;
-		}
-
-		// water unit can attack only air and earth units
-		if (this instanceof WaterUnit) {
-			return defender instanceof EarthUnit || defender instanceof AirUnit;
-		}
-
-		// earth can attack any other unit
-		if (this instanceof EarthUnit) {
-			return true;
-		}
-
-		return false;
-	}
 }

@@ -9,9 +9,11 @@ import junit.framework.TestSuite;
 
 import com.doinfinite.battlegame.model.air.Airplane;
 import com.doinfinite.battlegame.model.air.Chopper;
+import com.doinfinite.battlegame.model.earth.HeavyTank;
 import com.doinfinite.battlegame.model.earth.LightTank;
+import com.doinfinite.battlegame.model.earth.QuickTank;
+import com.doinfinite.battlegame.model.earth.Turret;
 import com.doinfinite.battlegame.model.water.Ship;
-import com.doinfinite.battlegame.model.water.Submarine;
 
 public class BattlefieldTest extends TestCase {
 	/**
@@ -35,24 +37,17 @@ public class BattlefieldTest extends TestCase {
 	 * Rigourous Test :-)
 	 */
 	public void testHeavyTeam() {
-		new Battlefield(getRedTeam(), getBlueTeam()).battle();;
-		assertTrue(true);
-	}
-	
-	private List<Unit> getBlueTeam(){
-		List<Unit> team = new ArrayList<Unit>();
-		team.add(new Airplane(100));
-		team.add(new Chopper(100));
-		team.add(new LightTank(100));
-		team.add(new LightTank(100));
-		return team;
-	}
-	private List<Unit> getRedTeam(){
-		List<Unit> team = new ArrayList<Unit>();
-		team.add(new Ship(100));
-		team.add(new Submarine(100));
-		team.add(new LightTank(100));
-		team.add(new LightTank(100));
-		return team;
+		List<Unit> blueTeam = new ArrayList<Unit>();
+		blueTeam.add(new Ship(100, 50, 10));
+		List<Unit> redTeam = new ArrayList<Unit>();
+		redTeam.add(new Turret(100, 50, 10));
+		redTeam.add(new Airplane(100, 50, 10));
+		redTeam.add(new Chopper(100, 50, 10));
+		redTeam.add(new QuickTank(100, 50, 10));
+		redTeam.add(new LightTank(100, 50, 10));
+		redTeam.add(new HeavyTank(100, 50, 10));
+		List<BattleEvent> battleEvents = new Battlefield(redTeam, blueTeam)
+				.battle();
+		assertTrue(battleEvents != null && !battleEvents.isEmpty());
 	}
 }

@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/pages/web/common/taglibs.jsp"%>
 
-<content tag="title">Un titulo</content>
+<content tag="title">Unit Selection!</content>
 <content tag="styles">
 	<%-- some link rel to this page in specific --%>	
 </content>
@@ -12,8 +12,13 @@
 </content>
 
 <content tag="bodyContent">
-	<div class="row">
-		<div class="twelve columns">
-		</div>
-	</div>
+	<h1>Select your troop!</h1>
+	<ul>
+	<c:forEach var="unit" items="${availableUnits}">
+		<li>
+		${unit.name}
+		</li>
+	</c:forEach>
+		
+	</ul>
 </content>

@@ -12,13 +12,15 @@
 </content>
 
 <content tag="bodyContent">
-	<h1>Select your troop!</h1>
-	<ul>
-	<c:forEach var="unit" items="${availableUnits}">
-		<li>
-		${unit.name}
-		</li>
-	</c:forEach>
+	<div class="jumbotron">
+		<h2>Select your troop!</h2>
+		<ul>
+		<c:forEach var="unit" items="${availableUnits}">
+			<li>
+			${unit.name}
+			</li>
+		</c:forEach>
+	</div>
 		
 	</ul>
 </content>

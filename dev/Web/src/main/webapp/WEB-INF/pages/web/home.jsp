@@ -13,8 +13,8 @@
 
 <content tag="bodyContent">
 	<div class="jumbotron">
-		<h2>Welcome to The Battlegame</h2>
+		<h2>Welcome to The Battlegame!!!</h2>
 		<h3>A game to play!</h3>
-		<p>This game is so much fun!</p>
+		<p>This game is so much fun!, create your own Troop and battle your friends!!</p>
 	</div>
 </content>

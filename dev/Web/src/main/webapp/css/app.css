@@ -13,22 +13,20 @@ h1{
 	font-size: 3.5em;
 }
 
-h2{
-	font-size: 1.2em;
-}
-
 div{
 	font-size: 0.9em;
 }
+
 .dropdown-menu{
 	font-size: 1em;
 }
 
 .navbar-form *{
-	font-size: 1em;
+	font-size: 1.2em;
 }
 
 .jumbotron{
 	color: #777;
+	font-size: 1em;
 }
 

@@ -12,8 +12,9 @@
 </content>
 
 <content tag="bodyContent">
-	<div class="row">
-		<div class="twelve columns">
-		</div>
+	<div class="jumbotron">
+		<h2>Welcome to The Battlegame</h2>
+		<h3>A game to play!</h3>
+		<p>This game is so much fun!</p>
 	</div>
 </content>

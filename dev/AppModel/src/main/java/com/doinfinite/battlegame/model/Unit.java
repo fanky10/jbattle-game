@@ -1,6 +1,12 @@
 package com.doinfinite.battlegame.model;
 
-public abstract class Unit implements AttackableUnit {
+import java.io.Serializable;
+
+public abstract class Unit implements AttackableUnit, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5730523172266224078L;
 	protected Integer health = DEFAULT_HEALTH;
 	protected Integer speed = DEFAULT_SPEED;
 	protected Integer accuracy = DEFAULT_ACCURACY;

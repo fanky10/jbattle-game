@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.doinfinite.battlegame.model.Game.GameType;
 import com.doinfinite.battlegame.model.Unit;
 import com.doinfinite.battlegame.model.air.Airplane;
 import com.doinfinite.battlegame.model.air.Chopper;
@@ -19,6 +20,7 @@ import com.doinfinite.battlegame.model.earth.Troop;
 import com.doinfinite.battlegame.model.earth.Turret;
 import com.doinfinite.battlegame.model.water.Ship;
 import com.doinfinite.battlegame.model.water.Submarine;
+import com.doinfinite.battlegame.web.constants.WebAppConstants;
 
 public abstract class BaseController {
 	@Value("${home.url}")
@@ -65,5 +67,38 @@ public abstract class BaseController {
 
 	public void setHomeUrl(String homeUrl) {
 		this.homeUrl = homeUrl;
+	}
+
+	public List<Unit> getSelectedUnits(HttpServletRequest httpRequest,
+			GameType gameType) {
+		if (gameType == null) {
+			throw new IllegalArgumentException(
+					"not a valid game type specified");
+		}
+
+		List<Unit> selectedUnits = (List<Unit>) httpRequest
+				.getSession()
+				.getAttribute(WebAppConstants.SESSION_SELECTED_UNITS + gameType);
+		if (selectedUnits == null || selectedUnits.isEmpty()) {
+			//TODO: delete this and implement the correct go to select your units link (:
+			selectedUnits = new ArrayList<Unit>();
+			if (gameType == GameType.THREE_VS_THREE) {
+				selectedUnits.add(new HeavyTank());
+				selectedUnits.add(new Ship());
+				selectedUnits.add(new Chopper());
+			}
+			if (gameType == GameType.FIVE_VS_FIVE) {
+				selectedUnits.add(new HeavyTank());
+				selectedUnits.add(new Ship());
+				selectedUnits.add(new Chopper());
+				selectedUnits.add(new Ship());
+				selectedUnits.add(new Chopper());
+			}
+			httpRequest.getSession().setAttribute(
+					WebAppConstants.SESSION_SELECTED_UNITS + gameType,
+					selectedUnits);
+		}
+
+		return selectedUnits;
 	}
 }

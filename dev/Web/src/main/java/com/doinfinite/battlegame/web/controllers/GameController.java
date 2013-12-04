@@ -1,17 +1,52 @@
 package com.doinfinite.battlegame.web.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.doinfinite.battlegame.datafields.GameModePropertyEditor;
+import com.doinfinite.battlegame.datafields.GameTypePropertyEditor;
+import com.doinfinite.battlegame.model.Game;
+import com.doinfinite.battlegame.model.Game.GameMode;
+import com.doinfinite.battlegame.model.Game.GameType;
 import com.doinfinite.battlegame.web.constants.WebAppConstants;
 
 @Controller
 public class GameController extends BaseController {
+
+	@InitBinder
+	private void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(GameMode.class,
+				new GameModePropertyEditor());
+		binder.registerCustomEditor(GameType.class,
+				new GameTypePropertyEditor());
+	}
+
 	@RequestMapping(value = "/game/units/select", method = RequestMethod.GET)
 	public String showGameSelect(ModelMap map) {
 		map.put("availableUnits", getUnits());
 		return WebAppConstants.UNITS_SELECT;
+	}
+
+	@RequestMapping(value = "/game/{mode}/{type}", method = RequestMethod.GET)
+	public String showGame(HttpServletRequest httpRequest,
+			@PathVariable(value = "mode") GameMode gameMode,
+			@PathVariable(value = "type") GameType gameType, ModelMap map) {
+		Game game = new Game(gameMode, gameType);
+		map.put("selectedGame", game);
+		map.put("selectedUnits",
+				getSelectedUnits(httpRequest, game.getGameType()));
+		return WebAppConstants.GAME_NEW;
+	}
+
+	@RequestMapping(value = "/game/new", method = RequestMethod.GET)
+	public String showDefaultGame(HttpServletRequest httpRequest, ModelMap map) {
+		return showGame(httpRequest, GameMode.IA, GameType.THREE_VS_THREE, map);
 	}
 }

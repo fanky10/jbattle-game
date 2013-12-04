@@ -1,5 +1,9 @@
 <%@ include file="/WEB-INF/pages/web/common/taglibs.jsp"%>
 <html>
+
+<%-- i18n handling --%>
+<spring:message code="home.goback" var="goHome" />
+<c:url value="${homeURL}" var="hrefHome"/>
 <head>
 <title>
 	${statusCode} - ${title}
@@ -10,7 +14,6 @@
 	<h1>${statusCode} - ${title}</h1>
 	<h3>${label}</h3>
 	<p>${body}</p>
-	<c:url var="homeURL" value="/home" ></c:url>
-	<a class="btn_med_blue" href="${homeURL}"><span>Get me back home</span></a>
+	<a class="btn_med_blue" href="${hrefHome}"><span>${goHome}</span></a>
 </body>
 </html>

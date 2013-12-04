@@ -16,11 +16,12 @@
 	<!-- web controllers -->
 	<context:component-scan base-package="com.doinfinite.battlegame.web.controllers" />
 	<!-- services controllers -->
-	<context:component-scan base-package="com.doinfinite.battlegame.services.controllers" />
+	<context:component-scan
+		base-package="com.doinfinite.battlegame.services.controllers" />
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
-	
+
 	<!-- handling objects in request. It's done implicity, but if more are needed 
 		they should be placed here -->
 	<bean
@@ -36,7 +37,8 @@
 	<!-- MANEJO DE VIEWS -->
 	<bean id="urlBasedViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="#{T(org.springframework.core.Ordered).HIGHEST_PRECEDENCE}" />
+		<property name="order"
+			value="#{T(org.springframework.core.Ordered).HIGHEST_PRECEDENCE}" />
 		<property name="prefix" value="/WEB-INF/pages/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
@@ -67,6 +69,24 @@
 
 	<bean id="homeMessage" class="java.lang.String" factory-method="valueOf">
 		<constructor-arg value="${home.message}" />
+	</bean>
+
+	<!-- handling i18n with messages -->
+	<!-- resolve the locale properly -->
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en" />
+	</bean>
+
+	<mvc:interceptors>
+		<bean id="localeChangeInterceptor"
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+	</mvc:interceptors>
+	
+	<!-- Register the messages.properties -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages" />
 	</bean>
 
 </beans>

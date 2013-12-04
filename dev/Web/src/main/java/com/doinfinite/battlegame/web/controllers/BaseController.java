@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import com.doinfinite.battlegame.model.Unit;
 import com.doinfinite.battlegame.model.air.Airplane;
 import com.doinfinite.battlegame.model.air.Chopper;
@@ -18,6 +21,9 @@ import com.doinfinite.battlegame.model.water.Ship;
 import com.doinfinite.battlegame.model.water.Submarine;
 
 public abstract class BaseController {
+	@Value("${home.url}")
+	protected String homeUrl;
+
 	protected List<Unit> getUnits() {
 		List<Unit> units = new ArrayList<Unit>();
 		units.add(new Antiaircraft());
@@ -50,5 +56,14 @@ public abstract class BaseController {
 			// do nothing
 		}
 		return statusCodeValue;
+	}
+
+	@ModelAttribute("homeURL")
+	public String getHomeUrl() {
+		return homeUrl;
+	}
+
+	public void setHomeUrl(String homeUrl) {
+		this.homeUrl = homeUrl;
 	}
 }

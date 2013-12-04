@@ -11,6 +11,7 @@ public class Game {
 
 	private GameMode gameMode;
 	private GameType gameType;
+	private Battlefield battlefield;
 
 	public Game(String gameMode, String gameType) {
 		this(GameMode.valueOf(gameMode), GameType.valueOf(gameType));
@@ -35,5 +36,13 @@ public class Game {
 
 	public void setGameType(GameType gameType) {
 		this.gameType = gameType;
+	}
+
+	public Battlefield getBattlefield() {
+		return battlefield;
+	}
+
+	public void setBattlefield(Battlefield battlefield) {
+		this.battlefield = battlefield;
 	}
 }

@@ -14,6 +14,7 @@
 <content tag="bodyContent">
 	<div class="jumbotron">
 		<h2>Game Mode: ${selectedGame.gameMode} - Type: ${selectedGame.gameType}</h2>
+		<h2>Battlefield ${selectedGame.battlefield}</h2>
 		<h2>Your Selected Units!</h2>
 		<ul>
 		<c:forEach var="unit" items="${selectedUnits}">
@@ -21,6 +22,17 @@
 			${unit.name}
 			</li>
 		</c:forEach>
+		</ul>
+		<h2>Foe Selected Units!</h2>
+		<ul>
+		<c:forEach var="unit" items="${foeSelectedUnits}">
+			<li>
+			${unit.name}
+			</li>
+		</c:forEach>
+		</ul>
+		<button>Battle!</button>
+		<button>Other Battlefield!</button>
 	</div>
 		
 	</ul>

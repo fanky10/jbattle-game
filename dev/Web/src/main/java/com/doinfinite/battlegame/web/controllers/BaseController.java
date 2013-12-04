@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.doinfinite.battlegame.model.Game.GameMode;
 import com.doinfinite.battlegame.model.Game.GameType;
 import com.doinfinite.battlegame.model.Unit;
 import com.doinfinite.battlegame.model.air.Airplane;
@@ -80,7 +81,8 @@ public abstract class BaseController {
 				.getSession()
 				.getAttribute(WebAppConstants.SESSION_SELECTED_UNITS + gameType);
 		if (selectedUnits == null || selectedUnits.isEmpty()) {
-			//TODO: delete this and implement the correct go to select your units link (:
+			// TODO: delete this and implement the correct go to select your
+			// units link (:
 			selectedUnits = new ArrayList<Unit>();
 			if (gameType == GameType.THREE_VS_THREE) {
 				selectedUnits.add(new HeavyTank());
@@ -97,6 +99,30 @@ public abstract class BaseController {
 			httpRequest.getSession().setAttribute(
 					WebAppConstants.SESSION_SELECTED_UNITS + gameType,
 					selectedUnits);
+		}
+
+		return selectedUnits;
+	}
+
+	public List<Unit> getFoeSelectedUnits(GameMode gameMode, GameType gameType) {
+		if (gameType == null || gameMode == null || gameMode == GameMode.PVP) {
+			throw new IllegalArgumentException(
+					"not a valid game type specified");
+		}
+
+		List<Unit> selectedUnits = new ArrayList<Unit>();
+		//TODO: check that if gameMode == PVP look for PVP
+		if (gameType == GameType.THREE_VS_THREE) {
+			selectedUnits.add(new HeavyTank());
+			selectedUnits.add(new Ship());
+			selectedUnits.add(new Chopper());
+		}
+		if (gameType == GameType.FIVE_VS_FIVE) {
+			selectedUnits.add(new HeavyTank());
+			selectedUnits.add(new Ship());
+			selectedUnits.add(new Chopper());
+			selectedUnits.add(new Ship());
+			selectedUnits.add(new Chopper());
 		}
 
 		return selectedUnits;

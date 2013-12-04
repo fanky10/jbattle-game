@@ -4,14 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.doinfinite.battlegame.model.air.Airplane;
-import com.doinfinite.battlegame.model.air.Chopper;
-import com.doinfinite.battlegame.model.earth.HeavyTank;
-import com.doinfinite.battlegame.model.earth.LightTank;
-import com.doinfinite.battlegame.model.earth.QuickTank;
-import com.doinfinite.battlegame.model.earth.Turret;
-import com.doinfinite.battlegame.model.water.Ship;
-
 public class Battlefield {
 	private List<Unit> redTeam;
 	private List<Unit> blueTeam;
@@ -21,6 +13,10 @@ public class Battlefield {
 		super();
 		this.redTeam = redTeam;
 		this.blueTeam = blueTeam;
+	}
+	
+	public String toString(){
+		return "Basic Battlefield!";
 	}
 
 	public List<BattleEvent> battle() {

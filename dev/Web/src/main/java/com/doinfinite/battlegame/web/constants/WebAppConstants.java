@@ -7,4 +7,5 @@ public class WebAppConstants {
 	public static final String STATIC_ERROR_PAGE = "web/staticerror";
 	// session keys
 	public static final String SESSION_SELECTED_UNITS = "selectedUnits";
+	public static final String SESSION_GAME_SETTINGS = "gameSettings";
 }

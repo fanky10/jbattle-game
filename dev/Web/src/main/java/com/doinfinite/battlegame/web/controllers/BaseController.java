@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.doinfinite.battlegame.model.Game;
 import com.doinfinite.battlegame.model.Game.GameMode;
 import com.doinfinite.battlegame.model.Game.GameType;
 import com.doinfinite.battlegame.model.Unit;
@@ -49,7 +50,7 @@ public abstract class BaseController {
 	 * @param request
 	 * @return the status code integer value
 	 */
-	public Integer getStatusCode(HttpServletRequest request) {
+	protected Integer getStatusCode(HttpServletRequest request) {
 
 		String statusCode = request.getParameter("statusCode");
 		Integer statusCodeValue = 500;
@@ -70,7 +71,7 @@ public abstract class BaseController {
 		this.homeUrl = homeUrl;
 	}
 
-	public List<Unit> getSelectedUnits(HttpServletRequest httpRequest,
+	protected List<Unit> getSelectedUnits(HttpServletRequest httpRequest,
 			GameType gameType) {
 		if (gameType == null) {
 			throw new IllegalArgumentException(
@@ -104,14 +105,15 @@ public abstract class BaseController {
 		return selectedUnits;
 	}
 
-	public List<Unit> getFoeSelectedUnits(GameMode gameMode, GameType gameType) {
+	protected List<Unit> getFoeSelectedUnits(GameMode gameMode,
+			GameType gameType) {
 		if (gameType == null || gameMode == null || gameMode == GameMode.PVP) {
 			throw new IllegalArgumentException(
 					"not a valid game type specified");
 		}
 
 		List<Unit> selectedUnits = new ArrayList<Unit>();
-		//TODO: check that if gameMode == PVP look for PVP
+		// TODO: check that if gameMode == PVP look for PVP
 		if (gameType == GameType.THREE_VS_THREE) {
 			selectedUnits.add(new HeavyTank());
 			selectedUnits.add(new Ship());
@@ -126,5 +128,15 @@ public abstract class BaseController {
 		}
 
 		return selectedUnits;
+	}
+
+	protected void setGameSettings(HttpServletRequest httpRequest, Game game) {
+		httpRequest.getSession().setAttribute(
+				WebAppConstants.SESSION_GAME_SETTINGS, game);
+	}
+
+	protected Game getGameSettings(HttpServletRequest httpRequest) {
+		return (Game) httpRequest.getSession().getAttribute(
+				WebAppConstants.SESSION_GAME_SETTINGS);
 	}
 }

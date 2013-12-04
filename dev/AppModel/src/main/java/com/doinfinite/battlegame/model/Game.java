@@ -12,7 +12,10 @@ public class Game {
 	private GameMode gameMode;
 	private GameType gameType;
 	private Battlefield battlefield;
-
+	
+	public Game() {
+		this(GameMode.IA, GameType.THREE_VS_THREE);
+	}
 	public Game(String gameMode, String gameType) {
 		this(GameMode.valueOf(gameMode), GameType.valueOf(gameType));
 	}

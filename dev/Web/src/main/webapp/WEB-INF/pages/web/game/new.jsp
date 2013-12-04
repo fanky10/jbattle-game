@@ -9,6 +9,29 @@
 </content>
 <content tag="jscript">
 	<script type="text/javascript" src="<c:url value="/js/app.js"/>"></script>
+	<script type="text/javascript" >
+	function getEvents(element) {
+		jsonData = {};
+		$.ajax({
+			contentType : 'application/json',
+			data : JSON.stringify(jsonData),
+			dataType : 'json',
+			success : function(data) {
+				$("#responseMessage").html(data.message);
+				$("#responseMessage").append("<ul>");
+				$.each(data.content,function(i,item){$("#responseMessage").append("<li>"+item.message+"</li>");});
+				$("#responseMessage").append("</ul>");
+			},
+			error : function() {
+				$("#responseMessage").html(
+						"Failed response: " + data.message);
+			},
+			processData : false,
+			type : 'POST',
+			url : '${ctx}/game/events.json'
+		});
+	}
+	</script>
 </content>
 
 <content tag="bodyContent">
@@ -31,8 +54,9 @@
 			</li>
 		</c:forEach>
 		</ul>
-		<button>Battle!</button>
+		<button onclick="getEvents(this); return false;">Battle!</button>
 		<button>Other Battlefield!</button>
+		<div id="responseMessage"></div>
 	</div>
 		
 	</ul>

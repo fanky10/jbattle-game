@@ -46,6 +46,8 @@ public class GameController extends BaseController {
 		List<Unit> foeTeam = getFoeSelectedUnits(gameMode, gameType);
 		Game game = new Game(gameMode, gameType);
 		game.setBattlefield(new Battlefield(userTeam, foeTeam));
+		setGameSettings(httpRequest, game);
+		
 		map.put("selectedGame", game);
 		map.put("selectedUnits", userTeam);
 		map.put("foeSelectedUnits", foeTeam);

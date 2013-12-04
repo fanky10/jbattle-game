@@ -3,6 +3,8 @@ package com.doinfinite.battlegame.web.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.doinfinite.battlegame.model.Unit;
 import com.doinfinite.battlegame.model.air.Airplane;
 import com.doinfinite.battlegame.model.air.Chopper;
@@ -16,7 +18,7 @@ import com.doinfinite.battlegame.model.water.Ship;
 import com.doinfinite.battlegame.model.water.Submarine;
 
 public abstract class BaseController {
-	protected List<Unit> getUnits(){
+	protected List<Unit> getUnits() {
 		List<Unit> units = new ArrayList<Unit>();
 		units.add(new Antiaircraft());
 		units.add(new Airplane());
@@ -30,5 +32,23 @@ public abstract class BaseController {
 		units.add(new Turret());
 
 		return units;
+	}
+
+	/**
+	 * Looks for error code param in the request
+	 * 
+	 * @param request
+	 * @return the status code integer value
+	 */
+	public Integer getStatusCode(HttpServletRequest request) {
+
+		String statusCode = request.getParameter("statusCode");
+		Integer statusCodeValue = 500;
+		try {
+			statusCodeValue = Integer.valueOf(statusCode);
+		} catch (NumberFormatException nfe) {
+			// do nothing
+		}
+		return statusCodeValue;
 	}
 }

@@ -13,7 +13,7 @@
 
 <content tag="bodyContent">
 	<div class="jumbotron">
-		<h1>Game Mode: ${selectedGame.gameMode} - Type: ${selectedGame.gameType}</h1>
+		<h2>Game Mode: ${selectedGame.gameMode} - Type: ${selectedGame.gameType}</h2>
 		<h2>Your Selected Units!</h2>
 		<ul>
 		<c:forEach var="unit" items="${selectedUnits}">

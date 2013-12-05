@@ -38,22 +38,26 @@
 	<div class="jumbotron">
 		<h3>Game Mode: ${selectedGame.gameMode} - Type: ${selectedGame.gameType}</h3>
 		<h3>Battlefield: ${selectedGame.battlefield}</h3>
-		<h3>Your Selected Units!</h3>
-		<ul>
-		<c:forEach var="unit" items="${selectedUnits}">
-			<li>
-			${unit.name}
-			</li>
-		</c:forEach>
-		</ul>
-		<h3>Foe Selected Units!</h3>
-		<ul>
-		<c:forEach var="unit" items="${foeSelectedUnits}">
-			<li>
-			${unit.name}
-			</li>
-		</c:forEach>
-		</ul>
+		<div class="battle-group col-sm-12 col-md-6">
+			<h4>Your Selected Units!</h4>
+			<ul>
+			<c:forEach var="unit" items="${selectedUnits}">
+				<li>
+				${unit.name}
+				</li>
+			</c:forEach>
+			</ul>
+		</div>
+		<div class="battle-group col-sm-12 col-md-6">
+			<h4>Foe Selected Units!</h4>
+			<ul>
+			<c:forEach var="unit" items="${foeSelectedUnits}">
+				<li>
+				${unit.name}
+				</li>
+			</c:forEach>
+			</ul>
+		</div>
 		<button onclick="getEvents(this); return false;">Battle!</button>
 		<button>Other Battlefield!</button>
 		<div id="responseMessage"></div>

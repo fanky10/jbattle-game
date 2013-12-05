@@ -5,7 +5,7 @@ body{
 	font-family: 'Press Start 2P', "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-h1,h2,h3,div,ul{
+h1,h2,h3,h4,div,ul{
  	font-family: 'Press Start 2P', "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
@@ -31,3 +31,8 @@ div{
 	font-size: 1em;
 }
 
+.battle-group{
+	border: 3px solid #000;
+	margin: 5px 0;
+	padding: 0 5px;
+}

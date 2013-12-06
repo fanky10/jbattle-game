@@ -1,7 +1,6 @@
 package com.doinfinite.battlegame.model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import com.doinfinite.battlegame.model.BattleEvent.EventStatus;
@@ -49,12 +48,9 @@ public class Battlefield {
 
 	private void battleTurn(List<Unit> attackers, List<Unit> defenders,
 			EventStatus action) {
-		Iterator<Unit> defendIt = defenders.iterator();
 		for (Unit attacker : attackers) {
-
-			if (defendIt.hasNext()) {
-
-				Unit defender = defendIt.next();
+			if (!defenders.isEmpty()) {
+				Unit defender = defenders.get(0);
 				int attack = attacker.attack();
 				float dmg = defender.defend(attack);
 				BattleEvent battleEvent = new BattleEvent();
@@ -63,11 +59,12 @@ public class Battlefield {
 				battleEvent.setDamage(dmg);
 				battleEvent.setStatus(action);
 				battleEvents.add(battleEvent);
-
-				// depending on health remove it
+				
+				// did it die?
 				if (defender.isDead()) {
-					defendIt.remove();
+					defenders.remove(0);
 				}
+				
 			}
 		}
 	}

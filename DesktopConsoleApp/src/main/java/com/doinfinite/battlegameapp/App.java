@@ -20,6 +20,8 @@ public class App {
 		List<Unit> redTeam = menu.getSelectedUnits();
 		System.out.println("Select the corresponding units for the blue team!");
 		List<Unit> blueTeam = menu.getSelectedUnits();
+		System.out.println("Your Troop: " + redTeam);
+		System.out.println("Versus: " + blueTeam);
 		System.out.println("Let's battle!");
 		Battlefield bf = new Battlefield(redTeam, blueTeam);
 		bf.battle();

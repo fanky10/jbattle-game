@@ -26,20 +26,22 @@ public class BattleEvent implements java.io.Serializable {
 		}
 		StringBuilder sb = new StringBuilder();
 		if(status == EventStatus.ATTACKING){
-			sb.append("Your Unit: ").append(localUnit).append(" attacks ").append(enemyUnit).append(" DEALING: ").append(damage).append("dmg");
-			sb.append(" health left: ").append(enemyUnit.getHealth());
-			if(enemyUnit.isDead()){
-				sb.append(" Enemy unit has been killed!");
-			}
+			sb.append("Your Unit: ");
 		}
 		if(status == EventStatus.UNDER_ATTACK){
-			sb.append("Enemy Unit: ").append(enemyUnit).append(" attacks ").append(localUnit).append(" DEALING: ").append(damage).append("dmg");
-			if(localUnit.isDead()){
-				sb.append(" Your unit has fallen in combat...");
-			}
+			sb.append("Enemy Unit: ");
 		}
-		
+		sb.append(localUnit).append(" attacks ").append(enemyUnit).append(" DEALING: ").append(damage).append("dmg");
+		sb.append(" health left: ").append(enemyUnit.getHealth());
+		if(localUnit.isDead()){
+			sb.append(" Your unit has fallen in combat...");
+		}
 		return sb.toString();
+	}
+	
+	@Override
+	public String toString(){
+		return getMessage();
 	}
 
 	public Unit getLocalUnit() {

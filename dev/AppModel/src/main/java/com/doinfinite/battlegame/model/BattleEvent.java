@@ -27,12 +27,13 @@ public class BattleEvent implements java.io.Serializable {
 		StringBuilder sb = new StringBuilder();
 		if(status == EventStatus.ATTACKING){
 			sb.append("Your Unit: ").append(localUnit).append(" attacks ").append(enemyUnit).append(" DEALING: ").append(damage).append("dmg");
+			sb.append(" health left: ").append(enemyUnit.getHealth());
 			if(enemyUnit.isDead()){
 				sb.append(" Enemy unit has been killed!");
 			}
 		}
 		if(status == EventStatus.UNDER_ATTACK){
-			sb.append("Your Unit: ").append(localUnit).append(" deffends from ").append(enemyUnit).append(" RECEIVING: ").append(damage).append("dmg");
+			sb.append("Enemy Unit: ").append(enemyUnit).append(" attacks ").append(localUnit).append(" DEALING: ").append(damage).append("dmg");
 			if(localUnit.isDead()){
 				sb.append(" Your unit has fallen in combat...");
 			}

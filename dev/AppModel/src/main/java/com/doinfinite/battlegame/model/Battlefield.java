@@ -9,6 +9,7 @@ import com.doinfinite.battlegame.model.BattleEvent.EventStatus;
 public class Battlefield {
 	private List<Unit> localUnits;
 	private List<Unit> enemyUnits;
+	private List<BattleEvent> battleEvents = new ArrayList<BattleEvent>();
 
 	public Battlefield(List<Unit> localUnits, List<Unit> enemyUnits) {
 		super();
@@ -21,19 +22,16 @@ public class Battlefield {
 	}
 
 	public List<BattleEvent> battle() {
-		List<BattleEvent> battleEvents = new ArrayList<BattleEvent>();
-
-		while (!isThereAWinner()) {
-			List<BattleEvent> attackEvents = attack();
-			battleEvents.addAll(attackEvents);
-			List<BattleEvent> defendEvents = defend();
-			battleEvents.addAll(defendEvents);
+				while (!isThereAWinner()) {
+			attack();
+			defend();
 		}
-		BattleEvent end = new BattleEvent();
-		end.setStatus(localUnits.isEmpty() ? EventStatus.WIN : (enemyUnits
-				.isEmpty() ? EventStatus.LOSE : EventStatus.LOSE));
-		battleEvents.add(end);
 		
+		BattleEvent end = new BattleEvent();
+		end.setStatus(enemyUnits.isEmpty() ? EventStatus.WIN : (localUnits
+				.isEmpty() ? EventStatus.LOSE : EventStatus.LOSE));
+		this.battleEvents.add(end);
+
 		return battleEvents;
 	}
 
@@ -41,56 +39,37 @@ public class Battlefield {
 		return localUnits.isEmpty() || enemyUnits.isEmpty();
 	}
 
-	private List<BattleEvent> attack() {
-		List<BattleEvent> events = new ArrayList<BattleEvent>();
-
-		for (Unit attacker : localUnits) {
-			Iterator<Unit> enemyIterator = enemyUnits.iterator();
-			if (enemyIterator.hasNext()) {
-				
-				Unit defender = enemyIterator.next();
-				int attack = attacker.attack();
-				float dmg = defender.defend(attack);
-				BattleEvent battleEvent = new BattleEvent();
-				battleEvent.setLocalUnit(attacker);
-				battleEvent.setEnemyUnit(defender);
-				battleEvent.setDamage(dmg);
-				battleEvent.setStatus(EventStatus.ATTACKING);
-				events.add(battleEvent);
-				
-				// depending on health remove it
-				if (defender.isDead()) {
-					enemyIterator.remove();
-				}
-			}
-		}
-		return events;
+	private void attack() {
+		battleTurn(localUnits, enemyUnits, EventStatus.ATTACKING);
 	}
 
-	private List<BattleEvent> defend() {
-		List<BattleEvent> events = new ArrayList<BattleEvent>();
+	private void defend() {
+		battleTurn(enemyUnits, localUnits, EventStatus.UNDER_ATTACK);
+	}
 
-		for (Unit attacker : enemyUnits) {
-			Iterator<Unit> enemyIterator = localUnits.iterator();
-			if (enemyIterator.hasNext()) {
+	private void battleTurn(List<Unit> attackers, List<Unit> defenders,
+			EventStatus action) {
+		Iterator<Unit> defendIt = defenders.iterator();
+		for (Unit attacker : attackers) {
 
-				Unit defender = enemyIterator.next();
+			if (defendIt.hasNext()) {
+
+				Unit defender = defendIt.next();
 				int attack = attacker.attack();
 				float dmg = defender.defend(attack);
 				BattleEvent battleEvent = new BattleEvent();
-				battleEvent.setLocalUnit(attacker);
-				battleEvent.setEnemyUnit(defender);
+				battleEvent.setLocalUnit(attacker.getSnapshot());
+				battleEvent.setEnemyUnit(defender.getSnapshot());
 				battleEvent.setDamage(dmg);
-				battleEvent.setStatus(EventStatus.UNDER_ATTACK);
-				events.add(battleEvent);
-				
+				battleEvent.setStatus(action);
+				battleEvents.add(battleEvent);
+
 				// depending on health remove it
 				if (defender.isDead()) {
-					enemyIterator.remove();
+					defendIt.remove();
 				}
 			}
 		}
-		return events;
 	}
 
 	public List<Unit> getLocalUnits() {
@@ -107,6 +86,14 @@ public class Battlefield {
 
 	public void setEnemyUnits(List<Unit> enemyUnits) {
 		this.enemyUnits = enemyUnits;
+	}
+
+	public List<BattleEvent> getBattleEvents() {
+		return battleEvents;
+	}
+
+	public void setBattleEvents(List<BattleEvent> battleEvents) {
+		this.battleEvents = battleEvents;
 	}
 
 }

@@ -12,16 +12,12 @@ import com.doinfinite.battlegameapp.config.AppConfig;
 
 public class Menu {
 	public static enum BattleType {
-		MAX_HEALTH, THREE_UNITS, FIVE_UNITS
+		MAX_HEALTH, THREE_UNITS, FIVE_UNITS,THREE_UNITS_IA
 	};
 
 	private BattleType battleType;
-
-	public Menu() {
-		init();
-	}
-
-	private void init() {
+	
+	public void show() {
 		boolean validOpc = false;
 		while (!validOpc) {
 			try {
@@ -30,24 +26,26 @@ public class Menu {
 						.println("1) Fixed max health with variable number of units between teams");
 				System.out.println("2) 3v3 Units");
 				System.out.println("3) 5v5 Units");
+				System.out.println("4) 3v3 Units - IAvsIA");
 				System.out.println("0) Exit");
 				int selectedOption = 0;
 				BufferedReader bufferReader = new BufferedReader(
 						new InputStreamReader(System.in));
 				String input = bufferReader.readLine();
 				selectedOption = Integer.parseInt(input);
-				validOpc = (selectedOption == 0 || selectedOption == 1
-						|| selectedOption == 2 || selectedOption == 3);
 				if (selectedOption == 1) {
 					battleType = BattleType.MAX_HEALTH;
 				} else if (selectedOption == 2) {
 					battleType = BattleType.THREE_UNITS;
 				} else if (selectedOption == 3) {
 					battleType = BattleType.FIVE_UNITS;
+				} else if (selectedOption == 4) {
+					battleType = BattleType.THREE_UNITS_IA;
 				} else if (selectedOption == 0) {
 					System.out.println("Good Bye!");
 					System.exit(0);
 				}
+				validOpc = (battleType!=null);
 
 			} catch (NumberFormatException ex) {
 				System.out.println("Exception object: " + ex);
@@ -66,8 +64,18 @@ public class Menu {
 			return getSelectedUnitsByQuantity(3);
 		} else if (battleType.equals(BattleType.FIVE_UNITS)) {
 			return getSelectedUnitsByQuantity(5);
-		}
+		} else if (battleType.equals(BattleType.THREE_UNITS_IA)) {
+			return getMockedUnits(3);
+		} 
 		throw new IllegalArgumentException("invalid battle type!");
+	}
+	
+	private List<Unit> getMockedUnits(int quantity){
+		List<Unit> selectedUnits = new ArrayList<Unit>();
+		for (int i = 0; i < quantity; i++) {
+			selectedUnits.add(MockedUnits.getNavyTeam().get(i));
+		}
+		return selectedUnits;
 	}
 
 	private List<Unit> getSelectedUnitsByQuantity(int quantity) {
@@ -202,6 +210,14 @@ public class Menu {
 
 	private List<Unit> getAvailableUnits() {
 		return MockedUnits.getAvailableUnits();
+	}
+
+	public BattleType getBattleType() {
+		return battleType;
+	}
+
+	public void setBattleType(BattleType battleType) {
+		this.battleType = battleType;
 	}
 
 }

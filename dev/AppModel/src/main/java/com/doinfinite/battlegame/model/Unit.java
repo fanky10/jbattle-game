@@ -28,6 +28,10 @@ public class Unit implements AttackableUnit, Serializable {
 		this.accuracy = accuracy;
 		this.damage = damage;
 	}
+	
+	public Unit getSnapshot(){
+		return new Unit(name,unitType,health,speed,accuracy,damage);
+	}
 
 	@Override
 	public int defend(int attack) {

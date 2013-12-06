@@ -7,13 +7,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import com.doinfinite.battlegame.model.air.Airplane;
-import com.doinfinite.battlegame.model.air.Chopper;
-import com.doinfinite.battlegame.model.earth.HeavyTank;
-import com.doinfinite.battlegame.model.earth.LightTank;
-import com.doinfinite.battlegame.model.earth.QuickTank;
-import com.doinfinite.battlegame.model.earth.Turret;
-import com.doinfinite.battlegame.model.water.Ship;
+import com.doinfinite.battlegame.model.Unit.UnitType;
 
 public class BattlefieldTest extends TestCase {
 	/**
@@ -37,17 +31,17 @@ public class BattlefieldTest extends TestCase {
 	 * Rigourous Test :-)
 	 */
 	public void testHeavyTeam() {
-		List<Unit> blueTeam = new ArrayList<Unit>();
-		blueTeam.add(new Ship(100, 50, 10));
-		List<Unit> redTeam = new ArrayList<Unit>();
-		redTeam.add(new Turret(100, 50, 10));
-		redTeam.add(new Airplane(100, 50, 10));
-		redTeam.add(new Chopper(100, 50, 10));
-		redTeam.add(new QuickTank(100, 50, 10));
-		redTeam.add(new LightTank(100, 50, 10));
-		redTeam.add(new HeavyTank(100, 50, 10));
-		List<BattleEvent> battleEvents = new Battlefield(redTeam, blueTeam)
+		List<Unit> navyTeam = new ArrayList<Unit>();
+		navyTeam.add(new Unit("Ship", UnitType.WATER, 100, 50, 10, 70));
+		List<Unit> heavyTeam = new ArrayList<Unit>();
+		heavyTeam.add(new Unit("Airplane", UnitType.AIR, 100, 50, 10, 70));
+		heavyTeam.add(new Unit("Apache Chopper", UnitType.AIR, 100, 50, 10, 70));
+		heavyTeam.add(new Unit("QuickTank", UnitType.EARTH, 100, 50, 10, 70));
+		heavyTeam.add(new Unit("LightTank", UnitType.EARTH, 100, 50, 10, 70));
+		heavyTeam.add(new Unit("Troop", UnitType.EARTH, 100, 50, 10, 70));
+		heavyTeam.add(new Unit("Turret", UnitType.EARTH, 100, 50, 10, 70));
+		List<BattleEvent> battleEvents = new Battlefield(heavyTeam, navyTeam)
 				.battle();
-		assertTrue(battleEvents != null && !battleEvents.isEmpty());
+		assertTrue(battleEvents != null && !battleEvents.isEmpty() && battleEvents.size()>1);
 	}
 }

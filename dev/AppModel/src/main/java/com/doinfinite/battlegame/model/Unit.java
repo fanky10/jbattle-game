@@ -2,19 +2,44 @@ package com.doinfinite.battlegame.model;
 
 import java.io.Serializable;
 
-public abstract class Unit implements AttackableUnit, Serializable {
+public class Unit implements AttackableUnit, Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5730523172266224078L;
-	protected Integer health = DEFAULT_HEALTH;
-	protected Integer speed = DEFAULT_SPEED;
-	protected Integer accuracy = DEFAULT_ACCURACY;
 
-	public Unit(Integer health, Integer speed, Integer accuracy) {
+	public static enum UnitType {
+		EARTH, WATER, AIR
+	};
+
+	private Integer health = DEFAULT_HEALTH;
+	private Integer speed = DEFAULT_SPEED;
+	private Integer accuracy = DEFAULT_ACCURACY;
+	private String name;
+	private UnitType unitType;
+	private Integer damage;
+
+	public Unit(String name, UnitType unitType, Integer health, Integer speed,
+			Integer accuracy, Integer damage) {
+		this.name = name;
+		this.unitType = unitType;
 		this.health = health;
 		this.speed = speed;
 		this.accuracy = accuracy;
+		this.damage = damage;
+	}
+
+	@Override
+	public int defend(int attack) {
+		//TODO: add effectiveness
+		this.health = health - attack;
+		return attack;
+	}
+
+	@Override
+	public int attack() {
+		//TODO: add critical probability
+		return damage;
 	}
 
 	public Integer getAccuracy() {
@@ -42,7 +67,7 @@ public abstract class Unit implements AttackableUnit, Serializable {
 	}
 
 	public String getName() {
-		return this.getClass().getSimpleName();
+		return name;
 	}
 
 	public String toString() {
@@ -51,5 +76,17 @@ public abstract class Unit implements AttackableUnit, Serializable {
 
 	public boolean isDead() {
 		return this.health <= 0;
+	}
+
+	public UnitType getUnitType() {
+		return unitType;
+	}
+
+	public void setUnitType(UnitType unitType) {
+		this.unitType = unitType;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

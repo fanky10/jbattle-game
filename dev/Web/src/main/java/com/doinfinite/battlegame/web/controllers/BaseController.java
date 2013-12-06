@@ -8,20 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.doinfinite.battlegame.mocked.MockedUnits;
 import com.doinfinite.battlegame.model.Game;
 import com.doinfinite.battlegame.model.Game.GameMode;
 import com.doinfinite.battlegame.model.Game.GameType;
 import com.doinfinite.battlegame.model.Unit;
-import com.doinfinite.battlegame.model.air.Airplane;
-import com.doinfinite.battlegame.model.air.Chopper;
-import com.doinfinite.battlegame.model.earth.Antiaircraft;
-import com.doinfinite.battlegame.model.earth.HeavyTank;
-import com.doinfinite.battlegame.model.earth.LightTank;
-import com.doinfinite.battlegame.model.earth.QuickTank;
-import com.doinfinite.battlegame.model.earth.Troop;
-import com.doinfinite.battlegame.model.earth.Turret;
-import com.doinfinite.battlegame.model.water.Ship;
-import com.doinfinite.battlegame.model.water.Submarine;
 import com.doinfinite.battlegame.web.constants.WebAppConstants;
 
 public abstract class BaseController {
@@ -29,19 +20,7 @@ public abstract class BaseController {
 	protected String homeUrl;
 
 	protected List<Unit> getUnits() {
-		List<Unit> units = new ArrayList<Unit>();
-		units.add(new Antiaircraft());
-		units.add(new Airplane());
-		units.add(new Chopper());
-		units.add(new HeavyTank());
-		units.add(new LightTank());
-		units.add(new QuickTank());
-		units.add(new Ship());
-		units.add(new Submarine());
-		units.add(new Troop());
-		units.add(new Turret());
-
-		return units;
+		return MockedUnits.getAvailableUnits();
 	}
 
 	/**
@@ -85,17 +64,15 @@ public abstract class BaseController {
 			// TODO: delete this and implement the correct go to select your
 			// units link (:
 			selectedUnits = new ArrayList<Unit>();
+			int maxUnits = 0;
 			if (gameType == GameType.THREE_VS_THREE) {
-				selectedUnits.add(new HeavyTank());
-				selectedUnits.add(new Ship());
-				selectedUnits.add(new Chopper());
+				maxUnits = 3;
 			}
 			if (gameType == GameType.FIVE_VS_FIVE) {
-				selectedUnits.add(new HeavyTank());
-				selectedUnits.add(new Ship());
-				selectedUnits.add(new Chopper());
-				selectedUnits.add(new Ship());
-				selectedUnits.add(new Chopper());
+				maxUnits = 5;
+			}
+			for (int i = 0; i < maxUnits; i++) {
+				selectedUnits.add(MockedUnits.getHeavyTeam().get(i));
 			}
 			httpRequest.getSession().setAttribute(
 					WebAppConstants.SESSION_SELECTED_UNITS + gameType,
@@ -114,17 +91,16 @@ public abstract class BaseController {
 
 		List<Unit> selectedUnits = new ArrayList<Unit>();
 		// TODO: check that if gameMode == PVP look for PVP
+		int maxUnits = 0;
 		if (gameType == GameType.THREE_VS_THREE) {
-			selectedUnits.add(new HeavyTank());
-			selectedUnits.add(new Ship());
-			selectedUnits.add(new Chopper());
+			maxUnits = 3;
 		}
 		if (gameType == GameType.FIVE_VS_FIVE) {
-			selectedUnits.add(new HeavyTank());
-			selectedUnits.add(new Ship());
-			selectedUnits.add(new Chopper());
-			selectedUnits.add(new Ship());
-			selectedUnits.add(new Chopper());
+			maxUnits = 5;
+		}
+
+		for (int i = 0; i < maxUnits; i++) {
+			selectedUnits.add(MockedUnits.getNavyTeam().get(i));
 		}
 
 		return selectedUnits;

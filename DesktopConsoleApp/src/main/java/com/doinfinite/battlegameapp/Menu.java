@@ -6,17 +6,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.doinfinite.battlegame.mocked.MockedUnits;
 import com.doinfinite.battlegame.model.Unit;
-import com.doinfinite.battlegame.model.air.Airplane;
-import com.doinfinite.battlegame.model.air.Chopper;
-import com.doinfinite.battlegame.model.earth.Antiaircraft;
-import com.doinfinite.battlegame.model.earth.HeavyTank;
-import com.doinfinite.battlegame.model.earth.LightTank;
-import com.doinfinite.battlegame.model.earth.QuickTank;
-import com.doinfinite.battlegame.model.earth.Troop;
-import com.doinfinite.battlegame.model.earth.Turret;
-import com.doinfinite.battlegame.model.water.Ship;
-import com.doinfinite.battlegame.model.water.Submarine;
 import com.doinfinite.battlegameapp.config.AppConfig;
 
 public class Menu {
@@ -210,19 +201,7 @@ public class Menu {
 	}
 
 	private List<Unit> getAvailableUnits() {
-		List<Unit> availableUnits = new ArrayList<Unit>();
-		availableUnits.add(new Antiaircraft());
-		availableUnits.add(new Airplane());
-		availableUnits.add(new Chopper());
-		availableUnits.add(new HeavyTank());
-		availableUnits.add(new LightTank());
-		availableUnits.add(new QuickTank());
-		availableUnits.add(new Ship());
-		availableUnits.add(new Submarine());
-		availableUnits.add(new Troop());
-		availableUnits.add(new Turret());
-
-		return availableUnits;
+		return MockedUnits.getAvailableUnits();
 	}
 
 }

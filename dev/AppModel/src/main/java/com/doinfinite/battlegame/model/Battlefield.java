@@ -54,8 +54,9 @@ public class Battlefield {
 				int attack = attacker.attack();
 				float dmg = defender.defend(attack);
 				BattleEvent battleEvent = new BattleEvent();
-				battleEvent.setLocalUnit(attacker.getSnapshot());
-				battleEvent.setEnemyUnit(defender.getSnapshot());
+				battleEvent.setAtackerName(attacker.getName());
+				battleEvent.setDefenderHealth(defender.getHealth());
+				battleEvent.setDefenderName(defender.getName());
 				battleEvent.setDamage(dmg);
 				battleEvent.setStatus(action);
 				battleEvents.add(battleEvent);

@@ -35,6 +35,8 @@
 </content>
 
 <content tag="bodyContent">
+<c:set var="currentGameType" value="${requestScope['org.springframework.web.servlet.HandlerMapping.uriTemplateVariables']['gameType']}" />
+        
 	<div class="jumbotron">
 		<h3>Game Mode: ${selectedGame.gameMode} - Type: ${selectedGame.gameType}</h3>
 		<h3>Battlefield: ${selectedGame.battlefield}</h3>
@@ -60,6 +62,9 @@
 		</div>
 		<button onclick="getEvents(this); return false;">Battle!</button>
 		<button>Other Battlefield!</button>
+		<form method="GET" action="<c:url value="/units/select/${currentGameType}"/>">
+		    <button type="submit">Change Troop</button>
+		</form>
 		<div id="responseMessage"></div>
 	</div>
 		

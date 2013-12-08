@@ -64,14 +64,7 @@ public abstract class BaseController {
 			// TODO: delete this and implement the correct go to select your
 			// units link (:
 			selectedUnits = new ArrayList<Unit>();
-			int maxUnits = 0;
-			if (gameType == GameType.THREE_VS_THREE) {
-				maxUnits = 3;
-			}
-			if (gameType == GameType.FIVE_VS_FIVE) {
-				maxUnits = 5;
-			}
-			for (int i = 0; i < maxUnits; i++) {
+			for (int i = 0; i < gameType.getMaxUnits(); i++) {
 				selectedUnits.add(MockedUnits.getHeavyTeam().get(i));
 			}
 			httpRequest.getSession().setAttribute(
@@ -91,15 +84,7 @@ public abstract class BaseController {
 
 		List<Unit> selectedUnits = new ArrayList<Unit>();
 		// TODO: check that if gameMode == PVP look for PVP
-		int maxUnits = 0;
-		if (gameType == GameType.THREE_VS_THREE) {
-			maxUnits = 3;
-		}
-		if (gameType == GameType.FIVE_VS_FIVE) {
-			maxUnits = 5;
-		}
-
-		for (int i = 0; i < maxUnits; i++) {
+		for (int i = 0; i < gameType.getMaxUnits(); i++) {
 			selectedUnits.add(MockedUnits.getNavyTeam().get(i));
 		}
 

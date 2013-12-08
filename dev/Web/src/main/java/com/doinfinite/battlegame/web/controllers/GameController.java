@@ -32,25 +32,20 @@ public class GameController extends BaseController {
 				new GameTypePropertyEditor());
 	}
 
-	@RequestMapping(value = "/game/units/select", method = RequestMethod.GET)
-	public String showGameSelect(ModelMap map) {
-		map.put("availableUnits", getUnits());
-		return WebAppConstants.UNITS_SELECT;
-	}
-
-	@RequestMapping(value = "/game/{mode}/{type}", method = RequestMethod.GET)
+	@RequestMapping(value = "/game/{gameMode}/{gameType}", method = RequestMethod.GET)
 	public String showGame(HttpServletRequest httpRequest,
-			@PathVariable(value = "mode") GameMode gameMode,
-			@PathVariable(value = "type") GameType gameType, ModelMap map) {
+			@PathVariable(value = "gameMode") GameMode gameMode,
+			@PathVariable(value = "gameType") GameType gameType, ModelMap map) {
 		List<Unit> userTeam = getSelectedUnits(httpRequest, gameType);
 		List<Unit> foeTeam = getFoeSelectedUnits(gameMode, gameType);
 		Game game = new Game(gameMode, gameType);
 		game.setBattlefield(new Battlefield(userTeam, foeTeam));
 		setGameSettings(httpRequest, game);
-		
+
 		map.put("selectedGame", game);
 		map.put("selectedUnits", userTeam);
 		map.put("foeSelectedUnits", foeTeam);
+		map.put("gameType", gameType);
 		return WebAppConstants.GAME_NEW;
 	}
 

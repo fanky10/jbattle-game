@@ -31,7 +31,8 @@
 			      <li class="dropdown">
 			        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Your Team <b class="caret"></b></a>
 			        <ul class="dropdown-menu">
-			          <li><a href="#">Select Troop</a></li>
+			          <li><a href="<c:url value="/units/select/3v3" />">Select your (3v3) Troop</a></li>
+			          <li><a href="<c:url value="/units/select/5v5" />">Select your (5v5) Troop</a></li>
 			          <li><a href="#">Select Formation</a></li>
 			          <li><a href="#">Something else here</a></li>
 			          <li class="divider"></li>

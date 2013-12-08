@@ -6,16 +6,31 @@ public class Game {
 	};
 
 	public static enum GameType {
-		THREE_VS_THREE, FIVE_VS_FIVE
+		THREE_VS_THREE(3), FIVE_VS_FIVE(5);
+
+		private int maxUnits;
+		
+		private GameType(int maxUnits) {
+			this.maxUnits = maxUnits;
+		}
+
+		public int getMaxUnits() {
+			return maxUnits;
+		}
+
+		public void setMaxUnits(int maxUnits) {
+			this.maxUnits = maxUnits;
+		}
 	};
 
 	private GameMode gameMode;
 	private GameType gameType;
 	private Battlefield battlefield;
-	
+
 	public Game() {
 		this(GameMode.IA, GameType.THREE_VS_THREE);
 	}
+
 	public Game(String gameMode, String gameType) {
 		this(GameMode.valueOf(gameMode), GameType.valueOf(gameType));
 	}

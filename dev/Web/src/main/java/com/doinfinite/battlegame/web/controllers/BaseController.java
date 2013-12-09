@@ -75,6 +75,17 @@ public abstract class BaseController {
 		return selectedUnits;
 	}
 
+	protected void updateSelectedUnits(HttpServletRequest httpRequest,
+			GameType gameType, List<Unit> selectedUnits) {
+		if (gameType == null) {
+			throw new IllegalArgumentException(
+					"not a valid game type specified");
+		}
+		httpRequest.getSession().setAttribute(
+				WebAppConstants.SESSION_SELECTED_UNITS + gameType,
+				selectedUnits);
+	}
+
 	protected List<Unit> getFoeSelectedUnits(GameMode gameMode,
 			GameType gameType) {
 		if (gameType == null || gameMode == null || gameMode == GameMode.PVP) {

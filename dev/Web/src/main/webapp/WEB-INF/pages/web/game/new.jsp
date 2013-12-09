@@ -61,7 +61,7 @@
 			</ul>
 		</div>
 		<button onclick="getEvents(this); return false;">Battle!</button>
-		<button>Other Battlefield!</button>
+		<button onclick="location.reload(false); return false;">Other Battlefield!</button>
 		<form method="GET" action="<c:url value="/units/select/${currentGameType}"/>">
 		    <button type="submit">Change Troop</button>
 		</form>

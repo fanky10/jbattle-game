@@ -1,6 +1,7 @@
 package com.doinfinite.battlegame.web.controllers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -92,13 +93,14 @@ public abstract class BaseController {
 			throw new IllegalArgumentException(
 					"not a valid game type specified");
 		}
-
+		List<Unit> randomUnits = MockedUnits.getAvailableUnits();
+		Collections.shuffle(randomUnits);
 		List<Unit> selectedUnits = new ArrayList<Unit>();
 		// TODO: check that if gameMode == PVP look for PVP
 		for (int i = 0; i < gameType.getMaxUnits(); i++) {
-			selectedUnits.add(MockedUnits.getNavyTeam().get(i));
+			selectedUnits.add(randomUnits.get(i));
 		}
-
+		
 		return selectedUnits;
 	}
 

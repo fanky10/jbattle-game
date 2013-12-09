@@ -1,6 +1,17 @@
 package com.doinfinite.battlegameapp.dao;
 
-import java.sql.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.doinfinite.battlegame.mocked.MockedUnits;
+import com.doinfinite.battlegame.model.Unit;
 
 public class DBconnection {
 
@@ -27,36 +38,103 @@ public class DBconnection {
 				password);
 	}
 
-	public static void main(String[] args) throws SQLException {
+	private static void showUnits(Connection conn) throws SQLException {
+		// our SQL SELECT query.
+		// if you only need a few columns, specify them by name instead of
+		// using "*"
+		String query = "SELECT * FROM units";
 
-		Connection conn = DBconnection.newConecttion();
+		// create the java statement
+		Statement st = conn.createStatement();
 
-		if (conn != null) {
-			// our SQL SELECT query.
-			// if you only need a few columns, specify them by name instead of
-			// using "*"
-			String query = "SELECT * FROM units";
+		// execute the query, and get a java resultset
+		ResultSet rs = st.executeQuery(query);
 
-			// create the java statement
-			Statement st = conn.createStatement();
+		// iterate through the java resultset
+		while (rs.next()) {
+			int id = rs.getInt("id");
+			String name = rs.getString("name");
 
-			// execute the query, and get a java resultset
+			// print the results
+			System.out.println("Id: " + id);
+			System.out.println("Name: " + name);
+
+		}
+		st.close();
+	}
+
+	private static void insertUnit(Connection conn) throws SQLException,
+			IOException {
+
+		int x = 0;
+
+		Statement st = conn.createStatement();
+		String query = "truncate units;";
+
+		// execute the query, and get a java resultset
+
+		System.out.println("Do you want to add a new team to the data base?");
+		System.out
+				.println("1- Yes. I want to remove all the units from the data base");
+		System.out.println("2- No. I want to add more units to the data base");
+
+		BufferedReader read1 = new BufferedReader(new InputStreamReader(
+				System.in));
+
+		String a = read1.readLine();
+		try {
+			x = Integer.parseInt(a);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		switch (x) {
+
+		case 1:
+
 			ResultSet rs = st.executeQuery(query);
+			break;
 
-			// iterate through the java resultset
-			while (rs.next()) {
-				int id = rs.getInt("id");
-				String name = rs.getString("name");
+		case 2:
+			
 
-				// print the results
-				System.out.println("Id: " + id);
-				System.out.println("Name: " + name);
+			System.out.println("Select the units to insert");
+			for (Unit u: MockedUnits.getAvailableUnits()){
+				
+			
+					
+					
+					System.out.println(u.getName());
+					 }
+			
 
-			}
-			st.close();
+			BufferedReader read2 = new BufferedReader(new InputStreamReader(
+					System.in));
+
+			String a2 = read1.readLine();
+
+			String sql = "INSERT INTO units (name)" + "VALUES (?)";
+
+			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.setString(1, a);
+			preparedStatement.executeUpdate();
+			break;
 
 		}
 
 	}
 
+	public static void main(String[] args) throws SQLException, IOException {
+
+		Connection conn = DBconnection.newConecttion();
+
+		if (conn != null) {
+
+			showUnits(conn);
+			insertUnit(conn);
+			showUnits(conn);
+
+		}
+
+	}
 }

@@ -1,7 +1,5 @@
 package com.doinfinite.battlegame.web.controllers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,11 +30,16 @@ public class UnitsController extends BaseController {
 	}
 
 	@RequestMapping(value = "/units/select/{gameType}", method = RequestMethod.GET)
-	public String showUnitsSelection(
+	public String showUnitsSelection(HttpServletRequest httpRequest,
 			@PathVariable(value = "gameType") GameType gameType, ModelMap map) {
+		SelectUnitsForm form = new SelectUnitsForm();
+		List<Unit> selectedUnits = getSelectedUnits(httpRequest, gameType);
+		if (!selectedUnits.isEmpty()) {
+			form.setSelectedUnits(selectedUnits);
+		}
 		map.put("availableUnits", getUnits());
 		map.put("maxUnits", gameType.getMaxUnits());
-		map.put("selectUnitsForm", new SelectUnitsForm());
+		map.put("selectUnitsForm", form);
 
 		return WebAppConstants.UNITS_SELECT;
 	}
@@ -48,7 +51,7 @@ public class UnitsController extends BaseController {
 		map.put("availableUnits", getUnits());
 		map.put("maxUnits", gameType.getMaxUnits());
 		map.put("selectUnitsForm", form);
-		List<Unit> selectedUnits = Arrays.asList(form.getSelectedUnits());
+		List<Unit> selectedUnits = form.getSelectedUnits();
 		updateSelectedUnits(httpRequest, gameType, selectedUnits);
 
 		return WebAppConstants.UNITS_SELECT;

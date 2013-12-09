@@ -12,6 +12,7 @@
 				'unitsSelected' : 0, //units count selection
 				'maxSelectedUnits' : '${maxUnits}' //max unit selection
 			};
+			config.unitsSelected = $(".unitsSelection:checked").length;
 			//this works!!
 			$('.unitsSelection').bind('click', function() {
 				//could be checked here... and do nothing at all.

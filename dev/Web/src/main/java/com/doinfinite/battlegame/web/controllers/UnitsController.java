@@ -26,7 +26,7 @@ public class UnitsController extends BaseController {
 	private void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(GameType.class,
 				new GameTypePropertyEditor());
-		binder.registerCustomEditor(Unit.class, new UnitPropertyEditor());
+		binder.registerCustomEditor(Unit.class, new UnitPropertyEditor(getServicesManager()));
 	}
 
 	@RequestMapping(value = "/units/select/{gameType}", method = RequestMethod.GET)

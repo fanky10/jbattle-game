@@ -27,7 +27,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/config/dispatcher-servlet.xml</param-value>
+				/WEB-INF/config/dispatcher-servlet.xml,classpath:dataAccessContext.xml</param-value>
 		</init-param>
 		<load-on-startup>2</load-on-startup>
 	</servlet>

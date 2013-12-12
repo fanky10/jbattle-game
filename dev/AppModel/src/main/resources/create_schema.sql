@@ -17,3 +17,26 @@ CREATE TABLE units(
     unit_accuracy integer unsigned not null,
     unit_type integer unsigned not null default 0
 )ENGINE=InnoDB;
+
+insert into units (unit_name,unit_type,unit_health,unit_speed,unit_damage,unit_accuracy) 
+values 
+
+('Antiaircraft',0,100,150,100,10),
+('HeavyTank',0,100,150,100,10),
+('QuickTank',0,100,150,100,10),
+('LightTank',0,100,150,100,10),
+('Troop',0,100,150,100,10),
+('Turret',0,100,150,100,10),
+
+('Ship',1,100,150,100,10),
+('Aircraft Carrier',1,100,150,100,10),
+('Assault Ship',1,100,150,100,10),
+('Destroyer',1,100,150,100,10),
+('Submarine',1,100,150,100,10),
+
+('Airplane',2,100,150,100,10),
+('Apache Chopper',2,100,150,100,10),
+('Biplaned',2,100,150,100,10),
+('SingleEngine',2,100,150,100,10),
+('Jet and rocket',2,100,150,100,10),
+('Bomber',2,100,150,100,10);

@@ -1,5 +1,7 @@
 package com.doinfinite.battlegame.model.repository;
 
+import java.util.List;
+
 import junit.framework.TestCase;
 
 import org.junit.Before;
@@ -37,7 +39,13 @@ public class UnitsRepositoryTest extends TestCase {
 	@Test
 	public void testGuardarJugador() {
 		assertTrue(unitsRepository.exists(unit.getId()));
-		assertTrue(unitsRepository.count()>0);
+		assertTrue(unitsRepository.count() > 0);
+	}
+
+	@Test
+	public void testGetUnitsByName() {
+		List<Unit> units = getUnitsRepository().findUnitsByName("Submarine");
+		assertTrue(units != null && !units.isEmpty());
 	}
 
 	public Unit getUnit() {

@@ -43,6 +43,11 @@
 		<div class="battle-group col-sm-12 col-md-6">
 			<h4>Your Selected Units!</h4>
 			<ul>
+			<c:if test="${empty selectedUnits}">
+				<form method="GET" action="<c:url value="/units/select/${currentGameType}"/>">
+				    <button type="submit">You do not have any troops... Select them!</button>
+				</form>
+			</c:if>
 			<c:forEach var="unit" items="${selectedUnits}">
 				<li>
 				${unit.name}

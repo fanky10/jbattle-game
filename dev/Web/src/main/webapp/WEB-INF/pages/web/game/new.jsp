@@ -44,7 +44,7 @@
 <content tag="bodyContent">
 <c:set var="currentGameType" value="${requestScope['org.springframework.web.servlet.HandlerMapping.uriTemplateVariables']['gameType']}" />
         
-	<div class="jumbotron">
+	<div class="jumbotron battle-view">
 		<h3>Game Mode: ${selectedGame.gameMode} - Type: ${selectedGame.gameType}</h3>
 		<h3>Battlefield: ${selectedGame.battlefield}</h3>
 		<div class="battle-group col-sm-12 col-md-6">
@@ -72,11 +72,13 @@
 			</c:forEach>
 			</ul>
 		</div>
-		<button classs="take-battle" onclick="getEvents(this); return false;">Battle!</button>
-		<button class="skip-battle" onclick="location.reload(false); return false;">Other Battlefield!</button>
-		<form method="GET" action="<c:url value="/units/select/${currentGameType}"/>">
-		    <button type="submit">Change Troop</button>
-		</form>
+		<div class="actions">
+			<button classs="take-battle" onclick="getEvents(this); return false;">Battle!</button>
+			<button class="skip-battle" onclick="location.reload(false); return false;">Other Battlefield!</button>
+			<form method="GET" action="<c:url value="/units/select/${currentGameType}"/>">
+			    <button type="submit">Change Troop</button>
+			</form>
+		</div>
 		<div id="responseMessage"></div>
 	</div>
 		

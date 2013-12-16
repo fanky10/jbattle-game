@@ -37,6 +37,24 @@ div{
 	padding: 0 5px;
 }
 
+.battle-view{
+
+}
+
+.battle-view .actions{
+	clear: both;
+	width: 100%;
+}
+
+.battle-view .actions button{
+	float: left;
+	margin: 5px 10px 5px 0;
+}
+
+#responseMessage{
+	clear: both;
+}
+
 #responseMessage ul{
 	diaplay: block;
 	margin: 0px;

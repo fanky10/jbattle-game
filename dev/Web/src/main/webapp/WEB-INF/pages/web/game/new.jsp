@@ -19,8 +19,15 @@
 			success : function(data) {
 				$("#responseMessage").html(data.message);
 				$("#responseMessage").append("<ul>");
-				$.each(data.content,function(i,item){$("#responseMessage").append("<li>"+item.message+"</li>");});
-				$("#responseMessage").append("</ul>");
+				$.each(data.content,function(i,item){
+					if(item.status == "ATTACKING"){
+						liClass = "Your-Team";
+					}else if(item.status == "UNDER ATTACK"){
+						liClass = "Enemy-Team";
+					}else{
+						liClass = "Battle-Result";
+					}
+					$("#responseMessage ul").append("<li class="+liClass+">"+item.message+"</li>");});
 			},
 			error : function() {
 				$("#responseMessage").html(
@@ -65,8 +72,8 @@
 			</c:forEach>
 			</ul>
 		</div>
-		<button onclick="getEvents(this); return false;">Battle!</button>
-		<button onclick="location.reload(false); return false;">Other Battlefield!</button>
+		<button classs="take-battle" onclick="getEvents(this); return false;">Battle!</button>
+		<button class="skip-battle" onclick="location.reload(false); return false;">Other Battlefield!</button>
 		<form method="GET" action="<c:url value="/units/select/${currentGameType}"/>">
 		    <button type="submit">Change Troop</button>
 		</form>

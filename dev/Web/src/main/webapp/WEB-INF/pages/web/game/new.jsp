@@ -53,29 +53,33 @@
 		<h3>Game Mode: ${selectedGame.gameMode} - Type: ${selectedGame.gameType}</h3>
 		<h3>Battlefield: ${selectedGame.battlefield}</h3>
 		<div class="battle-group col-sm-12 col-md-6">
-			<h4>Your Selected Units!</h4>
-			<c:if test="${empty selectedUnits}">
-				<form method="GET" action="<c:url value="/units/select/${currentGameType}"/>">
-				    <span>You do not have any troops...</span><button type="submit">Select them!</button>
-				</form>
-			</c:if>
-			<ul>
-			<c:forEach var="unit" items="${selectedUnits}">
-				<li>
-				${unit.name}
-				</li>
-			</c:forEach>
-			</ul>
+			<div>
+				<h4>Your Selected Units!</h4>
+				<c:if test="${empty selectedUnits}">
+					<form method="GET" action="<c:url value="/units/select/${currentGameType}"/>">
+					    <span>You do not have any troops...</span><button type="submit">Select them!</button>
+					</form>
+				</c:if>
+				<ul>
+				<c:forEach var="unit" items="${selectedUnits}">
+					<li>
+					${unit.name}
+					</li>
+				</c:forEach>
+				</ul>
+			</div>
 		</div>
 		<div class="battle-group col-sm-12 col-md-6">
-			<h4>Foe Selected Units!</h4>
-			<ul>
-			<c:forEach var="unit" items="${foeSelectedUnits}">
-				<li>
-				${unit.name}
-				</li>
-			</c:forEach>
-			</ul>
+			<div>
+				<h4>Foe Selected Units!</h4>
+				<ul>
+				<c:forEach var="unit" items="${foeSelectedUnits}">
+					<li>
+					${unit.name}
+					</li>
+				</c:forEach>
+				</ul>
+			</div>
 		</div>
 		<div class="actions">
 			<button classs="take-battle" onclick="getEvents(this); return false;">Battle!</button>

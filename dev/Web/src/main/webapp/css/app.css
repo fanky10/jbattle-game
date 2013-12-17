@@ -36,3 +36,47 @@ div{
 	margin: 5px 0;
 	padding: 0 5px;
 }
+
+.battle-view{
+
+}
+
+.battle-view .actions{
+	clear: both;
+	width: 100%;
+}
+
+.battle-view .actions button{
+	float: left;
+	margin: 5px 10px 5px 0;
+}
+
+#responseMessage{
+	clear: both;
+}
+
+#responseMessage ul{
+	diaplay: block;
+	margin: 0px;
+	padding: 0px;
+}
+
+#responseMessage li{
+	border: 3px solid black;
+	display: block;
+	margin: 0 0 2px 0;
+	padding: 3px;
+	color: white;
+}
+
+#responseMessage .Your-Team{
+	background-color: blue;
+}
+
+#responseMessage .Enemy-Team{
+	background-color: red;
+}
+
+#responseMessage .Battle-Result{
+	background-color: gold;
+}

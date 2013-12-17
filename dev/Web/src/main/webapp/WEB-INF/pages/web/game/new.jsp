@@ -19,8 +19,15 @@
 			success : function(data) {
 				$("#responseMessage").html(data.message);
 				$("#responseMessage").append("<ul>");
-				$.each(data.content,function(i,item){$("#responseMessage").append("<li>"+item.message+"</li>");});
-				$("#responseMessage").append("</ul>");
+				$.each(data.content,function(i,item){
+					if(item.status == "ATTACKING"){
+						liClass = "Your-Team";
+					}else if(item.status == "UNDER ATTACK"){
+						liClass = "Enemy-Team";
+					}else{
+						liClass = "Battle-Result";
+					}
+					$("#responseMessage ul").append("<li class="+liClass+">"+item.message+"</li>");});
 			},
 			error : function() {
 				$("#responseMessage").html(
@@ -37,12 +44,17 @@
 <content tag="bodyContent">
 <c:set var="currentGameType" value="${requestScope['org.springframework.web.servlet.HandlerMapping.uriTemplateVariables']['gameType']}" />
         
-	<div class="jumbotron">
+	<div class="jumbotron battle-view">
 		<h3>Game Mode: ${selectedGame.gameMode} - Type: ${selectedGame.gameType}</h3>
 		<h3>Battlefield: ${selectedGame.battlefield}</h3>
 		<div class="battle-group col-sm-12 col-md-6">
 			<h4>Your Selected Units!</h4>
 			<ul>
+			<c:if test="${empty selectedUnits}">
+				<form method="GET" action="<c:url value="/units/select/${currentGameType}"/>">
+				    <button type="submit">You do not have any troops... Select them!</button>
+				</form>
+			</c:if>
 			<c:forEach var="unit" items="${selectedUnits}">
 				<li>
 				${unit.name}
@@ -60,11 +72,13 @@
 			</c:forEach>
 			</ul>
 		</div>
-		<button onclick="getEvents(this); return false;">Battle!</button>
-		<button onclick="location.reload(false); return false;">Other Battlefield!</button>
-		<form method="GET" action="<c:url value="/units/select/${currentGameType}"/>">
-		    <button type="submit">Change Troop</button>
-		</form>
+		<div class="actions">
+			<button classs="take-battle" onclick="getEvents(this); return false;">Battle!</button>
+			<button class="skip-battle" onclick="location.reload(false); return false;">Other Battlefield!</button>
+			<form method="GET" action="<c:url value="/units/select/${currentGameType}"/>">
+			    <button type="submit">Change Troop</button>
+			</form>
+		</div>
 		<div id="responseMessage"></div>
 	</div>
 		

@@ -6,22 +6,27 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.doinfinite.battlegame.mocked.MockedUnits;
 import com.doinfinite.battlegame.model.Game;
 import com.doinfinite.battlegame.model.Game.GameMode;
 import com.doinfinite.battlegame.model.Game.GameType;
 import com.doinfinite.battlegame.model.Unit;
+import com.doinfinite.battlegame.services.ServicesManager;
 import com.doinfinite.battlegame.web.constants.WebAppConstants;
 
 public abstract class BaseController {
+	
+	@Autowired
+	private ServicesManager servicesManager;
+	
 	@Value("${home.url}")
 	protected String homeUrl;
 
 	protected List<Unit> getUnits() {
-		return MockedUnits.getAvailableUnits();
+		return servicesManager.getUnits();
 	}
 
 	/**
@@ -61,18 +66,9 @@ public abstract class BaseController {
 		List<Unit> selectedUnits = (List<Unit>) httpRequest
 				.getSession()
 				.getAttribute(WebAppConstants.SESSION_SELECTED_UNITS + gameType);
-		if (selectedUnits == null || selectedUnits.isEmpty()) {
-			// TODO: delete this and implement the correct go to select your
-			// units link (:
+		if(selectedUnits==null){
 			selectedUnits = new ArrayList<Unit>();
-			for (int i = 0; i < gameType.getMaxUnits(); i++) {
-				selectedUnits.add(MockedUnits.getHeavyTeam().get(i));
-			}
-			httpRequest.getSession().setAttribute(
-					WebAppConstants.SESSION_SELECTED_UNITS + gameType,
-					selectedUnits);
 		}
-
 		return selectedUnits;
 	}
 
@@ -93,7 +89,7 @@ public abstract class BaseController {
 			throw new IllegalArgumentException(
 					"not a valid game type specified");
 		}
-		List<Unit> randomUnits = MockedUnits.getAvailableUnits();
+		List<Unit> randomUnits = getUnits();
 		Collections.shuffle(randomUnits);
 		List<Unit> selectedUnits = new ArrayList<Unit>();
 		// TODO: check that if gameMode == PVP look for PVP
@@ -112,5 +108,13 @@ public abstract class BaseController {
 	protected Game getGameSettings(HttpServletRequest httpRequest) {
 		return (Game) httpRequest.getSession().getAttribute(
 				WebAppConstants.SESSION_GAME_SETTINGS);
+	}
+
+	public ServicesManager getServicesManager() {
+		return servicesManager;
+	}
+
+	public void setServicesManager(ServicesManager servicesManager) {
+		this.servicesManager = servicesManager;
 	}
 }

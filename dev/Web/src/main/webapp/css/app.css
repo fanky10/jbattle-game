@@ -10,22 +10,35 @@ h1,h2,h3,h4,div,ul{
 }
 
 h1{
+	display: block;
 	font-size: 3.5em;
+	font-weight: normal;
 	text-shadow: 3px 3px #000;
+	
+}
+
+h1 a{
+	color: white;	
+}
+
+h1 a:hover{
+	color: #D3D3D3;	
 }
 
 div{
 	font-size: 0.9em;
 }
 
+/*** NAV CUSTOM STYLES ***/
 .dropdown-menu{
 	font-size: 1em;
 }
 
 .navbar-form *{
-	font-size: 1.2em;
+	font-size: 1em;
 }
 
+/*** PAGES CUSTOM STYLES ***/
 .jumbotron{
 	color: #777;
 	font-size: 1em;
@@ -65,7 +78,7 @@ div{
 	border: 3px solid black;
 	display: block;
 	margin: 0 0 2px 0;
-	padding: 3px;
+	padding: 10px;
 	color: white;
 }
 
@@ -77,6 +90,38 @@ div{
 	background-color: red;
 }
 
-#responseMessage .Battle-Result{
+#responseMessage .Battle-Result-Win{
 	background-color: gold;
+}
+
+#responseMessage .Battle-Result-Lose{
+	background-color: silver;
+}
+
+/**** FOOTER CUSTOM STYLES ****/
+.credit{
+	float: left;
+}
+
+.social{
+	color: grey;
+	display: block;
+	margin: 20px 0 20px 70px;
+	float: right;
+}
+
+.social span{
+	float: left;
+	display: block;
+}
+
+.social ul{
+	float: left;
+	margin: 0px;
+	padding: 0px;
+}
+
+.social li{
+	display: inline-block;
+	list-style: none;
 }

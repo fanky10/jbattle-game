@@ -1,7 +1,7 @@
 <div id="wrap">
 	<div class="container">
 		<div class="header">
-			<h1>The Battlegame</h1>
+			<h1><a href="#">The Battlegame</a></h1>
 		</div>
 		<div class="row">
 			<nav class="navbar navbar-default" role="navigation">
@@ -13,11 +13,12 @@
 			      <span class="icon-bar"></span>
 			      <span class="icon-bar"></span>
 			    </button>
-			    <a class="navbar-brand" href="#">Battlegame</a>
+			    <!-- <a class="navbar-brand" href="#">Battlegame</a> -->
 			  </div>
 			  
 			  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			    <ul class="nav navbar-nav">
+			      <li><a href="#">Your Account</a></li>
 			      <li class="dropdown">
 			        <a href="#" class="dropdown-toggle active" data-toggle="dropdown">Battle <b class="caret"></b></a>
 			        <ul class="dropdown-menu">
@@ -27,7 +28,7 @@
 			          <li><a href="#">PVP - 3v3</a></li>
 			          <li><a href="#">PVP - 5v5</a></li>
 			        </ul>
-			      <li><a href="#">Store</a></li>
+			      </li>
 			      <li class="dropdown">
 			        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Your Team <b class="caret"></b></a>
 			        <ul class="dropdown-menu">
@@ -41,6 +42,7 @@
 			          <li><a href="#">One more separated link</a></li>
 			        </ul>
 			      </li>
+			      <li><a href="#">Store</a></li>
 			    </ul>
 	
 			    <form class="navbar-form navbar-right" role="search">

@@ -17,17 +17,22 @@
 			data : JSON.stringify(jsonData),
 			dataType : 'json',
 			success : function(data) {
-				$("#responseMessage").html(data.message);
+				$(".battle-view").html('<div id="responseMessage"></div>');
+				$("#responseMessage").html("<h4>"+data.message+"</h4>");
 				$("#responseMessage").append("<ul>");
 				$.each(data.content,function(i,item){
 					if(item.status == "ATTACKING"){
 						liClass = "Your-Team";
-					}else if(item.status == "UNDER ATTACK"){
+					}else if(item.status == "UNDER_ATTACK"){
 						liClass = "Enemy-Team";
-					}else{
-						liClass = "Battle-Result";
+					}else if(item.status == "WIN"){
+						liClass = "Battle-Result-Win";
+					}else if(item.status == "LOSE"){
+						liClass = "Battle-Result-Lose";
 					}
-					$("#responseMessage ul").append("<li class="+liClass+">"+item.message+"</li>");});
+					$("#responseMessage ul").append("<li class="+liClass+">"+item.message+"</li>");
+				});
+				$("#responseMessage").append("<button>Battle Again!</button>");
 			},
 			error : function() {
 				$("#responseMessage").html(
@@ -49,12 +54,12 @@
 		<h3>Battlefield: ${selectedGame.battlefield}</h3>
 		<div class="battle-group col-sm-12 col-md-6">
 			<h4>Your Selected Units!</h4>
-			<ul>
 			<c:if test="${empty selectedUnits}">
 				<form method="GET" action="<c:url value="/units/select/${currentGameType}"/>">
-				    <button type="submit">You do not have any troops... Select them!</button>
+				    <span>You do not have any troops...</span><button type="submit">Select them!</button>
 				</form>
 			</c:if>
+			<ul>
 			<c:forEach var="unit" items="${selectedUnits}">
 				<li>
 				${unit.name}

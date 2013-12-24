@@ -34,7 +34,7 @@
 		</property>
 	</bean>
 
-	<!-- MANEJO DE VIEWS -->
+	<!-- views handling -->
 	<bean id="urlBasedViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="order"

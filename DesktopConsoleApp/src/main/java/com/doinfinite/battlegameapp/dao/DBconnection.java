@@ -17,8 +17,68 @@ public class DBconnection {
 
 	private static String host = "localhost";
 	private static String dbname = "battlegame_DB";
+	private static String tablename= "";
 	private static String username = "victor";
 	private static String password = "local";
+	
+	
+	public static void createDatabase () throws SQLException {
+		
+		  Connection connection = null;
+		    Statement statement = null;
+		    try {
+		        Class.forName("com.mysql.jdbc.Driver");
+		        connection = DriverManager.getConnection("jdbc:mysql://localhost/",
+		                "root", "root");
+		        statement = connection.createStatement();
+		        String sql = "CREATE DATABASE IF NOT EXISTS " + dbname;
+		        //To delete database: sql = "DROP DATABASE DBNAME";
+		       
+		        System.out.println("Database created!");
+		    } catch (SQLException sqlException) {
+		        if (sqlException.getErrorCode() == 1007) {
+		            // Database already exists error
+		            System.out.println(sqlException.getMessage());
+		        } else {
+		            // Some other problems, e.g. Server down, no permission, etc
+		            sqlException.printStackTrace();
+		        }
+		    } catch (ClassNotFoundException e) {
+		        // No driver class found!
+		    }
+		    String query1= "   use battlegame_db";
+		    statement.executeUpdate(query1);
+		   String query2= "create table units (id integer unsigned not null primary key auto_increment, name varchar (50) not null)";
+		   statement.executeUpdate(query2);
+	        System.out.println("Table created!");
+	        
+		
+		
+	}
+	
+	
+	private void createTable() throws SQLException {
+	    String sqlTable = "CREATE TABLE IF NOT EXISTS " + this.getTableName()
+	            + "  (brand           VARCHAR(10),"
+	            ;
+
+	    
+	    
+	}
+
+	private String getTableName() {
+		
+		System.out.println("Write the table name");
+		BufferedReader read = new BufferedReader(new InputStreamReader(
+				System.in));
+		tablename= read.toString();
+		
+		
+		
+		
+		return tablename;
+	}
+
 
 	public static Connection newConecttion() throws SQLException {
 
@@ -118,21 +178,28 @@ public class DBconnection {
 			PreparedStatement preparedStatement = conn.prepareStatement(sql);
 			preparedStatement.setString(1, a);
 			preparedStatement.executeUpdate();
-			break;
+			break;}
 
 		}
+		
+		public static void dbMenu () {
+			
+			
+			
+			
+		}
 
-	}
+	
 
 	public static void main(String[] args) throws SQLException, IOException {
-
+		createDatabase();
 		Connection conn = DBconnection.newConecttion();
 
 		if (conn != null) {
-
 			showUnits(conn);
 			insertUnit(conn);
 			showUnits(conn);
+			
 
 		}
 

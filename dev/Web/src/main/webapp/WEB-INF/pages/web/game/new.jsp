@@ -23,14 +23,18 @@
 				$.each(data.content,function(i,item){
 					if(item.status == "ATTACKING"){
 						liClass = "Your-Team";
+						content = item.message;
 					}else if(item.status == "UNDER_ATTACK"){
 						liClass = "Enemy-Team";
+						content = item.message;
 					}else if(item.status == "WIN"){
 						liClass = "Battle-Result-Win";
+						content = "<span class='icon trophy'></span>"+item.message;
 					}else if(item.status == "LOSE"){
 						liClass = "Battle-Result-Lose";
+						content = item.message;
 					}
-					$("#responseMessage ul").append("<li class="+liClass+">"+item.message+"</li>");
+					newLi = $("#responseMessage ul").append("<li class="+liClass+">"+content+"</li>");
 				});
 				$("#responseMessage").append("<button>Battle Again!</button>");
 			},

@@ -169,6 +169,14 @@
 				<version>${spring.security.version}</version>
 			</dependency>
 
+			<!-- spring security OAuth2 -->
+			<dependency>
+				<groupId>org.springframework.security.oauth</groupId>
+				<artifactId>spring-security-oauth2</artifactId>
+				<version>1.0.0.RELEASE</version>
+			</dependency>
+
+
 			<!-- Use Apache HttpClient as HTTP Client -->
 			<dependency>
 				<groupId>org.apache.httpcomponents</groupId>

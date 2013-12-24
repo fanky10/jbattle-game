@@ -3,12 +3,14 @@
     xmlns="http://www.springframework.org/schema/security"
 	xmlns:beans="http://www.springframework.org/schema/beans" 
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:oauth="http://www.springframework.org/schema/security/oauth2"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 			http://www.springframework.org/schema/context
 			http://www.springframework.org/schema/context/spring-context-3.1.xsd
 			http://www.springframework.org/schema/security
-			http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+			http://www.springframework.org/schema/security/spring-security-3.1.xsd
+			http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-1.0.xsd">
 			
 	<context:component-scan base-package="com.doinfinite.battlegame.security" />
 	<!-- Spring security configuration -->
@@ -22,4 +24,13 @@
 	<authentication-manager alias="authenticationManager">
         <authentication-provider ref="customAuthenticationProvider" />
     </authentication-manager>
+    
+	<!--define an oauth 2 resource for facebook. according to the facebook docs, the 'clientId' 
+		is the App ID, and the 'clientSecret' is the App Secret -->
+	<oauth:resource id="facebook" client-id="${facebook.app.id}" client-secret="${facebook.app.secret}"
+                authentication-scheme="query" access-token-uri="https://graph.facebook.com/oauth/access_token"
+                user-authorization-uri="https://www.facebook.com/dialog/oauth"
+                token-name="oauth_token" client-authentication-scheme="form"  />
+	
+	
 </beans:beans>

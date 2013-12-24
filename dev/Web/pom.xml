@@ -79,6 +79,12 @@
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-web</artifactId>
 			</dependency>
+			<!-- spring security OAuth -->
+			<dependency>
+				<groupId>org.springframework.security.oauth</groupId>
+				<artifactId>spring-security-oauth2</artifactId>
+			</dependency>
+            
 
 			<!-- Use Apache HttpClient as HTTP Client -->
 			<dependency>

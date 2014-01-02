@@ -48,29 +48,32 @@ public class Unit implements AttackableUnit, Serializable {
 	private UnitType unitType;
 	@Column(name = "unit_damage", nullable = false)
 	private Integer damage;
+	private Integer defense = DEFAULT_DEFENSE;
 
 	public Unit() {
 		// default impl.
 	}
 
 	public Unit(String name, UnitType unitType, Integer health, Integer speed,
-			Integer accuracy, Integer damage) {
+			Integer accuracy, Integer damage, Integer defense) {
 		this.name = name;
 		this.unitType = unitType;
 		this.health = health;
+		this.defense = defense;
 		this.speed = speed;
 		this.accuracy = accuracy;
 		this.damage = damage;
 	}
 
 	public Unit getSnapshot() {
-		return new Unit(name, unitType, health, speed, accuracy, damage);
+		return new Unit(name, unitType, health, speed, accuracy, damage,
+				defense);
 	}
 
 	@Override
 	public int defend(int attack) {
 		// TODO: add effectiveness
-		this.health = health - attack;
+		health = getHealth() - attack;
 		return attack;
 	}
 
@@ -97,7 +100,7 @@ public class Unit implements AttackableUnit, Serializable {
 	}
 
 	public Integer getHealth() {
-		return health;
+		return health + defense;
 	}
 
 	public void setHealth(Integer health) {

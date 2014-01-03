@@ -32,16 +32,20 @@ public class BattlefieldTest extends TestCase {
 	 */
 	public void testHeavyTeam() {
 		List<Unit> navyTeam = new ArrayList<Unit>();
-		navyTeam.add(new Unit("Ship", UnitType.WATER, 100, 50, 10, 70));
+		navyTeam.add(new Unit("Ship", UnitType.WATER, 100, 50, 10, 70, 20));
 		List<Unit> heavyTeam = new ArrayList<Unit>();
-		heavyTeam.add(new Unit("Airplane", UnitType.AIR, 100, 50, 10, 70));
-		heavyTeam.add(new Unit("Apache Chopper", UnitType.AIR, 100, 50, 10, 70));
-		heavyTeam.add(new Unit("QuickTank", UnitType.EARTH, 100, 50, 10, 70));
-		heavyTeam.add(new Unit("LightTank", UnitType.EARTH, 100, 50, 10, 70));
-		heavyTeam.add(new Unit("Troop", UnitType.EARTH, 100, 50, 10, 70));
-		heavyTeam.add(new Unit("Turret", UnitType.EARTH, 100, 50, 10, 70));
+		heavyTeam.add(new Unit("Airplane", UnitType.AIR, 100, 50, 10, 70, 20));
+		heavyTeam.add(new Unit("Apache Chopper", UnitType.AIR, 100, 50, 10, 70,
+				20));
+		heavyTeam
+				.add(new Unit("QuickTank", UnitType.EARTH, 100, 50, 10, 70, 20));
+		heavyTeam
+				.add(new Unit("LightTank", UnitType.EARTH, 100, 50, 10, 70, 20));
+		heavyTeam.add(new Unit("Troop", UnitType.EARTH, 100, 50, 10, 70, 20));
+		heavyTeam.add(new Unit("Turret", UnitType.EARTH, 100, 50, 10, 70, 20));
 		List<BattleEvent> battleEvents = new Battlefield(heavyTeam, navyTeam)
 				.battle();
-		assertTrue(battleEvents != null && !battleEvents.isEmpty() && battleEvents.size()>1);
+		assertTrue(battleEvents != null && !battleEvents.isEmpty()
+				&& battleEvents.size() > 1);
 	}
 }

@@ -102,8 +102,10 @@ public class Unit implements AttackableUnit, Serializable {
 	}
 
 	public Integer getHealth() {
-		return health + defense;
-
+		if (defense + health == 150) {
+			return health + defense;
+		} else
+			return health;
 	}
 
 	public void setHealth(Integer health) {

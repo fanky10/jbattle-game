@@ -48,6 +48,7 @@ public class Unit implements AttackableUnit, Serializable {
 	private UnitType unitType;
 	@Column(name = "unit_damage", nullable = false)
 	private Integer damage;
+	@Column(name = "unit_defense", nullable = false)
 	private Integer defense = DEFAULT_DEFENSE;
 
 	public Unit() {
@@ -63,6 +64,7 @@ public class Unit implements AttackableUnit, Serializable {
 		this.speed = speed;
 		this.accuracy = accuracy;
 		this.damage = damage;
+
 	}
 
 	public Unit getSnapshot() {
@@ -100,7 +102,10 @@ public class Unit implements AttackableUnit, Serializable {
 	}
 
 	public Integer getHealth() {
-		return health + defense;
+		if (defense + health == 150) {
+			return health + defense;
+		} else
+			return health;
 	}
 
 	public void setHealth(Integer health) {

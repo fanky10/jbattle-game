@@ -26,7 +26,8 @@ public class App {
 		Battlefield bf = new Battlefield(redTeam, blueTeam);
 		bf.battle();
 		for (BattleEvent evt : bf.getBattleEvents()) {
-			System.out.println("EVT: " + evt.getMessage());
+			if(evt.getStatus() == BattleEvent.EventStatus.UNDER_ATTACK)
+				System.out.println("EVT: " + evt.getMessage());
 		}
 
 	}

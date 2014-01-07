@@ -17,36 +17,39 @@ public class BattleEvent implements java.io.Serializable {
 	private String atackerName;
 	private String defenderName;
 	private Integer defenderHealth;
+	private Integer defenderDefense;
 	private Float damage;
 	private EffectivenessMessage effectiveness = EffectivenessMessage.NORMAL;
 	private EventStatus status;
 
 	public String getMessage() {
-		if(status==EventStatus.WIN || status==EventStatus.LOSE){
-			return "You "+status;
+		if (status == EventStatus.WIN || status == EventStatus.LOSE) {
+			return "You " + status;
 		}
 		StringBuilder sb = new StringBuilder();
-		if(status == EventStatus.ATTACKING){
+		if (status == EventStatus.ATTACKING) {
 			sb.append("Your Unit: ");
 		}
-		if(status == EventStatus.UNDER_ATTACK){
+		if (status == EventStatus.UNDER_ATTACK) {
 			sb.append("Enemy Unit: ");
 		}
-		sb.append(atackerName).append(" attacks ").append(defenderName).append(" DEALING: ").append(damage).append("dmg");
+		sb.append(atackerName).append(" attacks ").append(defenderName)
+				.append(" DEALING: ").append(damage).append("dmg");
 		sb.append(" health left: ").append(defenderHealth);
-		if(defenderHealth<=0){
-			if(status == EventStatus.ATTACKING){
+		sb.append(" defense left: ").append(defenderDefense);
+		if (defenderHealth <= 0) {
+			if (status == EventStatus.ATTACKING) {
 				sb.append(" One less and counting...!");
 			}
-			if(status == EventStatus.UNDER_ATTACK){
+			if (status == EventStatus.UNDER_ATTACK) {
 				sb.append(" Your unit has fallen in combat...");
 			}
 		}
 		return sb.toString();
 	}
-	
+
 	@Override
-	public String toString(){
+	public String toString() {
 		return getMessage();
 	}
 
@@ -96,6 +99,14 @@ public class BattleEvent implements java.io.Serializable {
 
 	public void setDefenderHealth(Integer defenderHealth) {
 		this.defenderHealth = defenderHealth;
+	}
+
+	public Integer getDefenderDefense() {
+		return defenderDefense;
+	}
+
+	public void setDefenderDefense(Integer defenderDefense) {
+		this.defenderDefense = defenderDefense;
 	}
 
 }

@@ -87,6 +87,10 @@ div{
 	color: white;
 }
 
+#responseMessage li .icon{
+	
+}
+
 #responseMessage .Your-Team{
 	background-color: blue;
 }

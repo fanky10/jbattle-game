@@ -21,11 +21,11 @@ public class Battlefield {
 	}
 
 	public List<BattleEvent> battle() {
-				while (!isThereAWinner()) {
+		while (!isThereAWinner()) {
 			attack();
 			defend();
 		}
-		
+
 		BattleEvent end = new BattleEvent();
 		end.setStatus(enemyUnits.isEmpty() ? EventStatus.WIN : (localUnits
 				.isEmpty() ? EventStatus.LOSE : EventStatus.LOSE));
@@ -56,16 +56,17 @@ public class Battlefield {
 				BattleEvent battleEvent = new BattleEvent();
 				battleEvent.setAtackerName(attacker.getName());
 				battleEvent.setDefenderHealth(defender.getHealth());
+				battleEvent.setDefenderDefense(defender.getDefense());
 				battleEvent.setDefenderName(defender.getName());
 				battleEvent.setDamage(dmg);
 				battleEvent.setStatus(action);
 				battleEvents.add(battleEvent);
-				
+
 				// did it die?
 				if (defender.isDead()) {
 					defenders.remove(0);
 				}
-				
+
 			}
 		}
 	}

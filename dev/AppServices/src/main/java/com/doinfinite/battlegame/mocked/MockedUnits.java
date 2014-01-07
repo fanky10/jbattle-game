@@ -66,7 +66,7 @@ public class MockedUnits {
 				20));
 
 		availableUnits
-				.add(new Unit("Ship", UnitType.WATER, 300, 50, 10, 70, 20));
+				.add(new Unit("Ship", UnitType.WATER, 300, 50, 10, 70, 200));
 		availableUnits.add(new Unit("Aircraft carrier", UnitType.WATER, 300,
 				50, 10, 70, 20));
 		availableUnits.add(new Unit("Assault ship", UnitType.WATER, 300, 50,

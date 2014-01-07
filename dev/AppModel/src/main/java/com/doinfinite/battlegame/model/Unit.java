@@ -60,11 +60,10 @@ public class Unit implements AttackableUnit, Serializable {
 		this.name = name;
 		this.unitType = unitType;
 		this.health = health;
-		this.defense = defense;
 		this.speed = speed;
 		this.accuracy = accuracy;
 		this.damage = damage;
-
+		this.defense = defense;
 	}
 
 	public Unit getSnapshot() {
@@ -74,8 +73,16 @@ public class Unit implements AttackableUnit, Serializable {
 
 	@Override
 	public int defend(int attack) {
-		// TODO: add effectiveness
-		health = getHealth() - attack;
+		if (defense > 0) {
+			if (attack > defense) {
+				health = health - (attack-defense);
+				defense = 0;
+			}else{
+				defense = defense - attack;
+			}
+		} else {
+			health = health - attack;
+		}
 		return attack;
 	}
 
@@ -102,10 +109,7 @@ public class Unit implements AttackableUnit, Serializable {
 	}
 
 	public Integer getHealth() {
-		if (defense + health == 150) {
-			return health + defense;
-		} else
-			return health;
+		return health;
 	}
 
 	public void setHealth(Integer health) {
@@ -150,5 +154,13 @@ public class Unit implements AttackableUnit, Serializable {
 
 	public void setDamage(Integer damage) {
 		this.damage = damage;
+	}
+
+	public Integer getDefense() {
+		return defense;
+	}
+
+	public void setDefense(Integer defense) {
+		this.defense = defense;
 	}
 }

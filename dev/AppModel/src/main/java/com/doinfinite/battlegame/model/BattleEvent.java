@@ -17,6 +17,7 @@ public class BattleEvent implements java.io.Serializable {
 	private String atackerName;
 	private String defenderName;
 	private Integer defenderHealth;
+	private Integer defenderDefense;
 	private Float damage;
 	private EffectivenessMessage effectiveness = EffectivenessMessage.NORMAL;
 	private EventStatus status;
@@ -35,6 +36,7 @@ public class BattleEvent implements java.io.Serializable {
 		sb.append(atackerName).append(" attacks ").append(defenderName)
 				.append(" DEALING: ").append(damage).append("dmg");
 		sb.append(" health left: ").append(defenderHealth);
+		sb.append(" defense left: ").append(defenderDefense);
 		if (defenderHealth <= 0) {
 			if (status == EventStatus.ATTACKING) {
 				sb.append(" One less and counting...!");
@@ -97,6 +99,14 @@ public class BattleEvent implements java.io.Serializable {
 
 	public void setDefenderHealth(Integer defenderHealth) {
 		this.defenderHealth = defenderHealth;
+	}
+
+	public Integer getDefenderDefense() {
+		return defenderDefense;
+	}
+
+	public void setDefenderDefense(Integer defenderDefense) {
+		this.defenderDefense = defenderDefense;
 	}
 
 }

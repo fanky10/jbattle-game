@@ -56,6 +56,7 @@ public class Battlefield {
 				BattleEvent battleEvent = new BattleEvent();
 				battleEvent.setAtackerName(attacker.getName());
 				battleEvent.setDefenderHealth(defender.getHealth());
+				battleEvent.setDefenderDefense(defender.getDefense());
 				battleEvent.setDefenderName(defender.getName());
 				battleEvent.setDamage(dmg);
 				battleEvent.setStatus(action);

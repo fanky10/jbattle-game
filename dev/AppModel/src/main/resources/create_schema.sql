@@ -46,17 +46,14 @@ values
 DROP TABLE IF EXISTS battlefield;
 
 CREATE TABLE battlefield(
+	battlefield_id integer unsigned not null primary key AUTO_INCREMENT,
     battlefield_name varchar(100) not null
-    battlefield_id integer unsigned not null primary key AUTO_INCREMENT,
-    
 )ENGINE=InnoDB;
 
 
-insert into battlefield (battlefield_name, battlefield_id) 
+insert into battlefield (battlefield_name) 
 values 
-
-('Basic',1),
-('Desert',2),
-('Coast',3),
-('Jungle',4),
-('Coast',5);
+('Basic'),
+('Desert'),
+('Coast'),
+('Jungle');

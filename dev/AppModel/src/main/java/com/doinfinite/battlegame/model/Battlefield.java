@@ -10,7 +10,8 @@ public class Battlefield {
 	private List<Unit> enemyUnits;
 	private List<BattleEvent> battleEvents = new ArrayList<BattleEvent>();
 
-	public Battlefield(List<Unit> localUnits, List<Unit> enemyUnits) {
+	public Battlefield(List<Unit> localUnits, List<Unit> enemyUnits,
+			BattlefieldType battlefield) {
 		super();
 		this.localUnits = localUnits;
 		this.enemyUnits = enemyUnits;

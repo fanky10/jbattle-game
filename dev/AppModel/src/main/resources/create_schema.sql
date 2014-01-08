@@ -41,3 +41,22 @@ values
 ('SingleEngine',2,100,150,10,10,50),
 ('Jet and rocket',2,100,150,90,10,50),
 ('Bomber',2,100,150,70,10,50);
+
+
+DROP TABLE IF EXISTS battlefield;
+
+CREATE TABLE battlefield(
+    battlefield_name varchar(100) not null
+    battlefield_id integer unsigned not null primary key AUTO_INCREMENT,
+    
+)ENGINE=InnoDB;
+
+
+insert into battlefield (battlefield_name, battlefield_id) 
+values 
+
+('Basic',1),
+('Desert',2),
+('Coast',3),
+('Jungle',4),
+('Coast',5);

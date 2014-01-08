@@ -16,6 +16,15 @@
 		<h2>Welcome to The Battlegame!!!</h2>
 		<h3>A game to play!</h3>
 		<p>This game is so much fun!, create your own Troop and battle your friends!!</p>
-		<a href="<c:url value="/connect/facebook" />">Connect to Facebook</a>
+		<c:choose>
+		<c:when test="${empty profile}">
+			<form action="<c:url value="/connect/facebook" />" method="POST">
+			    <p>You haven't created any connections with Facebook yet. Click the button to create
+			       a connection between your account and your Facebook profile.</p>
+			    <p><button type="submit"></button></p>
+			</form>
+		</c:when>
+		<c:otherwise>${profile.firstName}</c:otherwise>
+		</c:choose>
 	</div>
 </content>

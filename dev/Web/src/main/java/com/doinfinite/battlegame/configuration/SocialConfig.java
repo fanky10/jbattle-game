@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.encrypt.Encryptors;
@@ -23,52 +22,52 @@ import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 
 @Configuration
 public class SocialConfig {
-	
-    @Inject
-    private DataSource dataSource;
-    //TODO: inject proper bean
-    private TextEncryptor textEncryptor = Encryptors.noOpText();
-    @Value("${facebook.clientId}")
+
+	@Inject
+	private DataSource dataSource;
+	// TODO: inject proper bean
+	private TextEncryptor textEncryptor = Encryptors.noOpText();
+	@Value("${facebook.clientId}")
 	protected String facebookClientId;
-    @Value("${facebook.clientSecret}")
+	@Value("${facebook.clientSecret}")
 	protected String facebookClientSecret;
-	
+
 	@Bean
-    public ConnectionFactoryLocator connectionFactoryLocator() {
-        ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
-        
-        registry.addConnectionFactory(new FacebookConnectionFactory(facebookClientId,facebookClientSecret));
-        
-//        registry.addConnectionFactory(new TwitterConnectionFactory(
-//            environment.getProperty("twitter.consumerKey"),
-//            environment.getProperty("twitter.consumerSecret")));
-            
-        return registry;
-    }
-	
+	public ConnectionFactoryLocator connectionFactoryLocator() {
+		ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
+
+		registry.addConnectionFactory(new FacebookConnectionFactory(
+				facebookClientId, facebookClientSecret));
+
+		return registry;
+	}
+
 	@Bean
-    public UsersConnectionRepository usersConnectionRepository() {
-        return new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator(), 
-            textEncryptor);
-    }
-	
+	public UsersConnectionRepository usersConnectionRepository() {
+		return new JdbcUsersConnectionRepository(dataSource,
+				connectionFactoryLocator(), textEncryptor);
+	}
+
 	@Bean
-    @Scope(value="request", proxyMode=ScopedProxyMode.INTERFACES)
-    public ConnectionRepository connectionRepository(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null) {
-            throw new IllegalStateException("Unable to get a ConnectionRepository: no user signed in");
-        }
-        return usersConnectionRepository().createConnectionRepository(authentication.getName());
-    }
-	
+	@Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
+	public ConnectionRepository connectionRepository() {
+		Authentication authentication = SecurityContextHolder.getContext()
+				.getAuthentication();
+		if (authentication == null) {
+			throw new IllegalStateException(
+					"Unable to get a ConnectionRepository: no user signed in");
+		}
+		return usersConnectionRepository().createConnectionRepository(
+				authentication.getName());
+	}
+
 	@Bean
-    public ConnectController connectController() {
-        ConnectController controller = new ConnectController(connectionFactoryLocator(), 
-            connectionRepository());
-        //TODO: callback url
-//        controller.setApplicationUrl(environment.getProperty("application.url"));
-        return controller;
-    }
-	
+	public ConnectController connectController() {
+		ConnectController controller = new ConnectController(
+				connectionFactoryLocator(), connectionRepository());
+		// TODO: callback url
+		// controller.setApplicationUrl(environment.getProperty("application.url"));
+		return controller;
+	}
+
 }

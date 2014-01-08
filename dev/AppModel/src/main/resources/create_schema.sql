@@ -46,17 +46,28 @@ values
 DROP TABLE IF EXISTS battlefield;
 
 CREATE TABLE battlefield(
+	battlefield_id integer unsigned not null primary key AUTO_INCREMENT,
     battlefield_name varchar(100) not null
-    battlefield_id integer unsigned not null primary key AUTO_INCREMENT,
-    
 )ENGINE=InnoDB;
 
 
-insert into battlefield (battlefield_name, battlefield_id) 
+insert into battlefield (battlefield_name) 
 values 
+('Basic'),
+('Desert'),
+('Coast'),
+('Jungle');
 
-('Basic',1),
-('Desert',2),
-('Coast',3),
-('Jungle',4),
-('Coast',5);
+create table UserConnection (userId varchar(255) not null,
+    providerId varchar(255) not null,
+    providerUserId varchar(255),
+    rank int not null,
+    displayName varchar(255),
+    profileUrl varchar(512),
+    imageUrl varchar(512),
+    accessToken varchar(255) not null,					
+    secret varchar(255),
+    refreshToken varchar(255),
+    expireTime bigint,
+    primary key (userId, providerId, providerUserId));
+create unique index UserConnectionRank on UserConnection(userId, providerId, rank);

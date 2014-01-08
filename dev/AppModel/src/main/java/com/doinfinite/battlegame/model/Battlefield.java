@@ -16,6 +16,10 @@ public class Battlefield {
 		this.localUnits = localUnits;
 		this.enemyUnits = enemyUnits;
 	}
+	
+	public Battlefield(List<Unit> localUnits, List<Unit> enemyUnits) {
+		this(localUnits,enemyUnits,null);
+	}
 
 	public String toString() {
 		return "Basic Battlefield!";

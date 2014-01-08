@@ -22,6 +22,7 @@ import com.doinfinite.battlegame.model.Unit;
 import com.doinfinite.battlegame.web.constants.WebAppConstants;
 
 @Controller
+@RequestMapping("/auth")
 public class GameController extends BaseController {
 
 	@InitBinder

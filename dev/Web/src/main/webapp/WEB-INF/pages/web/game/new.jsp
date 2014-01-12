@@ -55,7 +55,7 @@
         
 	<div class="jumbotron battle-view">
 		<h3>Game Mode: ${selectedGame.gameMode} - Type: ${selectedGame.gameType}</h3>
-		<h3>Battlefield: ${selectedGame.battlefield}</h3>
+		<h3>Battlefield: ${selectedGame.battlefield} - ${battlefieldType.battlefieldName}</h3> 
 		<div class="battle-group col-sm-12 col-md-6">
 			<div>
 				<h4>Your Selected Units!</h4>

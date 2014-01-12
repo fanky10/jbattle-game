@@ -1,9 +1,11 @@
 package com.doinfinite.battlegame.web.controllers;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
@@ -15,15 +17,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.doinfinite.battlegame.datafields.GameModePropertyEditor;
 import com.doinfinite.battlegame.datafields.GameTypePropertyEditor;
 import com.doinfinite.battlegame.model.Battlefield;
+import com.doinfinite.battlegame.model.BattlefieldType;
 import com.doinfinite.battlegame.model.Game;
 import com.doinfinite.battlegame.model.Game.GameMode;
 import com.doinfinite.battlegame.model.Game.GameType;
 import com.doinfinite.battlegame.model.Unit;
+import com.doinfinite.battlegame.services.ServicesManager;
 import com.doinfinite.battlegame.web.constants.WebAppConstants;
 
 @Controller
-@RequestMapping("/auth")
+// @RequestMapping("/auth")
 public class GameController extends BaseController {
+
+	@Autowired
+	private ServicesManager servicesManager;
 
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
@@ -42,12 +49,16 @@ public class GameController extends BaseController {
 		Game game = new Game(gameMode, gameType);
 		game.setBattlefield(new Battlefield(userTeam, foeTeam));
 		setGameSettings(httpRequest, game);
-
+		List<BattlefieldType> types = servicesManager.getBattlefieldTypes();
+		Collections.shuffle(types);
+		BattlefieldType randomType = types.get(0);
+		
+		map.put("battlefieldType", randomType);
 		map.put("selectedGame", game);
 		map.put("selectedUnits", userTeam);
 		map.put("foeSelectedUnits", foeTeam);
 		map.put("gameType", gameType);
-		return WebAppConstants.GAME_NEW;
+		return WebAppConstants.GAME_NEW; 
 	}
 
 	@RequestMapping(value = "/game/new", method = RequestMethod.GET)

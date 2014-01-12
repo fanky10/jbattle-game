@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.doinfinite.battlegame.model.BattlefieldType;
 import com.doinfinite.battlegame.model.Unit;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,5 +26,12 @@ public class ServiceManagerTest extends TestCase {
 	public void testGetUnits() {
 		List<Unit> units = servicesManager.getUnits();
 		assertTrue(units != null && !units.isEmpty());
+	}
+
+	@Test
+	public void testGetBattlefieldTypes() {
+		List<BattlefieldType> battlefieldType = servicesManager
+				.getBattlefieldTypes();
+		assertTrue(battlefieldType != null && !battlefieldType.isEmpty());
 	}
 }

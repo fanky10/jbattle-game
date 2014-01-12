@@ -24,11 +24,10 @@ public class HomeController extends BaseController {
 	@RequestMapping(value = { "/", "/home" })
 	public String home(Model model) {
 		Connection<Facebook> connection = connectionRepository.findPrimaryConnection(Facebook.class);
-		if (connection == null) {
-			return "redirect:/connect/facebook";
+		if (connection != null) {
+			FacebookProfile facebookProfile = connection.getApi().userOperations().getUserProfile();
+			model.addAttribute("profile", facebookProfile);
 		}
-		FacebookProfile facebookProfile = connection.getApi().userOperations().getUserProfile();
-		model.addAttribute("profile", facebookProfile);
 		model.addAttribute("message", getHomeMessage());
 		return WebAppConstants.HOME_PAGE;
 	}

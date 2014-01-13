@@ -19,6 +19,7 @@ import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 import org.springframework.social.connect.web.ConnectController;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
+import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 
 @Configuration
 public class SocialConfig {
@@ -28,16 +29,21 @@ public class SocialConfig {
 	// TODO: inject proper bean
 	private TextEncryptor textEncryptor = Encryptors.noOpText();
 	@Value("${facebook.clientId}")
-	protected String facebookClientId;
+	private String facebookClientId;
 	@Value("${facebook.clientSecret}")
-	protected String facebookClientSecret;
+	private String facebookClientSecret;
+	@Value("${twitter.consumer.key}")
+	private String twitterConsumerKey;
+	@Value("${twitter.consumer.secret}")
+	private String twitterConsumerSecret;
 
 	@Bean
 	public ConnectionFactoryLocator connectionFactoryLocator() {
 		ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
-
 		registry.addConnectionFactory(new FacebookConnectionFactory(
 				facebookClientId, facebookClientSecret));
+		registry.addConnectionFactory(new TwitterConnectionFactory(
+				twitterConsumerKey, twitterConsumerSecret));
 
 		return registry;
 	}

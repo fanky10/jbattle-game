@@ -1,3 +1,4 @@
+<%@ include file="/WEB-INF/pages/web/common/taglibs.jsp"%>
 <div id="wrap">
 	<div class="container">
 		<div class="header">
@@ -18,7 +19,7 @@
 			  
 			  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			    <ul class="nav navbar-nav">
-			      <li><a href="#">Your Account</a></li>
+				<li><c:choose><c:when test="${empty profile}"><a href="<c:url value="/login" />">Your Account</a></c:when><c:otherwise><a href="#">Welcome ${profile.firstName}</a></c:otherwise></c:choose></li>
 			      <li class="dropdown">
 			        <a href="#" class="dropdown-toggle active" data-toggle="dropdown">Battle <b class="caret"></b></a>
 			        <ul class="dropdown-menu">

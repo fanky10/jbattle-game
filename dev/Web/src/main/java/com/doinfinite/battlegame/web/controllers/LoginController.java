@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.doinfinite.battlegame.web.constants.WebAppConstants;
+
 @Controller
 public class LoginController extends BaseController {
 
@@ -19,6 +21,13 @@ public class LoginController extends BaseController {
 			HttpServletResponse response, Model map) {
 
 		return getHomeController().home(map);
+	}
+	
+	@RequestMapping(value = "/login")
+	public String login(HttpServletRequest request,
+			HttpServletResponse response, Model map) {
+
+		return WebAppConstants.LOGIN_PAGE;
 	}
 
 	public HomeController getHomeController() {

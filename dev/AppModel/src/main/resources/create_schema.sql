@@ -87,3 +87,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+# DEFAULT USER:
+insert into users (email,first_name,last_name,password,role,sign_in_provider)
+values ('fanky10@gmail.com','Ewen','Mackenzie','Password','ROLE_USER','NONE');

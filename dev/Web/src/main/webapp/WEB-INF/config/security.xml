@@ -15,12 +15,16 @@
 	<!-- accessing users -->
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/auth/**" access="hasRole('ROLE_USER')" />
+		<form-login login-page="/login" default-target-url="/home"
+			authentication-failure-url="/login?status=failed" />
 		<logout logout-url="/logout" />
 	</http>
  
 	<!-- authenticating users -->
 	<authentication-manager alias="authenticationManager">
-        <authentication-provider ref="customAuthenticationProvider" />
+	    <authentication-provider user-service-ref="userDetailsService"/>
     </authentication-manager>
+    
+	<beans:bean id="userDetailsService" class="com.doinfinite.battlegame.security.SimpleUserDetailsService"/>
 	
 </beans:beans>

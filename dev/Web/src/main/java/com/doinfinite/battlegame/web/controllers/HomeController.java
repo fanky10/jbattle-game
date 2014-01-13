@@ -1,12 +1,10 @@
 package com.doinfinite.battlegame.web.controllers;
 
 import javax.annotation.Resource;
-import javax.inject.Inject;
 
-import org.springframework.social.connect.Connection;
-import org.springframework.social.connect.ConnectionRepository;
-import org.springframework.social.facebook.api.Facebook;
-import org.springframework.social.facebook.api.FacebookProfile;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,15 +16,12 @@ public class HomeController extends BaseController {
 
 	@Resource
 	private String homeMessage;
-	@Inject
-	private ConnectionRepository connectionRepository;
 
 	@RequestMapping(value = { "/", "/home" })
 	public String home(Model model) {
-		Connection<Facebook> connection = connectionRepository.findPrimaryConnection(Facebook.class);
-		if (connection != null) {
-			FacebookProfile facebookProfile = connection.getApi().userOperations().getUserProfile();
-			model.addAttribute("profile", facebookProfile);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (!(auth instanceof AnonymousAuthenticationToken)) {
+			model.addAttribute("profile", auth.getPrincipal());
 		}
 		model.addAttribute("message", getHomeMessage());
 		return WebAppConstants.HOME_PAGE;

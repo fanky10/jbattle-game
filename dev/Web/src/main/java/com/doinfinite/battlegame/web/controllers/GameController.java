@@ -26,7 +26,7 @@ import com.doinfinite.battlegame.services.ServicesManager;
 import com.doinfinite.battlegame.web.constants.WebAppConstants;
 
 @Controller
-// @RequestMapping("/auth")
+@RequestMapping("/auth")
 public class GameController extends BaseController {
 
 	@Autowired

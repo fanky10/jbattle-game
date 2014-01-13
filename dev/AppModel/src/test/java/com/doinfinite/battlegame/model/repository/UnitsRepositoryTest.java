@@ -37,7 +37,7 @@ public class UnitsRepositoryTest extends TestCase {
 	}
 
 	@Test
-	public void testGuardarJugador() {
+	public void testSaveUnits() {
 		assertTrue(unitsRepository.exists(unit.getId()));
 		assertTrue(unitsRepository.count() > 0);
 	}

@@ -8,10 +8,7 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>com.doinfinite.battlegame</groupId>
 	<artifactId>AppModel</artifactId>
-	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>${app.name} - AppModel</name>
@@ -21,6 +18,7 @@
 	</properties>
 
 	<dependencies>
+	    
 		<!-- Testing -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -32,6 +30,7 @@
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 		<!-- data access layer -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
@@ -45,6 +44,29 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+		</dependency>
+		<!-- overlapping dependencies security -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>		
 	</dependencies>
 </project>
 

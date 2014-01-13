@@ -71,3 +71,19 @@ create table UserConnection (userId varchar(255) not null,
     expireTime bigint,
     primary key (userId, providerId, providerUserId));
 create unique index UserConnectionRank on UserConnection(userId, providerId, rank);
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE `users` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `creation_time` timestamp NOT NULL DEFAULT current_timestamp,
+  `email` varchar(100) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `modification_time` timestamp NOT NULL DEFAULT current_timestamp,
+  `password` varchar(255),
+  `role` varchar(20) NOT NULL,
+  `sign_in_provider` varchar(20) NOT NULL,
+  `version` bigint(20) NOT NULL DEFAULT '1.0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

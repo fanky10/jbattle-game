@@ -1,6 +1,6 @@
 package com.doinfinite.battlegame.model.repository;
 
-import java.util.List;
+import java.util.Date;
 
 import junit.framework.TestCase;
 
@@ -28,12 +28,16 @@ public class UserRepositoryTest extends TestCase {
 	
 	@Before
 	public void buildData(){
-		user.setEmail("fanky10@gmail.com");
+		Date creationTime = new Date(System.currentTimeMillis());
+		user.setEmail("testme@gmail.com");
 		user.setFirstName("Ewen");
 		user.setLastName("Mackenzie");
 		user.setPassword("Password1");
 		user.setRole(Role.ROLE_USER);
 		user.setSignInProvider(SocialMediaService.NONE);
+		user.setCreationTime(creationTime);
+		user.setModificationTime(creationTime);
+		
 		user = userRepository.save(user);
 	}
 	

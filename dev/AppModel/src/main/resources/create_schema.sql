@@ -75,11 +75,11 @@ create unique index UserConnectionRank on UserConnection(userId, providerId, ran
 DROP TABLE IF EXISTS users;
 CREATE TABLE `users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `creation_time` timestamp NOT NULL DEFAULT current_timestamp,
+  `creation_time` datetime NOT NULL,
   `email` varchar(100) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
-  `modification_time` timestamp NOT NULL DEFAULT current_timestamp,
+  `modification_time` datetime NOT NULL,
   `password` varchar(255),
   `role` varchar(20) NOT NULL,
   `sign_in_provider` varchar(20) NOT NULL,
@@ -89,5 +89,5 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 # DEFAULT USER:
-insert into users (email,first_name,last_name,password,role,sign_in_provider)
-values ('fanky10@gmail.com','Ewen','Mackenzie','Password','ROLE_USER','NONE');
+insert into users (email,first_name,last_name,password,role,sign_in_provider,creation_time,modification_time)
+values ('test@testing.com','Ewen','Mackenzie','Password','ROLE_USER','NONE',current_timestamp,current_timestamp);

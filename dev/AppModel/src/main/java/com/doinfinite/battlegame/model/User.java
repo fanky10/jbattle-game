@@ -2,6 +2,7 @@ package com.doinfinite.battlegame.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -48,6 +49,12 @@ public class User implements UserDetails {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "sign_in_provider", length = 20)
 	private SocialMediaService signInProvider;
+
+	@Column(name = "creation_time", nullable = false)
+	private Date creationTime;
+	
+	@Column(name = "modification_time", nullable = false)
+	private Date modificationTime;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -136,6 +143,22 @@ public class User implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Date getCreationTime() {
+		return creationTime;
+	}
+
+	public void setCreationTime(Date creationTime) {
+		this.creationTime = creationTime;
+	}
+
+	public Date getModificationTime() {
+		return modificationTime;
+	}
+
+	public void setModificationTime(Date modificationTime) {
+		this.modificationTime = modificationTime;
 	}
 
 }

@@ -49,7 +49,7 @@ public class UserRepositoryTest extends TestCase {
 	
 	@Test
 	public void testFindByEmail(){
-		User user = userRepository.findByEmail("fanky10@gmail.com");
+		User user = userRepository.findByEmail("testme@gmail.com");
 		assertTrue(user!=null);
 	}
 }

@@ -90,4 +90,4 @@ CREATE TABLE `users` (
 
 # DEFAULT USER:
 insert into users (email,first_name,last_name,password,role,sign_in_provider)
-values ('fanky10@gmail.com','Ewen','Mackenzie','Password','ROLE_USER','NONE');
+values ('test@testing.com','Ewen','Mackenzie','Password','ROLE_USER','NONE');

@@ -15,10 +15,15 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.social.security.SocialUserDetails;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+public class User implements UserDetails, SocialUserDetails {
+
+	public User() {
+
+	}
 
 	/**
 	 * 
@@ -50,9 +55,9 @@ public class User implements UserDetails {
 	private SocialMediaService signInProvider;
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<Role> authorities = new ArrayList<Role>();
-		authorities.add(Role.ROLE_USER);
+	public Collection<GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		authorities.add(role);
 		return authorities;
 	}
 
@@ -136,6 +141,11 @@ public class User implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String getUserId() {
+		return email;
 	}
 
 }

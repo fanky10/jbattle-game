@@ -28,7 +28,7 @@ public class UserRepositoryTest extends TestCase {
 	
 	@Before
 	public void buildData(){
-		user.setEmail("fanky10@gmail.com");
+		user.setEmail("some.email@gmail.com");
 		user.setFirstName("Ewen");
 		user.setLastName("Mackenzie");
 		user.setPassword("Password1");

@@ -18,10 +18,22 @@
 		<app.name>DoInfinite BattleGame</app.name>
 		<spring.version>3.1.0.RELEASE</spring.version>
 		<spring.security.version>3.1.0.RELEASE</spring.security.version>
-		<spring.social.version>1.0.3.RELEASE</spring.social.version>
+		<spring.social.version>1.1.0.BUILD-SNAPSHOT</spring.social.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<slf4j.version>1.6.4</slf4j.version>
 	</properties>
+	
+	<repositories>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>http://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<!-- List of dependencies for all modules in the application. This section 
 		sets the version of the dependencies. Each module must define its specific 
 		dependencies without stating the version. -->
@@ -70,13 +82,13 @@
 				<artifactId>spring-beans</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-expression</artifactId>
@@ -197,6 +209,16 @@
 			<dependency>
 				<groupId>org.springframework.social</groupId>
 				<artifactId>spring-social-web</artifactId>
+				<version>${spring.social.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.social</groupId>
+				<artifactId>spring-social-config</artifactId>
+				<version>${spring.social.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.social</groupId>
+				<artifactId>spring-social-security</artifactId>
 				<version>${spring.social.version}</version>
 			</dependency>
 

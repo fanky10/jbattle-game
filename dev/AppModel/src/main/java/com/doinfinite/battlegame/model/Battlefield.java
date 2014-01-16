@@ -9,12 +9,17 @@ public class Battlefield {
 	private List<Unit> localUnits;
 	private List<Unit> enemyUnits;
 	private List<BattleEvent> battleEvents = new ArrayList<BattleEvent>();
+	private BattlefieldType battlefield;
+
+	
+
 
 	public Battlefield(List<Unit> localUnits, List<Unit> enemyUnits,
 			BattlefieldType battlefield) {
 		super();
 		this.localUnits = localUnits;
 		this.enemyUnits = enemyUnits;
+		this.battlefield = battlefield;
 	}
 	
 	public Battlefield(List<Unit> localUnits, List<Unit> enemyUnits) {
@@ -22,7 +27,10 @@ public class Battlefield {
 	}
 
 	public String toString() {
-		return "Basic Battlefield!";
+		return battlefield.getBattlefieldName();
+		
+		
+		
 	}
 
 	public List<BattleEvent> battle() {
@@ -100,4 +108,13 @@ public class Battlefield {
 		this.battleEvents = battleEvents;
 	}
 
+	public BattlefieldType getBattlefield() {
+		return battlefield;
+	}
+
+	public void setBattlefield(BattlefieldType battlefield) {
+		this.battlefield = battlefield;
+	}
+
+	
 }

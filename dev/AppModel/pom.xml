@@ -63,11 +63,6 @@
 			<artifactId>spring-security-web</artifactId>
 		</dependency>
 		
-		<!-- Sping social security -->
-		<dependency>
-			<groupId>org.springframework.social</groupId>
-			<artifactId>spring-social-security</artifactId>
-		</dependency>
 		
 		<!-- overlapping dependencies security -->
 		<dependency>

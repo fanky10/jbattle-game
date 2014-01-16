@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/pages/web/common/taglibs.jsp"%>
 
-<content tag="title">Un titulo</content>
+<content tag="title">Login</content>
 <content tag="styles">
 	<%-- some link rel to this page in specific --%>	
 </content>
@@ -34,7 +34,19 @@
 				</td>
 			</tr>
 		</table>
- 
+		
 	</form>
+	Social Login
+	<form id="tw_signin" action="<c:url value="/signin/twitter"/>" method="POST">
+		  <button type="submit">
+		    <img src="<c:url value="/resources/social/twitter/sign-in-with-twitter-d.png"/>" alt="Twitter"/>
+		  </button>
+		</form>
+		<form id="fb_signin" action="<c:url value="/signin/facebook"/>" method="POST">
+		  <button type="submit">
+		    <img src="<c:url value="/resources/social/twitter/sign-in-with-twitter-d.png"/>" alt="Facebook" />
+		  </button>
+		</form>
+	
 	</div>
 </content>

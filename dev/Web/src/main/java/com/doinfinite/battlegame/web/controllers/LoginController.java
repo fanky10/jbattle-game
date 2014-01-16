@@ -1,9 +1,13 @@
 package com.doinfinite.battlegame.web.controllers;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionKey;
 import org.springframework.social.connect.UserProfile;
@@ -13,8 +17,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import com.doinfinite.battlegame.model.Role;
 import com.doinfinite.battlegame.model.SocialMediaService;
 import com.doinfinite.battlegame.model.User;
+import com.doinfinite.battlegame.services.DuplicateUserEmailException;
 import com.doinfinite.battlegame.web.constants.WebAppConstants;
 
 @Controller
@@ -44,8 +50,15 @@ public class LoginController extends BaseController {
 				.getConnection(webRequest);
 		if (connection != null) {
 			User generatedUser = createUser(connection);
-			throw new UnsupportedOperationException("signup with social not supported");
-			// add user + authorize user + redirect home
+			//is already added? :O
+			try{
+				getServicesManager().saveUser(generatedUser);
+			}catch(DuplicateUserEmailException ex){
+				//do nothing then
+			}
+			SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(generatedUser, null, generatedUser.getAuthorities()));
+			ProviderSignInUtils.handlePostSignUp(generatedUser.getEmail(), webRequest);
+			return "redirect:/";
 		}
 		// show signup
 		return WebAppConstants.LOGIN_PAGE;
@@ -53,10 +66,14 @@ public class LoginController extends BaseController {
 
 	private User createUser(Connection<?> connection) {
 		User generatedUser = new User();
+		Date now = new Date(System.currentTimeMillis());
 		UserProfile socialMediaProfile = connection.fetchUserProfile();
 		generatedUser.setEmail(socialMediaProfile.getEmail());
 		generatedUser.setFirstName(socialMediaProfile.getFirstName());
 		generatedUser.setLastName(socialMediaProfile.getLastName());
+		generatedUser.setCreationTime(now);
+		generatedUser.setModificationTime(now);
+		generatedUser.setRole(Role.ROLE_USER);
 
 		ConnectionKey providerKey = connection.getKey();
 		generatedUser.setSignInProvider(SocialMediaService.valueOf(providerKey

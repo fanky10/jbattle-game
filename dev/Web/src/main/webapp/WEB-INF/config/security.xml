@@ -18,17 +18,13 @@
 		<form-login login-page="/login" default-target-url="/home"
 			authentication-failure-url="/login?status=failed" />
 		<logout logout-url="/logout" />
-		<custom-filter position="PRE_AUTH_FILTER" ref="socialFilter" />
 	</http>
  
 	<!-- authenticating users -->
 	<authentication-manager alias="authenticationManager">
 	    <authentication-provider user-service-ref="userDetailsService"/>
-	    <authentication-provider ref="socialAuthenticationProvider" />
     </authentication-manager>
     
 	<beans:bean id="userDetailsService" class="com.doinfinite.battlegame.security.SimpleUserDetailsService"/>
-	<beans:bean id="socialAuthenticationProvider" class="org.springframework.social.security.SocialAuthenticationProvider"/>
-	<beans:bean id="socialFilter" class="org.springframework.social.security.SocialAuthenticationFilter"/>
 	
 </beans:beans>

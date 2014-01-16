@@ -16,11 +16,10 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.social.security.SocialUserDetails;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails, SocialUserDetails {
+public class User implements UserDetails{
 
 	public User() {
 
@@ -150,7 +149,6 @@ public class User implements UserDetails, SocialUserDetails {
 		this.password = password;
 	}
 
-	@Override
 	public String getUserId() {
 		return email;
 	}

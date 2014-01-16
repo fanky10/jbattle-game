@@ -27,8 +27,6 @@ import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.social.connect.Connection;
-import org.springframework.social.connect.UsersConnectionRepository;
-import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.connect.web.SignInAdapter;
 import org.springframework.web.context.request.NativeWebRequest;
 

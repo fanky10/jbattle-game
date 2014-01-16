@@ -66,18 +66,25 @@ public class LoginController extends BaseController {
 
 	private User createUser(Connection<?> connection) {
 		User generatedUser = new User();
+		ConnectionKey providerKey = connection.getKey();
+		
+		SocialMediaService socialMediaService = SocialMediaService.valueOf(providerKey
+				.getProviderId().toUpperCase());
 		Date now = new Date(System.currentTimeMillis());
 		UserProfile socialMediaProfile = connection.fetchUserProfile();
-		generatedUser.setEmail(socialMediaProfile.getEmail());
 		generatedUser.setFirstName(socialMediaProfile.getFirstName());
 		generatedUser.setLastName(socialMediaProfile.getLastName());
 		generatedUser.setCreationTime(now);
 		generatedUser.setModificationTime(now);
-		generatedUser.setRole(Role.ROLE_USER);
-
-		ConnectionKey providerKey = connection.getKey();
-		generatedUser.setSignInProvider(SocialMediaService.valueOf(providerKey
-				.getProviderId().toUpperCase()));
+		generatedUser.setRole(Role.ROLE_USER);		
+		generatedUser.setSignInProvider(socialMediaService);
+		
+		if(socialMediaService == SocialMediaService.TWITTER){
+			generatedUser.setEmail("noemail");
+		}else{
+			generatedUser.setEmail(socialMediaProfile.getEmail());
+		}
+		
 		return generatedUser;
 
 	}

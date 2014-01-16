@@ -39,12 +39,12 @@
 	Social Login
 	<form id="tw_signin" action="<c:url value="/signin/twitter"/>" method="POST">
 		  <button type="submit">
-		    <img src="<c:url value="/resources/social/twitter/sign-in-with-twitter-d.png"/>" alt="Twitter"/>
+		    <img src="<c:url value="/images/twitter_logo.png"/>" alt="Twitter"/>
 		  </button>
 		</form>
 		<form id="fb_signin" action="<c:url value="/signin/facebook"/>" method="POST">
 		  <button type="submit">
-		    <img src="<c:url value="/resources/social/twitter/sign-in-with-twitter-d.png"/>" alt="Facebook" />
+		    <img width="36" src="<c:url value="/images/facebook_logo.jpg"/>" alt="Facebook" />
 		  </button>
 		</form>
 	

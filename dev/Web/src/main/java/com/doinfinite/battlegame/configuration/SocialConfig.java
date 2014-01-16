@@ -41,6 +41,9 @@ public class SocialConfig {
 	private String twitterConsumerKey;
 	@Value("${twitter.consumer.secret}")
 	private String twitterConsumerSecret;
+	@Value("${application.homeUrl}")
+	private String appUrl;
+	
 	@Autowired
 	private ServicesManager servicesManager;
 
@@ -71,8 +74,10 @@ public class SocialConfig {
 	@Bean
 	public ProviderSignInController providerSignInController(ConnectionFactoryLocator connectionFactoryLocator,
 			UsersConnectionRepository usersConnectionRepository, RequestCache requestCache) {
-		return new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository,
+		ProviderSignInController providerSignInController = new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository,
 				new SimpleSignInAdapter(requestCache,servicesManager));
+		providerSignInController.setApplicationUrl(appUrl);
+		return providerSignInController;
 	}
 
 }

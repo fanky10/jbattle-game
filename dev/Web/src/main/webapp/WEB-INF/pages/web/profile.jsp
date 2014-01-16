@@ -13,7 +13,7 @@
 
 <content tag="bodyContent">
 	<div class="jumbotron">
-		<h2>This is your profile: ${profile.firstName}</h2>
+		<h2>This is your profile: ${profile.firstName} - ${profile.signInProvider}</h2>
 		<a href="<c:url value="/logout"/>">Take me outta here!</a>
 		<h3>In the future you are going to do awesome things here!</h3>
 	</div>

@@ -44,14 +44,15 @@ public class GameController extends BaseController {
 	public String showGame(HttpServletRequest httpRequest,
 			@PathVariable(value = "gameMode") GameMode gameMode,
 			@PathVariable(value = "gameType") GameType gameType, ModelMap map) {
-		List<Unit> userTeam = getSelectedUnits(httpRequest, gameType);
-		List<Unit> foeTeam = getFoeSelectedUnits(gameMode, gameType);
-		Game game = new Game(gameMode, gameType);
-		game.setBattlefield(new Battlefield(userTeam, foeTeam));
-		setGameSettings(httpRequest, game);
 		List<BattlefieldType> types = servicesManager.getBattlefieldTypes();
 		Collections.shuffle(types);
 		BattlefieldType randomType = types.get(0);
+		List<Unit> userTeam = getSelectedUnits(httpRequest, gameType);
+		List<Unit> foeTeam = getFoeSelectedUnits(gameMode, gameType);
+		Game game = new Game(gameMode, gameType);
+		game.setBattlefield(new Battlefield(userTeam, foeTeam, randomType));
+		setGameSettings(httpRequest, game);
+		
 		
 		map.put("battlefieldType", randomType);
 		map.put("selectedGame", game);

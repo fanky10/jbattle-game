@@ -18,7 +18,7 @@
 	</properties>
 
 	<dependencies>
-	    
+
 		<!-- Testing -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -30,7 +30,7 @@
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- data access layer -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
@@ -44,7 +44,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-		
+
 		<!-- Spring Security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -62,11 +62,13 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
 		</dependency>
+		
+		
 		<!-- overlapping dependencies security -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-		</dependency>		
+		</dependency>
 	</dependencies>
 </project>
 

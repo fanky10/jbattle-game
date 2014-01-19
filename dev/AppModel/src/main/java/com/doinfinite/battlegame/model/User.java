@@ -19,7 +19,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+public class User implements UserDetails{
+
+	public User() {
+
+	}
 
 	/**
 	 * 
@@ -52,14 +56,14 @@ public class User implements UserDetails {
 
 	@Column(name = "creation_time", nullable = false)
 	private Date creationTime;
-	
+
 	@Column(name = "modification_time", nullable = false)
 	private Date modificationTime;
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<Role> authorities = new ArrayList<Role>();
-		authorities.add(Role.ROLE_USER);
+	public Collection<GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		authorities.add(role);
 		return authorities;
 	}
 
@@ -145,6 +149,10 @@ public class User implements UserDetails {
 		this.password = password;
 	}
 
+	public String getUserId() {
+		return email;
+	}
+
 	public Date getCreationTime() {
 		return creationTime;
 	}
@@ -159,6 +167,7 @@ public class User implements UserDetails {
 
 	public void setModificationTime(Date modificationTime) {
 		this.modificationTime = modificationTime;
+
 	}
 
 }

@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.doinfinite.battlegame.model.BattlefieldType;
 import com.doinfinite.battlegame.model.Unit;
+import com.doinfinite.battlegame.model.User;
 import com.doinfinite.battlegame.services.BattlefieldTypesManager;
+import com.doinfinite.battlegame.services.DuplicateUserEmailException;
 import com.doinfinite.battlegame.services.ServicesManager;
 import com.doinfinite.battlegame.services.UnitsManager;
+import com.doinfinite.battlegame.services.UsersManager;
 
 @Service
 public class ServicesManagerImpl implements ServicesManager {
@@ -17,12 +20,24 @@ public class ServicesManagerImpl implements ServicesManager {
 	private UnitsManager unitsManager;
 	@Autowired
 	private BattlefieldTypesManager battlefieldTypesManager;
+	@Autowired
+	private UsersManager usersManager;
 
 	@Override
 	public List<Unit> getUnits() {
-		// TODO Auto-generated method stub
 		return getUnitsManager().getUnits();
 	}
+
+	@Override
+	public List<BattlefieldType> getBattlefieldTypes() {
+		return getBattlefieldTypesManager().getBattlefieldTypes(); 
+	}
+
+	@Override
+	public User saveUser(User user) throws DuplicateUserEmailException {
+		return getUsersManager().save(user);
+	}
+
 
 	public UnitsManager getUnitsManager() {
 		return unitsManager;
@@ -30,12 +45,6 @@ public class ServicesManagerImpl implements ServicesManager {
 
 	public void setUnitsManager(UnitsManager unitsManager) {
 		this.unitsManager = unitsManager;
-	}
-
-	@Override
-	public List<BattlefieldType> getBattlefieldTypes() {
-		// TODO Auto-generated method stub
-		return getBattlefieldTypesManager().getBattlefieldTypes(); 
 	}
 
 	public BattlefieldTypesManager getBattlefieldTypesManager() {
@@ -47,4 +56,17 @@ public class ServicesManagerImpl implements ServicesManager {
 		this.battlefieldTypesManager = battlefieldTypesManager;
 	}
 
+	public UsersManager getUsersManager() {
+		return usersManager;
+	}
+
+	public void setUsersManager(UsersManager usersManager) {
+		this.usersManager = usersManager;
+	}
+
+	@Override
+	public User findUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		return getUsersManager().findUserByEmail(email);
+	}
 }

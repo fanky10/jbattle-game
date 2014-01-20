@@ -20,7 +20,7 @@
 		<spring.security.version>3.1.0.RELEASE</spring.security.version>
 		<spring.social.version>1.0.3.RELEASE</spring.social.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<slf4j.version>1.6.4</slf4j.version>
+		<slf4j.version>1.7.5</slf4j.version>
 	</properties>
 
 
@@ -195,6 +195,13 @@
 				<groupId>org.apache.httpcomponents</groupId>
 				<artifactId>httpclient</artifactId>
 				<version>4.2.5</version>
+				<exclusions>
+					<!-- Exclude Commons Logging in favor of SLF4j -->
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 
 			<!-- Spring Social -->
@@ -221,6 +228,19 @@
 				<groupId>org.springframework.social</groupId>
 				<artifactId>spring-social-twitter</artifactId>
 				<version>${spring.social.version}</version>
+			</dependency>
+
+			<!-- Logging -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
 			</dependency>
 
 			<!-- project dependencies -->
@@ -270,9 +290,11 @@
 			</plugin>
 		</plugins>
 	</build>
+	
 	<modules>
 		<module>AppModel</module>
 		<module>AppServices</module>
 		<module>Web</module>
 	</modules>
+	
 </project>

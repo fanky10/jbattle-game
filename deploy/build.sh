@@ -1,9 +1,6 @@
 #!/bin/sh
 cd ../dev
-mvn clean install -Ptest
+mvn clean install -Pprod
 cd ../bin
 cp ../dev/Web/target/Web-1.0-SNAPSHOT.war .
 
-# deployment
-# af login
-# af update thebattlegame --path Web...jar

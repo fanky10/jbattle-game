@@ -23,6 +23,23 @@
 		<slf4j.version>1.7.5</slf4j.version>
 	</properties>
 
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<app.homeUrl>http://localhost:8080/Web/</app.homeUrl>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<app.homeUrl>thebattlegame.aws.af.cm</app.homeUrl>
+			</properties>
+		</profile>
+	</profiles>
 
 	<!-- List of dependencies for all modules in the application. This section 
 		sets the version of the dependencies. Each module must define its specific 
@@ -258,13 +275,15 @@
 	</dependencyManagement>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>false</filtering>
-			</resource>
-		</resources>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -289,12 +308,29 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>**/*.properties</exclude>
+				</excludes>
+			</resource>
+		</resources>
 	</build>
-	
+
 	<modules>
 		<module>AppModel</module>
 		<module>AppServices</module>
 		<module>Web</module>
 	</modules>
-	
+
 </project>

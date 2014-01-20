@@ -17,18 +17,16 @@ import com.doinfinite.battlegame.web.constants.WebAppConstants;
 @Controller
 public class ErrorController extends BaseController {
 
-	@Value("${application.traceExceptions}")
-	private Boolean traceExceptions;
-
 	@RequestMapping(value = "/error")
-	@ExceptionHandler(Exception.class)
 	public String showErrorPage(Exception exception, HttpServletRequest request, HttpServletResponse response,
 			ModelMap map) throws Exception {
 		Integer statusCode = getStatusCode(request);
 		response.setStatus(statusCode);
-		String exceptionTrace = exception.getClass() + " Message: " + exception.getMessage() + " - " + getStackTrace(exception);
+		// Analyze the servlet exception       
+		Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
+
 		String title = "Application Error";
-		String label = "Unexpected Error" + (traceExceptions ? exceptionTrace : "");
+		String label = "Unexpected Error";
 		String body = "We cannot process your request at the moment";
 		if (statusCode == 404) {
 			title = "Page not found";
@@ -39,14 +37,8 @@ public class ErrorController extends BaseController {
 		map.addAttribute("label", label);
 		map.addAttribute("body", body);
 		map.addAttribute("statusCode", statusCode);
+		map.addAttribute("exceptionObject", throwable);
 
 		return WebAppConstants.STATIC_ERROR_PAGE;
-	}
-
-	private String getStackTrace(Throwable t) {
-		StringWriter sw = new StringWriter();
-		PrintWriter pw = new PrintWriter(sw);
-		t.printStackTrace(pw);
-		return sw.toString();
 	}
 }

@@ -1,8 +1,6 @@
 # Maven generated folders #
 target
-# build folder
-build
-bin
+
 # Compiled Classes #
 *.class
 

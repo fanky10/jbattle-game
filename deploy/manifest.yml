@@ -1,0 +1,17 @@
+---
+applications:
+  Web-1.0-SNAPSHOT.war:
+    name: thebattlegame
+    framework:
+      name: spring
+      info:
+        mem: 512M
+        description: Java SpringSource Spring Application
+        exec: 
+    infra: eu-aws
+    url: thebattlegame.eu01.aws.af.cm
+    mem: 512M
+    instances: 1
+    services:
+      mysql-2d39a:
+        type: mysql

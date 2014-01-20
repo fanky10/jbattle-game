@@ -15,6 +15,7 @@ import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 
 import com.doinfinite.battlegame.model.Role;
@@ -43,8 +44,8 @@ public class LoginController extends BaseController {
 		return WebAppConstants.LOGIN_PAGE;
 	}
 
-	@RequestMapping(value = "/signup")
-	public String signup(HttpServletRequest httpRequest, WebRequest webRequest,
+	@RequestMapping(value = "/signup",method=RequestMethod.GET)
+	public String showSignup(HttpServletRequest httpRequest, WebRequest webRequest,
 			HttpServletResponse response, Model map) {
 		Connection<?> connection = ProviderSignInUtils
 				.getConnection(webRequest);
@@ -61,7 +62,13 @@ public class LoginController extends BaseController {
 			return "redirect:/";
 		}
 		// show signup
-		return WebAppConstants.LOGIN_PAGE;
+		return WebAppConstants.SIGNUP_PAGE;
+	}
+	@RequestMapping(value = "/signup",method=RequestMethod.POST)
+	public String doSignup(HttpServletRequest httpRequest, WebRequest webRequest,
+			HttpServletResponse response, Model map) {
+		
+		return WebAppConstants.SIGNUP_PAGE;
 	}
 
 	private User createUser(Connection<?> connection) {

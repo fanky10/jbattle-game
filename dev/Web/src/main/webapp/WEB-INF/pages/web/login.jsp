@@ -29,8 +29,13 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan='2'><input name="submit" type="submit"
-					value="submit" />
+				<td >
+				<input name="submit" type="submit" value="submit" />
+				
+				</td>
+				<td >
+				<a href="<c:url value="/signup"/>">I dont want a bloody social account</a>
+				
 				</td>
 			</tr>
 		</table>

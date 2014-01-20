@@ -12,8 +12,12 @@ import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionKey;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.web.ProviderSignInUtils;
+import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.twitter.api.Twitter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
@@ -23,6 +27,8 @@ import com.doinfinite.battlegame.model.SocialMediaService;
 import com.doinfinite.battlegame.model.User;
 import com.doinfinite.battlegame.services.DuplicateUserEmailException;
 import com.doinfinite.battlegame.web.constants.WebAppConstants;
+import com.doinfinite.battlegame.web.form.SelectUnitsForm;
+import com.doinfinite.battlegame.web.form.UserForm;
 
 @Controller
 public class LoginController extends BaseController {
@@ -59,14 +65,16 @@ public class LoginController extends BaseController {
 			ProviderSignInUtils.handlePostSignUp(generatedUser.getEmail(), webRequest);
 			return "redirect:/";
 		}
+		map.addAttribute("userForm",new UserForm());
 		// show signup
 		return WebAppConstants.SIGNUP_PAGE;
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String doSignup(HttpServletRequest httpRequest, WebRequest webRequest, HttpServletResponse response,
-			Model map) {
-
+	public String doSignup(@ModelAttribute UserForm userForm, HttpServletRequest httpRequest, WebRequest webRequest,
+			HttpServletResponse response, Model map) {
+		
+		map.addAttribute("userForm",userForm);
 		return WebAppConstants.SIGNUP_PAGE;
 	}
 
@@ -82,7 +90,14 @@ public class LoginController extends BaseController {
 
 		SocialMediaService socialMediaService = SocialMediaService.valueOf(providerKey.getProviderId().toUpperCase());
 		Date now = new Date(System.currentTimeMillis());
-		UserProfile socialMediaProfile = connection.fetchUserProfile();
+		UserProfile socialMediaProfile = null;
+		if (socialMediaService.equals(SocialMediaService.FACEBOOK)) {
+			socialMediaProfile = ((Connection<Facebook>) connection).fetchUserProfile();
+		} else if (socialMediaService.equals(SocialMediaService.TWITTER)) {
+			socialMediaProfile = ((Connection<Twitter>) connection).fetchUserProfile();
+		} else {
+			throw new IllegalArgumentException("unrecognized social media service");
+		}
 		generatedUser.setFirstName(socialMediaProfile.getFirstName());
 		generatedUser.setLastName(socialMediaProfile.getLastName());
 		generatedUser.setCreationTime(now);
@@ -90,8 +105,8 @@ public class LoginController extends BaseController {
 		generatedUser.setRole(Role.ROLE_USER);
 		generatedUser.setSignInProvider(socialMediaService);
 
-		if (socialMediaService == SocialMediaService.TWITTER) {
-			generatedUser.setEmail("noemail");
+		if (!StringUtils.hasText(socialMediaProfile.getEmail())) {
+			generatedUser.setEmail(socialMediaProfile.getUsername() + "@" + providerKey);
 		} else {
 			generatedUser.setEmail(socialMediaProfile.getEmail());
 		}

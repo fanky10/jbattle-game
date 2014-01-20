@@ -31,67 +31,71 @@ public class LoginController extends BaseController {
 	private HomeController homeController;
 
 	@RequestMapping(value = "/logout")
-	public String logout(HttpServletRequest request,
-			HttpServletResponse response, Model map) {
+	public String logout(HttpServletRequest request, HttpServletResponse response, Model map) {
 
 		return getHomeController().home(map);
 	}
 
 	@RequestMapping(value = "/login")
-	public String login(HttpServletRequest request,
-			HttpServletResponse response, Model map) {
+	public String login(HttpServletRequest request, HttpServletResponse response, Model map) {
 
 		return WebAppConstants.LOGIN_PAGE;
 	}
 
-	@RequestMapping(value = "/signup",method=RequestMethod.GET)
-	public String showSignup(HttpServletRequest httpRequest, WebRequest webRequest,
-			HttpServletResponse response, Model map) {
-		Connection<?> connection = ProviderSignInUtils
-				.getConnection(webRequest);
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public String showSignup(HttpServletRequest httpRequest, WebRequest webRequest, HttpServletResponse response,
+			Model map) {
+		Connection<?> connection = ProviderSignInUtils.getConnection(webRequest);
 		if (connection != null) {
 			User generatedUser = createUser(connection);
 			//is already added? :O
-			try{
+			try {
 				getServicesManager().saveUser(generatedUser);
-			}catch(DuplicateUserEmailException ex){
+			} catch (DuplicateUserEmailException ex) {
 				//do nothing then
 			}
-			SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(generatedUser, null, generatedUser.getAuthorities()));
+			SecurityContextHolder.getContext().setAuthentication(
+					new UsernamePasswordAuthenticationToken(generatedUser, null, generatedUser.getAuthorities()));
 			ProviderSignInUtils.handlePostSignUp(generatedUser.getEmail(), webRequest);
 			return "redirect:/";
 		}
 		// show signup
 		return WebAppConstants.SIGNUP_PAGE;
 	}
-	@RequestMapping(value = "/signup",method=RequestMethod.POST)
-	public String doSignup(HttpServletRequest httpRequest, WebRequest webRequest,
-			HttpServletResponse response, Model map) {
-		
+
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public String doSignup(HttpServletRequest httpRequest, WebRequest webRequest, HttpServletResponse response,
+			Model map) {
+
 		return WebAppConstants.SIGNUP_PAGE;
+	}
+
+	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	public String redirectSignin(HttpServletRequest httpRequest, WebRequest webRequest, HttpServletResponse response,
+			Model map) {
+		return "redirect:/";
 	}
 
 	private User createUser(Connection<?> connection) {
 		User generatedUser = new User();
 		ConnectionKey providerKey = connection.getKey();
-		
-		SocialMediaService socialMediaService = SocialMediaService.valueOf(providerKey
-				.getProviderId().toUpperCase());
+
+		SocialMediaService socialMediaService = SocialMediaService.valueOf(providerKey.getProviderId().toUpperCase());
 		Date now = new Date(System.currentTimeMillis());
 		UserProfile socialMediaProfile = connection.fetchUserProfile();
 		generatedUser.setFirstName(socialMediaProfile.getFirstName());
 		generatedUser.setLastName(socialMediaProfile.getLastName());
 		generatedUser.setCreationTime(now);
 		generatedUser.setModificationTime(now);
-		generatedUser.setRole(Role.ROLE_USER);		
+		generatedUser.setRole(Role.ROLE_USER);
 		generatedUser.setSignInProvider(socialMediaService);
-		
-		if(socialMediaService == SocialMediaService.TWITTER){
+
+		if (socialMediaService == SocialMediaService.TWITTER) {
 			generatedUser.setEmail("noemail");
-		}else{
+		} else {
 			generatedUser.setEmail(socialMediaProfile.getEmail());
 		}
-		
+
 		return generatedUser;
 
 	}

@@ -31,18 +31,16 @@
 			</activation>
 			<properties>
 				<app.homeUrl>http://localhost:8080/Web/</app.homeUrl>
-				<app.facebook.clientId>231517593693201</app.facebook.clientId>
-				<app.facebook.clientSecret>383cfdcee43c5aa60e54045c7bcefae7</app.facebook.clientSecret>
-				<app.traceExceptions>true</app.traceExceptions>
+				<app.facebook.clientId>1450135991869198</app.facebook.clientId>
+				<app.facebook.clientSecret>c354aa002f1e4562b037e1675610a3db</app.facebook.clientSecret>
 			</properties>
 		</profile>
 		<profile>
 			<id>prod</id>
 			<properties>
 				<app.homeUrl>http://thebattlegame.aws.af.cm</app.homeUrl>
-				<app.facebook.clientId>1450135991869198</app.facebook.clientId>
-				<app.facebook.clientSecret>c354aa002f1e4562b037e1675610a3db</app.facebook.clientSecret>
-				<app.traceExceptions>true</app.traceExceptions>
+				<app.facebook.clientId>231517593693201</app.facebook.clientId>
+				<app.facebook.clientSecret>383cfdcee43c5aa60e54045c7bcefae7</app.facebook.clientSecret>
 			</properties>
 		</profile>
 	</profiles>

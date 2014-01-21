@@ -9,7 +9,7 @@ import com.doinfinite.battlegame.model.BattlefieldType;
 import com.doinfinite.battlegame.model.Unit;
 import com.doinfinite.battlegame.model.User;
 import com.doinfinite.battlegame.services.BattlefieldTypesManager;
-import com.doinfinite.battlegame.services.DuplicateUserEmailException;
+import com.doinfinite.battlegame.services.DuplicateUserException;
 import com.doinfinite.battlegame.services.ServicesManager;
 import com.doinfinite.battlegame.services.UnitsManager;
 import com.doinfinite.battlegame.services.UsersManager;
@@ -30,14 +30,18 @@ public class ServicesManagerImpl implements ServicesManager {
 
 	@Override
 	public List<BattlefieldType> getBattlefieldTypes() {
-		return getBattlefieldTypesManager().getBattlefieldTypes(); 
+		return getBattlefieldTypesManager().getBattlefieldTypes();
 	}
 
 	@Override
-	public User saveUser(User user) throws DuplicateUserEmailException {
+	public User saveUser(User user) throws DuplicateUserException {
 		return getUsersManager().save(user);
 	}
 
+	@Override
+	public User findUserByUsername(String username) {
+		return getUsersManager().findUserByUsername(username);
+	}
 
 	public UnitsManager getUnitsManager() {
 		return unitsManager;
@@ -51,8 +55,7 @@ public class ServicesManagerImpl implements ServicesManager {
 		return battlefieldTypesManager;
 	}
 
-	public void setBattlefieldTypesManager(
-			BattlefieldTypesManager battlefieldTypesManager) {
+	public void setBattlefieldTypesManager(BattlefieldTypesManager battlefieldTypesManager) {
 		this.battlefieldTypesManager = battlefieldTypesManager;
 	}
 
@@ -64,9 +67,4 @@ public class ServicesManagerImpl implements ServicesManager {
 		this.usersManager = usersManager;
 	}
 
-	@Override
-	public User findUserByEmail(String email) {
-		// TODO Auto-generated method stub
-		return getUsersManager().findUserByEmail(email);
-	}
 }

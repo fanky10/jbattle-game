@@ -13,8 +13,8 @@ import com.doinfinite.battlegame.web.constants.WebAppConstants;
 public class ErrorController extends BaseController {
 
 	@RequestMapping(value = "/error")
-	public String showErrorPage(Exception exception, HttpServletRequest request, HttpServletResponse response,
-			ModelMap map) throws Exception {
+	public String showErrorPage(HttpServletRequest request, HttpServletResponse response,
+			ModelMap map) {
 		Integer statusCode = getStatusCode(request);
 		response.setStatus(statusCode);
 		// Analyze the servlet exception       

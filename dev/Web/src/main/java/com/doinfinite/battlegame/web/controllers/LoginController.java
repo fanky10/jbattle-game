@@ -14,9 +14,11 @@ import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
 import com.doinfinite.battlegame.model.Role;
@@ -82,8 +84,12 @@ public class LoginController extends BaseController {
 	}
 
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
-	public String redirectSignin(HttpServletRequest httpRequest, WebRequest webRequest, HttpServletResponse response,
+	public String redirectSignin(@RequestParam("error") String errorMessage,HttpServletRequest httpRequest, HttpServletResponse response,
 			Model map) {
+		if(StringUtils.hasText(errorMessage)){
+			return "redirect:/error?statusCode=500&error="+errorMessage;
+		}
+		//if no error from ProviderSignInController
 		return "redirect:/";
 	}
 

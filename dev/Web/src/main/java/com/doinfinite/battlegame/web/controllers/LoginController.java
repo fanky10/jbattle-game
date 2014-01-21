@@ -33,9 +33,7 @@ public class LoginController extends BaseController {
 
 	@Autowired
 	private HomeController homeController;
-	@Autowired
-	private UserProfileController userProfileController;
-
+	
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response, Model map) {
 
@@ -45,7 +43,7 @@ public class LoginController extends BaseController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request, HttpServletResponse response, Model map) {
 		if (getAuthorizationProfile() != null) {
-			return getUserProfileController().show(map);
+			return "redirect:/profile";
 		}
 		return WebAppConstants.LOGIN_PAGE;
 	}
@@ -138,13 +136,5 @@ public class LoginController extends BaseController {
 
 	public void setHomeController(HomeController homeController) {
 		this.homeController = homeController;
-	}
-
-	public UserProfileController getUserProfileController() {
-		return userProfileController;
-	}
-
-	public void setUserProfileController(UserProfileController userProfileController) {
-		this.userProfileController = userProfileController;
 	}
 }

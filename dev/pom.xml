@@ -16,8 +16,8 @@
 
 	<properties>
 		<app.name>DoInfinite BattleGame</app.name>
-		<spring.version>3.1.0.RELEASE</spring.version>
-		<spring.security.version>3.1.0.RELEASE</spring.security.version>
+		<spring.version>3.2.5.RELEASE</spring.version>
+		<spring.security.version>3.2.0.RELEASE</spring.security.version>
 		<spring.social.version>1.0.3.RELEASE</spring.social.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<slf4j.version>1.7.5</slf4j.version>

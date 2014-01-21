@@ -47,7 +47,7 @@ public class SimpleSignInAdapter implements SignInAdapter {
 	@Override
 	public String signIn(String localUserId, Connection<?> connection, NativeWebRequest request) {
 		if (connection != null) {
-			User registeredUser = getServicesManager().findUserByEmail(localUserId);
+			User registeredUser = getServicesManager().findUserByUsername(localUserId);
 			SecurityContextHolder.getContext().setAuthentication(
 					new UsernamePasswordAuthenticationToken(registeredUser, null, registeredUser.getAuthorities()));
 		}

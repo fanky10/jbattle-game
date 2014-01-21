@@ -59,4 +59,9 @@ public class UserRepositoryTest extends TestCase {
 		User user = userRepository.findByUsername("cacho");
 		assertTrue(user!=null);
 	}
+	@Test
+	public void testFindByUsernameAndSignInProvider(){
+		User user = userRepository.findByUsernameAndSignInProvider("cacho",SocialMediaService.NONE);
+		assertTrue(user!=null);
+	}
 }

@@ -76,7 +76,8 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE `users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `creation_time` datetime NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `email` varchar(100),
+  `username` varchar(100) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `modification_time` datetime NOT NULL,
@@ -84,10 +85,9 @@ CREATE TABLE `users` (
   `role` varchar(20) NOT NULL,
   `sign_in_provider` varchar(20) NOT NULL,
   `version` bigint(20) NOT NULL DEFAULT '1.0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY (`email`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 # DEFAULT USER:
-insert into users (email,first_name,last_name,password,role,sign_in_provider,creation_time,modification_time)
-values ('test@testing.com','Ewen','Mackenzie','Password','ROLE_USER','NONE',current_timestamp,current_timestamp);
+insert into users (email,username,first_name,last_name,password,role,sign_in_provider,creation_time,modification_time)
+values ('test@testing.com','testinName','Ewen','Mackenzie','Password','ROLE_USER','NONE',current_timestamp,current_timestamp);

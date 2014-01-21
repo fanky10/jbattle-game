@@ -14,7 +14,7 @@ import com.doinfinite.battlegame.web.constants.WebAppConstants;
 public class UserProfileController extends BaseController {
 
 	@RequestMapping(value = {"/profile" })
-	public String home(Model model) {
+	public String show(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth instanceof AnonymousAuthenticationToken) {
 			return "redirect:/";

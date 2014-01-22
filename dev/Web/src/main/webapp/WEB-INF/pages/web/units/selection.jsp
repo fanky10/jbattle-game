@@ -40,14 +40,20 @@
 	<h2>Select your troop!</h2>
 	<c:url var="formAction" value="/units/select/${currentGameType}"/>
 	<form:form method="POST" modelAttribute="selectUnitsForm" action="${formAction}">
-		<ul>
+		<div class="row">
 			
 			<c:forEach var="unit" items="${availableUnits}">
-				<li>
-				<form:checkbox class="unitsSelection" path="selectedUnits" value="${unit.name}" />${unit.name}
-				</li>
+				<div class="col-sm-6">
+	              <h2>${unit.name}</h2>
+	              <p>Health: ${unit.health }</p>
+	              <p>Damage: ${unit.damage }</p>
+	              <p>Defense: ${unit.defense }</p>
+	              
+	              <p><form:checkbox class="unitsSelection" path="selectedUnits" value="Select" /></p>
+	            </div>
 			</c:forEach>
-		</ul>
+		</div>
+		
 		<button type="submit">Change Troop</button>
 	</form:form>
 </div>

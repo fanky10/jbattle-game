@@ -20,10 +20,6 @@ public class HomeController extends BaseController {
 
 	@RequestMapping(value = { "/", "/home" })
 	public String home(Model model) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (!(auth instanceof AnonymousAuthenticationToken)) {
-			model.addAttribute("profile",(User) auth.getPrincipal());
-		}
 		model.addAttribute("message", getHomeMessage());
 		return WebAppConstants.HOME_PAGE;
 	}

@@ -8,10 +8,7 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>com.doinfinite.battlegame</groupId>
 	<artifactId>AppServices</artifactId>
-	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>${app.name} - AppServices</name>
@@ -32,6 +29,18 @@
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 		<!-- other projects -->
 		<dependency>
 			<groupId>com.doinfinite.battlegame</groupId>

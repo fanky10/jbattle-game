@@ -1,6 +1,6 @@
 package com.doinfinite.battlegame.services;
 
-public class DuplicateUserEmailException extends Exception{
+public class DuplicateUserException extends Exception{
 
 	/**
 	 * 

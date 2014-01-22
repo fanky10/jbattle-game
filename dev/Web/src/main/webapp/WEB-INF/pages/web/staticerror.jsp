@@ -14,6 +14,16 @@
 	<h1>${statusCode} - ${title}</h1>
 	<h3>${label}</h3>
 	<p>${body}</p>
+	<!--
+    
+    Exception Message:  ${exceptionObject.message}
+    Exception StackTrace:
+    <c:forEach items="${exceptionObject.stackTrace}" var="ste">    
+    	${ste} 
+    </c:forEach>
+    
+    -->
+	
 	<a class="btn_med_blue" href="${hrefHome}"><span>${goHome}</span></a>
 </body>
 </html>

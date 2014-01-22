@@ -30,6 +30,7 @@ public class UserRepositoryTest extends TestCase {
 	public void buildData(){
 		Date creationTime = new Date(System.currentTimeMillis());
 		user.setEmail("testme@gmail.com");
+		user.setUsername("cacho");
 		user.setFirstName("Ewen");
 		user.setLastName("Mackenzie");
 		user.setPassword("Password1");
@@ -50,6 +51,17 @@ public class UserRepositoryTest extends TestCase {
 	@Test
 	public void testFindByEmail(){
 		User user = userRepository.findByEmail("testme@gmail.com");
+		assertTrue(user!=null);
+	}
+	
+	@Test
+	public void testFindByUsername(){
+		User user = userRepository.findByUsername("cacho");
+		assertTrue(user!=null);
+	}
+	@Test
+	public void testFindByUsernameAndSignInProvider(){
+		User user = userRepository.findByUsernameAndSignInProvider("cacho",SocialMediaService.NONE);
 		assertTrue(user!=null);
 	}
 }

@@ -19,7 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails{
+public class User implements UserDetails {
 
 	public User() {
 
@@ -33,8 +33,11 @@ public class User implements UserDetails{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
-	@Column(name = "email", length = 100, nullable = false, unique = true)
+	
+	@Column(name = "username", length = 100, nullable = true)
+	private String username;
+	
+	@Column(name = "email", length = 100, nullable = true)
 	private String email;
 
 	@Column(name = "first_name", length = 100, nullable = false)
@@ -74,7 +77,7 @@ public class User implements UserDetails{
 
 	@Override
 	public String getUsername() {
-		return email;
+		return username;
 	}
 
 	@Override
@@ -168,6 +171,10 @@ public class User implements UserDetails{
 	public void setModificationTime(Date modificationTime) {
 		this.modificationTime = modificationTime;
 
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }

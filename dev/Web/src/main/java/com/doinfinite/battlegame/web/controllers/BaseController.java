@@ -8,9 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.doinfinite.battlegame.model.Game;
+import com.doinfinite.battlegame.model.User;
 import com.doinfinite.battlegame.model.Game.GameMode;
 import com.doinfinite.battlegame.model.Game.GameType;
 import com.doinfinite.battlegame.model.Unit;
@@ -108,6 +112,15 @@ public abstract class BaseController {
 	protected Game getGameSettings(HttpServletRequest httpRequest) {
 		return (Game) httpRequest.getSession().getAttribute(
 				WebAppConstants.SESSION_GAME_SETTINGS);
+	}
+	
+	@ModelAttribute("profile")
+	protected final User getAuthorizationProfile(){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth!=null && !(auth instanceof AnonymousAuthenticationToken)) {
+			return (User) auth.getPrincipal();
+		}
+		return null;
 	}
 
 	public ServicesManager getServicesManager() {

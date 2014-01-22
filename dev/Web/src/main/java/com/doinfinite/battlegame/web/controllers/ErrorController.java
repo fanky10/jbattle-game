@@ -13,10 +13,13 @@ import com.doinfinite.battlegame.web.constants.WebAppConstants;
 public class ErrorController extends BaseController {
 
 	@RequestMapping(value = "/error")
-	public String showErrorPage(HttpServletRequest request,
-			HttpServletResponse response, ModelMap map) throws Exception {
+	public String showErrorPage(HttpServletRequest request, HttpServletResponse response,
+			ModelMap map) {
 		Integer statusCode = getStatusCode(request);
 		response.setStatus(statusCode);
+		// Analyze the servlet exception       
+		Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
+
 		String title = "Application Error";
 		String label = "Unexpected Error";
 		String body = "We cannot process your request at the moment";
@@ -29,6 +32,7 @@ public class ErrorController extends BaseController {
 		map.addAttribute("label", label);
 		map.addAttribute("body", body);
 		map.addAttribute("statusCode", statusCode);
+		map.addAttribute("exceptionObject", throwable);
 
 		return WebAppConstants.STATIC_ERROR_PAGE;
 	}

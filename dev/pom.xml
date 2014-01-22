@@ -16,13 +16,34 @@
 
 	<properties>
 		<app.name>DoInfinite BattleGame</app.name>
-		<spring.version>3.1.0.RELEASE</spring.version>
-		<spring.security.version>3.1.0.RELEASE</spring.security.version>
+		<spring.version>3.2.5.RELEASE</spring.version>
+		<spring.security.version>3.2.0.RELEASE</spring.security.version>
 		<spring.social.version>1.0.3.RELEASE</spring.social.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<slf4j.version>1.6.4</slf4j.version>
+		<slf4j.version>1.7.5</slf4j.version>
 	</properties>
 
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<app.homeUrl>http://localhost:8080/Web/</app.homeUrl>
+				<app.facebook.clientId>1450135991869198</app.facebook.clientId>
+				<app.facebook.clientSecret>c354aa002f1e4562b037e1675610a3db</app.facebook.clientSecret>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<app.homeUrl>http://thebattlegame.aws.af.cm</app.homeUrl>
+				<app.facebook.clientId>231517593693201</app.facebook.clientId>
+				<app.facebook.clientSecret>383cfdcee43c5aa60e54045c7bcefae7</app.facebook.clientSecret>
+			</properties>
+		</profile>
+	</profiles>
 
 	<!-- List of dependencies for all modules in the application. This section 
 		sets the version of the dependencies. Each module must define its specific 
@@ -195,6 +216,13 @@
 				<groupId>org.apache.httpcomponents</groupId>
 				<artifactId>httpclient</artifactId>
 				<version>4.2.5</version>
+				<exclusions>
+					<!-- Exclude Commons Logging in favor of SLF4j -->
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 
 			<!-- Spring Social -->
@@ -223,6 +251,19 @@
 				<version>${spring.social.version}</version>
 			</dependency>
 
+			<!-- Logging -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+
 			<!-- project dependencies -->
 			<dependency>
 				<groupId>com.doinfinite.battlegame</groupId>
@@ -238,13 +279,15 @@
 	</dependencyManagement>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>false</filtering>
-			</resource>
-		</resources>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -269,10 +312,29 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>**/*.properties</exclude>
+				</excludes>
+			</resource>
+		</resources>
 	</build>
+
 	<modules>
 		<module>AppModel</module>
 		<module>AppServices</module>
 		<module>Web</module>
 	</modules>
+
 </project>

@@ -49,7 +49,7 @@
 	              <p>Damage: ${unit.damage }</p>
 	              <p>Defense: ${unit.defense }</p>
 	              
-	              <p><form:checkbox class="unitsSelection" path="selectedUnits" value="Select" /></p>
+	              <p><form:checkbox class="unitsSelection" path="selectedUnits" value="${unit.name}" /></p>
 	            </div>
 			</c:forEach>
 		</div>

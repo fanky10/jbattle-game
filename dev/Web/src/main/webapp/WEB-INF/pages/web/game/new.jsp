@@ -36,7 +36,7 @@
 					}
 					newLi = $("#responseMessage ul").append("<li class="+liClass+">"+content+"</li>");
 				});
-				$("#responseMessage").append("<button>Battle Again!</button>");
+				$("#responseMessage").append("<a href='.'>Battle Again!</a>");
 			},
 			error : function() {
 				$("#responseMessage").html(

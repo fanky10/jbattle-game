@@ -45,6 +45,79 @@ div{
 	font-size: 1em;
 }
 
+/*** Home Page Styles ***/
+
+.wellcome, .join-battlegame{
+	height: 170px;
+	padding: 10px 10px 10px 10px;
+	text-align: center;
+}
+
+.wellcome{
+	background-color: purple;
+	-moz-border-radius-topleft: 30px;
+	border-top-left-radius: 30px;
+}
+
+.join-battlegame{
+	background-color: #f4f4f4;
+	-moz-border-radius-bottomright: 30px;
+	border-bottom-right-radius: 30px;
+}
+
+.join-battlegame h2, .join-battlegame p{
+	color: black;
+}
+
+.game-info{
+	float: left;
+	clear: both;
+	margin: 10px 0 0 0;
+	padding: 15px;
+	background-color: dodgerblue;
+}
+/*** Login Page Styles ***/
+
+.clasic-login, .social-login{
+	height: 180px;
+}
+
+.disclaimer{
+	display: block;
+	height: 20px;
+	margin: 10px 0;
+}
+
+.clasic-login{
+	background-color: #f4f4f4;
+	color: #777;
+}
+
+.clasic-login ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.clasic-login label{
+	width: 85px;
+}
+
+.social-login{
+	background-color: darkblue;
+}
+
+.social-login form{
+	display: block;
+	float: left;
+}
+
+.social-login button{
+	background: transparent;
+	border: 0px;
+	margin: 0px;
+}
+/*** ***/
 .battle-group{
 
 }
@@ -138,24 +211,6 @@ div{
 	list-style: none;
 }
 
-.wellcome, .join-battlegame{
-	height: 200px;
-	padding: 10px 10px 10px 10px;
-	text-align: center;
-}
-
-.wellcome{
-	background-color: purple;
-	-moz-border-radius-topleft: 30px;
-	border-top-left-radius: 30px;
-}
-
-.join-battlegame{
-	background-color: #f4f4f4;
-	-moz-border-radius-bottomright: 30px;
-	border-bottom-right-radius: 30px;
-}
-
-.join-battlegame h2, .join-battlegame p{
-	color: black;
+.social a{
+	
 }

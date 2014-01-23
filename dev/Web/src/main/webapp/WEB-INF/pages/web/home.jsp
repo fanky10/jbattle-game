@@ -14,17 +14,16 @@
 <content tag="bodyContent">
 	<div class="wellcome col-md-8">
 		<h2>Welcome to The Battlegame!!!</h2>
-		<h3>A game to play!</h3>
+		<h4>A game to play!</h4>
 		<p>This game is so much fun!, create your own Troop and battle your friends!!</p>
 	</div>
 	<div class="join-battlegame col-md-4">
 		<h2>Join Battlegame</h2>
 		<p>Click here to <a href="#">Log In</a></p>
 		<p>Click here to <a href="#">Sign Up</a></p>
+		<p>Get Social!!!</p>
 	</div>
-	<div class="game-info">
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		
-		</p>
+	<div class="game-info col-md-12">
+		<p>Test our 3vs3 and 5vs5 Game Modes, crush your enemies to win awesome rewards (Thropies, monney, new Troops, whatever!!!)</p> 
 	</div>
 </content>

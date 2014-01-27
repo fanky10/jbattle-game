@@ -1,5 +1,6 @@
 body{
-	background: url('../images/8-bit-google-maps-1.jpg') 0 0;
+	background: #550000;
+	/*background: url('../images/8-bit-google-maps-1.jpg') 0 0;*/
 	background-size: 100% auto;
 	color: white;
 	font-family: 'Press Start 2P', "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -14,7 +15,7 @@ h1{
 	font-size: 3.5em;
 	font-weight: normal;
 	text-shadow: 3px 3px #000;
-	
+	text-align: center;
 }
 
 h1 a{
@@ -45,7 +46,7 @@ div{
 	font-size: 1em;
 }
 
-/*** Home Page Styles ***/
+/*** HOME PAGE SYLES ***/
 
 .wellcome, .join-battlegame{
 	height: 170px;
@@ -54,7 +55,7 @@ div{
 }
 
 .wellcome{
-	background-color: purple;
+	background-color: gray;
 	-moz-border-radius-topleft: 30px;
 	border-top-left-radius: 30px;
 }
@@ -74,9 +75,9 @@ div{
 	clear: both;
 	margin: 10px 0 0 0;
 	padding: 15px;
-	background-color: dodgerblue;
+	background-color: #440000;
 }
-/*** Login Page Styles ***/
+/*** LOGIN PAGE STYLES ***/
 
 .clasic-login, .social-login{
 	height: 180px;
@@ -89,9 +90,9 @@ div{
 }
 
 .clasic-login{
-	background-color: #f4f4f4;
-	color: #777;
+	background-color: #999999;
 }
+
 
 .clasic-login ul{
 	list-style: none;
@@ -103,8 +104,14 @@ div{
 	width: 85px;
 }
 
+
+.clasic-login{
+	
+}
+
 .social-login{
-	background-color: darkblue;
+	background-color: #f4f4f4;
+	color: #777;
 }
 
 .social-login form{
@@ -128,6 +135,17 @@ div{
 	clear: both;
 	float: left;
 }
+
+.unit{
+	border: 3px solid black;
+	margin: 1px;
+	min-width: 250px;
+}
+
+.unit h4{
+	font-size: 15px;
+}
+
 /*** Unit Selection Page ***/
 .battle-group{
 

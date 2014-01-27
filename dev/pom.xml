@@ -264,6 +264,20 @@
 				<scope>runtime</scope>
 			</dependency>
 
+			<!-- Hibernate Validator -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>4.3.1.Final</version>
+			</dependency>
+			
+			<!-- java validation api -->
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>1.1.0.Final</version>
+			</dependency>
+
 			<!-- project dependencies -->
 			<dependency>
 				<groupId>com.doinfinite.battlegame</groupId>

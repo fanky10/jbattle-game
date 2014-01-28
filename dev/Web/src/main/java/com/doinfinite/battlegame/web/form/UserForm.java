@@ -12,20 +12,20 @@ public class UserForm implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@NotNull(message="{signup.error.username.required}")
+	
 	@NotBlank(message="{signup.error.username.required}")
 	private String username;
-	@NotNull(message="{signup.error.firstName.required}")
+	
 	@NotBlank(message="{signup.error.firstName.required}")
 	private String firstName;
-	@NotNull(message="{signup.error.lastName.required}")
+	
 	@NotBlank(message="{signup.error.lastName.required}")
 	private String lastName;
-	@NotNull(message="{signup.error.email.required}")
+	
 	@NotBlank(message="{signup.error.email.required}")
-	@Email
+	@Email(message="{signup.error.email.notvalid}")
 	private String email;
-	@NotNull(message="{signup.error.password.required}")
+	
 	@NotBlank(message="{signup.error.password.required}")
 	private String password;
 

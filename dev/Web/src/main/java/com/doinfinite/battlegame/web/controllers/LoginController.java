@@ -68,19 +68,18 @@ public class LoginController extends BaseController {
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String doSignup(@Valid UserForm userForm, Model map, BindingResult errorResult) {
-
-		try {
-			if (errorResult.hasErrors()) {
-				return WebAppConstants.SIGNUP_PAGE;
+	public String doSignup(@Valid UserForm userForm, BindingResult errorResult, Model map) {
+		if (!errorResult.hasErrors()) {
+			try {
+				User generatedUser = createUser(userForm);
+				getServicesManager().saveUser(generatedUser);
+				return "redirect:/login";
+			} catch (DuplicateUserException ex) {
+				errorResult.rejectValue("username", "signup.error.username.inuse", "Username in use");
 			}
-			User generatedUser = createUser(userForm);
-			getServicesManager().saveUser(generatedUser);
-		} catch (DuplicateUserException ex) {
-			//add binding result error.
-			//is already added? :O
 		}
-		return "redirect:/login";
+		map.addAttribute("userForm", userForm);
+		return WebAppConstants.SIGNUP_PAGE;
 	}
 
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
@@ -124,6 +123,7 @@ public class LoginController extends BaseController {
 		generatedUser.setSignInProvider(SocialMediaService.NONE);
 		generatedUser.setEmail(userForm.getEmail());
 		generatedUser.setUsername(userForm.getUsername());//it does not require special diferentiation
+		generatedUser.setPassword(userForm.getPassword());
 		return generatedUser;
 	}
 }

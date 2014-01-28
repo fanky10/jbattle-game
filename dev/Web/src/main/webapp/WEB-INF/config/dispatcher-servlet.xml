@@ -8,7 +8,6 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 	
 	<import resource="security.xml" />
-<!-- 	<import resource="social.xml" /> -->
 	
 	<!-- Scans within the base package of the application for @Components to 
 		configure as beans -->
@@ -21,7 +20,7 @@
 	<context:component-scan base-package="com.doinfinite.battlegame.configuration" />
 
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven ignoreDefaultModelOnRedirect="true" />
+	<mvc:annotation-driven ignoreDefaultModelOnRedirect="true" validator="validator" />
 
 	<!-- handling objects in request. It's done implicity, but if more are needed 
 		they should be placed here -->
@@ -87,7 +86,12 @@
 	<!-- Register the messages.properties -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename" value="messages" />
+		<property name="basenames" value="messages,validationMessages" />
+	</bean>
+	
+	<!-- validation with custom properties file -->
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
 
 </beans>

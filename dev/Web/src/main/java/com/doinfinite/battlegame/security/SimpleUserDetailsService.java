@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.doinfinite.battlegame.model.User;
 import com.doinfinite.battlegame.model.repository.UserRepository;
 
 @Service
@@ -17,7 +18,11 @@ public class SimpleUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
-		return userRepository.findByUsername(username);
+		UserDetails userDetails = userRepository.findByUsername(username);
+		if(userDetails==null){
+			return new User();
+		}
+		return userDetails;
 	}
 
 }

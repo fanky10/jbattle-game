@@ -4,8 +4,8 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.social.connect.Connection;
@@ -15,7 +15,7 @@ import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,13 +31,10 @@ import com.doinfinite.battlegame.web.form.UserForm;
 @Controller
 public class LoginController extends BaseController {
 
-	@Autowired
-	private HomeController homeController;
-	
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response, Model map) {
 
-		return getHomeController().home(map);
+		return "redirect:" + getHomeUrl();
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -63,7 +60,7 @@ public class LoginController extends BaseController {
 			SecurityContextHolder.getContext().setAuthentication(
 					new UsernamePasswordAuthenticationToken(generatedUser, null, generatedUser.getAuthorities()));
 			ProviderSignInUtils.handlePostSignUp(generatedUser.getUsername(), webRequest);
-			return "redirect:/";
+			return "redirect:" + getHomeUrl();
 		}
 		map.addAttribute("userForm", new UserForm());
 		// show signup
@@ -71,15 +68,15 @@ public class LoginController extends BaseController {
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String doSignup(@ModelAttribute UserForm userForm, HttpServletRequest httpRequest, WebRequest webRequest,
-			HttpServletResponse response, Model map) {
-
-		try {
-			User generatedUser = createUser(userForm);
-			getServicesManager().saveUser(generatedUser);
-		} catch (DuplicateUserException ex) {
-			//add binding result error.
-			//is already added? :O
+	public String doSignup(@Valid UserForm userForm, BindingResult errorResult, Model map) {
+		if (!errorResult.hasErrors()) {
+			try {
+				User generatedUser = createUser(userForm);
+				getServicesManager().saveUser(generatedUser);
+				return "redirect:/login";
+			} catch (DuplicateUserException ex) {
+				errorResult.rejectValue("username", "signup.error.username.inuse", "Username in use");
+			}
 		}
 		map.addAttribute("userForm", userForm);
 		return WebAppConstants.SIGNUP_PAGE;
@@ -117,7 +114,6 @@ public class LoginController extends BaseController {
 
 	private User createUser(UserForm userForm) {
 		Date now = new Date(System.currentTimeMillis());
-		User generated = new User();
 		User generatedUser = new User();
 		generatedUser.setFirstName(userForm.getFirstName());
 		generatedUser.setLastName(userForm.getLastName());
@@ -127,14 +123,7 @@ public class LoginController extends BaseController {
 		generatedUser.setSignInProvider(SocialMediaService.NONE);
 		generatedUser.setEmail(userForm.getEmail());
 		generatedUser.setUsername(userForm.getUsername());//it does not require special diferentiation
-		return generated;
-	}
-
-	public HomeController getHomeController() {
-		return homeController;
-	}
-
-	public void setHomeController(HomeController homeController) {
-		this.homeController = homeController;
+		generatedUser.setPassword(userForm.getPassword());
+		return generatedUser;
 	}
 }

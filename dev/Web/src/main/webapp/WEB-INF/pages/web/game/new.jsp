@@ -19,6 +19,7 @@
 			success : function(data) {
 				$(".battle-view").html('<div id="responseMessage"></div>');
 				$("#responseMessage").html("<h4>"+data.message+"</h4>");
+				$("#responseMessage").append("<div class='battle-animation'></div>")
 				$("#responseMessage").append("<ul>");
 				$.each(data.content,function(i,item){
 					if(item.status == "ATTACKING"){
@@ -34,9 +35,13 @@
 						liClass = "Battle-Result-Lose";
 						content = item.message;
 					}
+					console.log(item);
 					newLi = $("#responseMessage ul").append("<li class="+liClass+">"+content+"</li>");
 				});
-				$("#responseMessage").append("<a href='.'>Battle Again!</a>");
+				setTimeout(function () {
+					$("#responseMessage").append("<a href=''>Battle Again!</a>");
+			    }, 300);
+				
 			},
 			error : function() {
 				$("#responseMessage").html(

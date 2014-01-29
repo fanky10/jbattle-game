@@ -18,16 +18,22 @@
 		<form name='f' action="<c:url value='j_spring_security_check' />"
 		method='POST'>
 	 		<ul>
-				<li>
-					<label>User:</label>
+	 			<li class="col-md-5 col-xs-6">
+	 				<label>User:</label>
+				</li>
+				<li class="col-md-5 col-xs-6">
+					<label>Password:</label>
+				</li>
+				<li class="col-md-5 col-xs-6">
 					<input class="form-control" type='text' name='j_username' value=''>
 				</li>
-				<li>
-					<label>Password:</label>
+				<li class="col-md-5 col-xs-6">
 					<input class="form-control" type='password' name='j_password' />
 				</li>
-				<li>
+				<li class="col-md-2 col-xs-4">
 					<input class="btn btn-default" name="submit" type="submit" value="submit" />
+				</li>
+				<li class="col-md-12 col-xs-8">
 					<a href="<c:url value="/signup"/>">I dont want a bloody social account</a>
 				</li>
 			</ul>

@@ -80,7 +80,9 @@ div{
 /*** LOGIN PAGE STYLES ***/
 
 .clasic-login, .social-login{
-	height: 180px;
+	padding: 10px;
+	float: left; 
+	height: 200px;
 }
 
 .disclaimer{
@@ -100,13 +102,18 @@ div{
 	padding: 0;
 }
 
+.clasic-login li{
+	margin: 3px 0;
+	padding: 0 5px;
+}
+
 .clasic-login label{
 	width: 85px;
 }
 
 
-.clasic-login{
-	
+.clasic-login input[type=submit]{
+	font-size: 10px;
 }
 
 .social-login{

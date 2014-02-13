@@ -145,8 +145,8 @@ div{
 
 .unit{
 	border: 3px solid black;
-	margin: 1px;
-	min-width: 250px;
+	margin: 1px 0;
+	padding: 10px;
 }
 
 .unit h4{
@@ -167,6 +167,16 @@ div{
 .battle-view{
 
 }
+
+.battle-view .your-troops{
+	background: darkblue;
+}
+
+.battle-view .enemy-troops{
+	background: darkred;
+}
+
+
 
 .battle-view .actions{
 	clear: both;

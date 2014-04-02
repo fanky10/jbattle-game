@@ -1,4 +1,4 @@
 #!/bin/sh
-cd ../dev
-mvn clean install -Pqa $@
+cd src-dev
+mvn package -Pqa $@
 

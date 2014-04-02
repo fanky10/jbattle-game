@@ -1,8 +1,7 @@
 #!/bin/sh
 
-# deployment
+rm -r /var/lib/tomcat7/webapps/tbg*
+sudo cp src-dev/Web/target/Web-1.0-SNAPSHOT.war /var/lib/tomcat7/webapps/tbg.war
 
-# af login
-af update thebattlegame --path ~/.m2/repository/com/doinfinite/battlegame/Web/1.0-SNAPSHOT/Web-1.0-SNAPSHOT.war
 
 

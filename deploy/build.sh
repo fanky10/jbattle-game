@@ -1,4 +1,4 @@
 #!/bin/sh
 cd ../dev
-mvn clean install -Pprod
+mvn clean install -Pqa $@
 

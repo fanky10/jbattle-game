@@ -39,23 +39,21 @@
 	<c:url var="formAction" value="/units/select/${currentGameType}" />
 	<form:form method="POST" modelAttribute="selectUnitsForm"
 		action="${formAction}">
-		<div class="unit-list">
+		<div class="unit-list col-xs-12 col-sm-12 col-md-12">
 
 			<c:forEach var="unit" items="${availableUnits}">
-				<div class="col-sm-4 col-md-4">
-					<div class="unit">
+				<div class="col-xs-6 col-sm-4 col-md-4">
+					<label class="unit big-checkbox" for="${unit.name}">
 						<h4>${unit.name}</h4>
 						<div class="unit-status">
+							<p class="stats">Stats</p>
 							<p>Health: ${unit.health }</p>
 							<p>Damage: ${unit.damage }</p>
 							<p>Defense: ${unit.defense }</p>
-							<p>Defense: ${unit.speed }</p>
+							<p>Speed: ${unit.speed }</p>
 						</div>
-						<p>
-							<form:checkbox class="unitsSelection" path="selectedUnits"
-								value="${unit.name}" />
-						</p>
-					</div>
+						<form:checkbox class="unitsSelection" id="${unit.name}" path="selectedUnits" value="${unit.name}" />
+					</label>
 				</div>
 			</c:forEach>
 		</div>

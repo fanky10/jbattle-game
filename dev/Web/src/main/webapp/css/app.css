@@ -31,6 +31,12 @@ div{
 	font-size: 0.9em;
 }
 
+/*** GENERAL STILES ***/
+.errorblock{
+	color: red;
+	float:left;
+}
+
 /*** NAV CUSTOM STYLES ***/
 .dropdown-menu{
 	font-size: 1em;
@@ -138,19 +144,80 @@ div{
 	padding: 10px;
 }
 
+.unit-selection h2{
+	text-align: center;
+}
+.unit-selection button[type="submit"]{
+	border: 3px solid black;
+	font-size: 16px;
+	margin: 0 43%;
+}
+
 .unit-list{
 	clear: both;
 	float: left;
 }
-
+ label{
+ 	width: 100%;
+ }
+ 
 .unit{
-	border: 3px solid black;
-	margin: 1px 0;
-	padding: 10px;
+	border: 10px solid black;
+	border-radius: 10px;
+	height: 200px;
+	position: relative;
+	width: 100%;
 }
 
 .unit h4{
 	font-size: 15px;
+	margin: 5px;
+}
+
+.unit-status{
+	background-color: black;
+	display: none;
+	bottom: 0;
+	left: 0;
+	opacity: 0.5;
+	position: absolute;
+	width: 100%;
+	padding-bottom: 30px;
+}
+.unit:hover .unit-status{
+	display: block;
+}
+
+.unit-status p{
+	color: white;
+	opacity: 1;
+	margin: 10px;
+}
+
+.unit-status p.stats{
+	font-size: 12px;
+}
+
+.big-checkbox input[type=checkbox] {
+    display:none;
+}
+ 
+.unit-selection .big-checkbox input[type=checkbox] + label.big-checkbox {
+    display:inline-block;
+    margin:-2px;
+    padding: 4px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333;
+    text-align: center;
+    cursor: pointer;
+    background-color: red;
+}
+ 
+.unit-selection .big-checkbox input[type=checkbox]:checked + label.big-checkbox {
+    background: red;
+    outline: 0;
 }
 
 /*** Unit Selection Page ***/
@@ -224,6 +291,39 @@ div{
 
 #responseMessage .Battle-Result-Lose{
 	background-color: silver;
+}
+
+/*** SIGN UP STYLES ***/
+.sign-up-form{
+	background: grey;
+}
+.sign-up-form h2{
+	padding: 10px 5px;
+	display: block;
+}
+.sign-up-form ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.sign-up-form li{
+	margin: 5px;
+	display: block;
+	padding: 5px 0;
+}
+.sign-up-form li input{
+	height: 30px;
+	clear: both;
+}
+
+.sign-up-form li input[type="text"], .sign-up-form li input[type="password"], .sign-up-form label{	
+	width: 70%;
+}
+.error{
+	float: left;
+	color: red;
+	clear: both;
 }
 
 /**** FOOTER CUSTOM STYLES ****/
